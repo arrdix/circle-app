@@ -9,18 +9,19 @@ function Navigation() {
         <Flex
             as={'nav'}
             direction={'column'}
-            padding={'2rem'}
-            gap={'1rem'}
+            py={'2rem'}
+            pr={'2rem'}
+            gap={'2rem'}
             height={'100vh'}
             pos={'fixed'}
-            w={'300px'}
+            w={'266px'}
         >
-            <Image src={'/circle.png'} objectFit={'cover'} width={'85%'} mb={'1rem'} />
+            <Image src={'/circle.png'} objectFit={'cover'} width={'60%'} mb={'1rem'} />
             <NavigationItem icon={<BiSolidHome />} text={'Home'} />
             <NavigationItem icon={<BiSearchAlt />} text={'Search'} />
             <NavigationItem icon={<BiHeart />} text={'Follow'} />
             <NavigationItem icon={<BiUser />} text={'Profile'} />
-            <SolidButton text={'Create Vibe'} />
+            <SolidButton text={'Create Vibe'} py={'1.5rem'} />
             <Spacer />
             <NavigationItem icon={<BiLogOut />} text={'Logout'} />
         </Flex>

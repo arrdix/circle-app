@@ -11,16 +11,16 @@ import DeveloperCard from './components/cards/DeveloperCard'
 function App() {
     return (
         <div className="app">
-            <Grid templateColumns={'repeat(10, 1fr)'}>
-                <GridItem colSpan={2}>
+            <Grid templateColumns={'repeat(24, 1fr)'}>
+                <GridItem colSpan={5}>
                     <SideBar>
                         <Navigation />
                     </SideBar>
                 </GridItem>
-                <GridItem colSpan={5}>
+                <GridItem colSpan={12}>
                     <MainBar />
                 </GridItem>
-                <GridItem colSpan={3}>
+                <GridItem colSpan={7}>
                     <SideBar>
                         <ProfileCard />
                         <SuggestionCard />

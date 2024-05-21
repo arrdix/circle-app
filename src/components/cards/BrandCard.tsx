@@ -8,7 +8,7 @@ interface BrandCardProps {
 
 function BrandCard({ children, top }: BrandCardProps) {
     return (
-        <Container px={'2rem'} mb={'1rem'} mt={top ? '2rem' : 0}>
+        <Container p={0} pl={'2rem'} mb={'1rem'} mt={top ? '2rem' : 0}>
             <Card
                 color={'circle.font'}
                 bg={'circle.darker'}

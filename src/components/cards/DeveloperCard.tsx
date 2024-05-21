@@ -8,27 +8,27 @@ import GhostButton from '../buttons/GhostButton'
 function DeveloperCard() {
     return (
         <BrandCard>
-            <Flex color={'circle.dark'} alignItems={'center'} gap={'.5rem'}>
-                <Text color={'circle.font'} fontSize={fontSizing.normal}>
+            <Flex color={'circle.dark'} alignItems={'center'} gap={'.25rem'} mb={'.25rem'}>
+                <Text color={'circle.font'} fontSize={fontSizing.small}>
                     Developed by @arrdix
                 </Text>
-                <Text color={'circle.dark'} fontSize={fontSizing.normal}>
+                <Text color={'circle.dark'} fontSize={fontSizing.small}>
                     •
                 </Text>
                 <GhostButton color="circle.dark">
-                    <BiLogoGithub fontSize={fontSizing.bigger} />
+                    <BiLogoGithub fontSize={fontSizing.big} />
                 </GhostButton>
                 <GhostButton color="circle.dark">
-                    <BiLogoLinkedinSquare fontSize={fontSizing.bigger} />
+                    <BiLogoLinkedinSquare fontSize={fontSizing.big} />
                 </GhostButton>
                 <GhostButton color="circle.dark">
-                    <BiLogoInstagram fontSize={fontSizing.bigger} />
+                    <BiLogoInstagram fontSize={fontSizing.big} />
                 </GhostButton>
                 <GhostButton color="circle.dark">
-                    <BiLogoTwitter fontSize={fontSizing.bigger} />
+                    <BiLogoTwitter fontSize={fontSizing.big} />
                 </GhostButton>
             </Flex>
-            <Flex color={'circle.dark'} fontSize={fontSizing.small} alignItems={'end'}>
+            <Flex color={'circle.dark'} fontSize={fontSizing.smaller} alignItems={'center'}>
                 Powered by
                 <Image src={'/dumbways-logo.png'} boxSize={'1rem'} display={'inline'} mx=".5rem" />
                 DumbWays Indonesia

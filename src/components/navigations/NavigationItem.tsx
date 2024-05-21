@@ -15,14 +15,14 @@ function NavigationItem({ icon, text }: NavigationItemProps) {
             <Flex
                 gap={'1rem'}
                 alignItems={'center'}
-                fontSize={fontSizing.biggest}
+                fontSize={fontSizing.bigger}
                 color={'circle.font'}
             >
                 {icon}
                 <Text
                     as={'h1'}
-                    fontSize={fontSizing.bigger}
-                    fontWeight={'500'}
+                    fontSize={fontSizing.big}
+                    fontWeight={'600'}
                     display={'flex'}
                     alignItems={'center'}
                     gap={'1rem'}

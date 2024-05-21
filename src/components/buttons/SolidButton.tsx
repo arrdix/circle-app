@@ -3,7 +3,7 @@ import { solidButtonHover } from '../../styles/style'
 
 interface SolidButtonProps {
     text: string
-    py: string
+    py?: string
 }
 
 function SolidButton({ text, py }: SolidButtonProps) {

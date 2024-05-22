@@ -1,7 +1,7 @@
 import { Flex, Text, Avatar, Spacer } from '@chakra-ui/react'
-import { fontSizing } from '../../styles/style'
+import { fontSizing } from '@/styles/style'
 
-import HollowButton from '../buttons/HollowButton'
+import HollowButton from '@/components/buttons/HollowButton'
 
 function SuggestionCardItem() {
     return (

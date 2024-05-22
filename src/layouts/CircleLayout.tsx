@@ -1,8 +1,8 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
 
-import SideBar from '../components/bars/SideBar'
-import Navigation from '../components/navigations/Navigation'
+import SideBar from '@/components/bars/SideBar'
+import Navigation from '@/components/navigations/Navigation'
 
 function CircleLayout() {
     return (

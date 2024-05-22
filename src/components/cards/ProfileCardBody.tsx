@@ -1,5 +1,5 @@
 import { Text, CardBody } from '@chakra-ui/react'
-import { fontSizing } from '../../styles/style'
+import { fontSizing } from '@/styles/style'
 
 function ProfileCardBody() {
     return (

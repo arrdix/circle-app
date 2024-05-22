@@ -1,6 +1,6 @@
 import { Text, CardFooter } from '@chakra-ui/react'
 
-import GhostButton from '../buttons/GhostButton'
+import GhostButton from '@/components/buttons/GhostButton'
 
 function ProfileCardFooter() {
     return (

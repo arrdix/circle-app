@@ -11,8 +11,8 @@ import {
     Image,
 } from '@chakra-ui/react'
 import { BiSolidHeart, BiCommentDetail } from 'react-icons/bi'
-import { VibeType, UserType, ContentType } from '../../types/types'
-import { fontSizing, vibeHover } from '../../styles/style'
+import { VibeType, UserType, ContentType } from '@/types/types'
+import { fontSizing, vibeHover } from '@/styles/style'
 
 import VibeItemButton from './VibeItemButton'
 

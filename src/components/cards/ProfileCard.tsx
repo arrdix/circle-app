@@ -1,5 +1,5 @@
 import { Heading } from '@chakra-ui/react'
-import { fontSizing } from '../../styles/style'
+import { fontSizing } from '@/styles/style'
 
 import BrandCard from './BrandCard'
 import ProfileCardHeader from './ProfileCardHeader'

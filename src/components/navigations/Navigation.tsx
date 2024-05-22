@@ -3,7 +3,7 @@ import { Flex, Spacer, Image } from '@chakra-ui/react'
 import { BiSolidHome, BiSearchAlt, BiHeart, BiUser, BiLogOut } from 'react-icons/bi'
 
 import NavigationItem from './NavigationItem'
-import SolidButton from '../buttons/SolidButton'
+import SolidButton from '@/components/buttons/SolidButton'
 
 function Navigation() {
     return (

@@ -37,13 +37,13 @@ function VibeDetailPage() {
                             isLiked={vibe.isLiked}
                             user={vibe.user}
                         />
-                        <NewVibe placeholder={'Post you reply'} buttonText={'Reply'} />
+                        <NewVibe placeholder={'Post your reply'} buttonText={'Reply'} />
                         <VibeList />
                     </MainBar>
                 </GridItem>
                 <GridItem colSpan={7}>
                     <SideBar>
-                        <ProfileCard />
+                        <ProfileCard top />
                         <SuggestionCard />
                         <DeveloperCard />
                     </SideBar>

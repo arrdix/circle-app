@@ -25,3 +25,8 @@ export const vibeHover = {
     background: 'circle.backdropAccent',
     transition: 'background .5s ease-in-out',
 }
+
+export const tabStyle = {
+    color: 'circle.font',
+    borderColor: 'circle.accent',
+}

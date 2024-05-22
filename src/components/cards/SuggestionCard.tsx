@@ -4,9 +4,13 @@ import { fontSizing } from '../../styles/style'
 import SuggestionCardItem from './SuggestionCardItem'
 import BrandCard from './BrandCard'
 
-function SuggestionCard() {
+interface SuggestionCardProps {
+    top?: boolean
+}
+
+function SuggestionCard({ top }: SuggestionCardProps) {
     return (
-        <BrandCard>
+        <BrandCard top={top && top}>
             <Text fontWeight={'700'} fontSize={fontSizing.big} mb={'1rem'}>
                 Suggested accounts
             </Text>

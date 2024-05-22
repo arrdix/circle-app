@@ -2,7 +2,11 @@ import { Image, Flex, CardHeader, Box } from '@chakra-ui/react'
 
 import HollowButton from '../buttons/HollowButton'
 
-function ProfileCardHeader() {
+interface ProfileCardHeaderProps {
+    buttonText: string
+}
+
+function ProfileCardHeader({ buttonText }: ProfileCardHeaderProps) {
     return (
         <CardHeader
             display={'flex'}
@@ -19,7 +23,7 @@ function ProfileCardHeader() {
                 borderRadius={'xl'}
             />
             <Box ml={'auto'}>
-                <HollowButton text={'Edit Profile'} />
+                <HollowButton text={buttonText} />
             </Box>
             <Flex pos={'absolute'} left={'5%'} bottom={'0'}>
                 <Image

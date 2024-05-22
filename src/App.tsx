@@ -4,6 +4,7 @@ import './assets/base.css'
 import CircleLayout from './layouts/CircleLayout'
 import HomePage from './pages/HomePage'
 import VibeDetailPage from './pages/VibeDetailPage'
+import ProfilePage from './pages/ProfilePage'
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
                 <Route path="/" element={<CircleLayout />}>
                     <Route index element={<HomePage />} />
                     <Route path="/detail/:id" element={<VibeDetailPage />} />
+                    <Route path="/me" element={<ProfilePage />} />
                 </Route>
             </Routes>
         </div>

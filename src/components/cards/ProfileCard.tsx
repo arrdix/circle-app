@@ -6,13 +6,17 @@ import ProfileCardHeader from './ProfileCardHeader'
 import ProfileCardBody from './ProfileCardBody'
 import ProfileCardFooter from './ProfileCardFooter'
 
-function ProfileCard() {
+interface ProfileCardProps {
+    top?: boolean
+}
+
+function ProfileCard({ top }: ProfileCardProps) {
     return (
-        <BrandCard top>
+        <BrandCard top={top && top}>
             <Heading fontWeight={'700'} fontSize={fontSizing.big} mb={'1rem'}>
                 My Profile
             </Heading>
-            <ProfileCardHeader />
+            <ProfileCardHeader buttonText={'Edit Profile'} />
             <ProfileCardBody />
             <ProfileCardFooter />
         </BrandCard>

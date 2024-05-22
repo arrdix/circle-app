@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardBody, CardFooter, Text, Flex, Avatar } from '@chakra-ui/react'
 import { BiSolidHeart, BiCommentDetail } from 'react-icons/bi'
 import { VibeType, UserType } from '../../types/types'
-import { fontSizing } from '../../styles/style'
+import { fontSizing, vibeHover } from '../../styles/style'
 
 import VibeItemButton from './VibeItemButton'
 
@@ -10,7 +10,7 @@ function VibeItem({ vibe, createdAt, likes, replies, isLiked, user }: VibeType) 
     console.log(createdAt)
 
     return (
-        <Card bg={'circle.backdrop'} color={'circle.font'} p={'1rem'}>
+        <Card bg={'circle.backdrop'} color={'circle.font'} p={'1rem'} _hover={vibeHover}>
             <Flex gap={'1rem'}>
                 <Avatar src={profilePicture} />
                 <Flex direction={'column'} gap={'.25rem'}>

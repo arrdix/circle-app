@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Box } from '@chakra-ui/react'
-import { getVibes } from '../../utils/api'
-import { VibeType } from '../../types/types'
+import { getVibes } from '@/utils/api'
+import { VibeType } from '@/types/types'
 
 import VibeItem from './VibeItem'
 

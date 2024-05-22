@@ -1,7 +1,7 @@
 import { Tabs, TabList, Tab, TabPanels, TabPanel, TabIndicator } from '@chakra-ui/react'
-import { tabStyle } from '../../styles/style'
+import { tabStyle } from '@/styles/style'
 
-import VibeList from '../vibes/VibeList'
+import VibeList from '@/components/vibes/VibeList'
 
 function BrandTabs() {
     return (

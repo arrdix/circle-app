@@ -1,9 +1,9 @@
 import { Avatar, Flex, Spacer, FormControl, Input, Box, Divider } from '@chakra-ui/react'
 import { BiImageAdd } from 'react-icons/bi'
-import { fontSizing } from '../../styles/style'
+import { fontSizing } from '@/styles/style'
 
-import SolidButton from '../buttons/SolidButton'
-import GhostButton from '../buttons/GhostButton'
+import SolidButton from '@/components/buttons/SolidButton'
+import GhostButton from '@/components/buttons/GhostButton'
 
 interface NewVibeProps {
     placeholder: string

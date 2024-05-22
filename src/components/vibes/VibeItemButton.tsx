@@ -1,6 +1,6 @@
 import { Text, Button, Box } from '@chakra-ui/react'
 import { ReactNode } from 'react'
-import { fontSizing } from '../../styles/style'
+import { fontSizing } from '@/styles/style'
 
 interface VibeItemButtonProps {
     icon: ReactNode

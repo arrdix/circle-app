@@ -1,5 +1,5 @@
 import { Text, Flex } from '@chakra-ui/react'
-import { fontSizing } from '../../styles/style'
+import { fontSizing } from '@/styles/style'
 
 import SuggestionCardItem from './SuggestionCardItem'
 import BrandCard from './BrandCard'

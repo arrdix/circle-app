@@ -1,6 +1,6 @@
 import { Button } from '@chakra-ui/react'
 import { ReactNode } from 'react'
-import { transparentHover } from '../../styles/style'
+import { transparentHover } from '@/styles/style'
 
 interface GhostButtonProps {
     children: ReactNode

@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/react'
-import { solidButtonHover } from '../../styles/style'
+import { solidButtonHover } from '@/styles/style'
 
 interface SolidButtonProps {
     text: string

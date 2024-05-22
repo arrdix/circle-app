@@ -1,6 +1,6 @@
 import { Image, Flex, CardHeader, Box } from '@chakra-ui/react'
 
-import HollowButton from '../buttons/HollowButton'
+import HollowButton from '@/components/buttons/HollowButton'
 
 interface ProfileCardHeaderProps {
     buttonText: string

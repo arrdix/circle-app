@@ -1,13 +1,13 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 
-import MainBar from '../components/bars/MainBar'
-import SideBar from '../components/bars/SideBar'
-import ProfileCard from '../components/cards/ProfileCard'
-import SuggestionCard from '../components/cards/SuggestionCard'
-import DeveloperCard from '../components/cards/DeveloperCard'
-import VibeList from '../components/vibes/VibeList'
-import NewVibe from '../components/vibes/NewVibe'
-import NavigationHeading from '../components/navigations/NavigationHeading'
+import MainBar from '@/components/bars/MainBar'
+import SideBar from '@/components/bars/SideBar'
+import ProfileCard from '@/components/cards/ProfileCard'
+import SuggestionCard from '@/components/cards/SuggestionCard'
+import DeveloperCard from '@/components/cards/DeveloperCard'
+import VibeList from '@/components/vibes/VibeList'
+import NewVibe from '@/components/vibes/NewVibe'
+import NavigationHeading from '@/components/navigations/NavigationHeading'
 
 function HomePage() {
     return (

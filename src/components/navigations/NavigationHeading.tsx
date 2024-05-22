@@ -1,8 +1,8 @@
 import { Box, Heading } from '@chakra-ui/react'
 import { ReactNode } from 'react'
-import { fontSizing } from '../../styles/style'
+import { fontSizing } from '@/styles/style'
 
-import GhostButton from '../buttons/GhostButton'
+import GhostButton from '@/components/buttons/GhostButton'
 
 interface NavigationHeadingProps {
     icon?: ReactNode

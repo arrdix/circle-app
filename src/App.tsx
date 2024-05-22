@@ -11,7 +11,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<CircleLayout />}>
                     <Route index element={<HomePage />} />
-                    <Route path="/detail" element={<VibeDetailPage />} />
+                    <Route path="/detail/:id" element={<VibeDetailPage />} />
                 </Route>
             </Routes>
         </div>

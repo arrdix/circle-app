@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Box, Divider } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { getVibes } from '../../utils/api'
 import { VibeType } from '../../types/types'
 
@@ -12,17 +12,16 @@ function VibeList() {
         <Box>
             {vibes.map((vibe) => {
                 return (
-                    <Link to={'/detail'} key={vibe.id}>
+                    <Link to={`/detail/${vibe.id}`} key={vibe.id}>
                         <VibeItem
                             id={vibe.id}
-                            vibe={vibe.vibe}
+                            content={vibe.content}
                             createdAt={vibe.createdAt}
                             likes={vibe.likes}
                             replies={vibe.replies}
                             isLiked={vibe.isLiked}
                             user={vibe.user}
                         />
-                        <Divider border={'1ox'} borderColor={'circle.darker'} />
                     </Link>
                 )
             })}

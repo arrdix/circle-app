@@ -23,7 +23,9 @@ function Navigation() {
             </Link>
             <NavigationItem icon={<BiSearchAlt />} text={'Search'} />
             <NavigationItem icon={<BiHeart />} text={'Follow'} />
-            <NavigationItem icon={<BiUser />} text={'Profile'} />
+            <Link to={'/me'}>
+                <NavigationItem icon={<BiUser />} text={'Profile'} />
+            </Link>
             <SolidButton text={'Create Vibe'} py={'1.5rem'} />
             <Spacer />
             <NavigationItem icon={<BiLogOut />} text={'Logout'} />

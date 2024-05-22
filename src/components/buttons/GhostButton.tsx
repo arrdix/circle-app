@@ -2,13 +2,13 @@ import { Button } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 import { transparentHover } from '../../styles/style'
 
-interface GlassButtonProps {
+interface GhostButtonProps {
     children: ReactNode
     color?: string
     fontSize?: string
 }
 
-function GhostButton({ children, color, fontSize }: GlassButtonProps) {
+function GhostButton({ children, color, fontSize }: GhostButtonProps) {
     return (
         <Button
             padding={0}

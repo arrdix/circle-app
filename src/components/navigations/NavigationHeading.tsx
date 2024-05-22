@@ -5,7 +5,7 @@ import { fontSizing } from '../../styles/style'
 import GhostButton from '../buttons/GhostButton'
 
 interface NavigationHeadingProps {
-    icon: ReactNode
+    icon?: ReactNode
     text: string
 }
 

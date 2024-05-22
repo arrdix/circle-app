@@ -1,5 +1,4 @@
-import { Grid, GridItem, Heading, Divider } from '@chakra-ui/react'
-import { fontSizing } from '../styles/style'
+import { Grid, GridItem } from '@chakra-ui/react'
 
 import MainBar from '../components/bars/MainBar'
 import SideBar from '../components/bars/SideBar'
@@ -8,23 +7,21 @@ import SuggestionCard from '../components/cards/SuggestionCard'
 import DeveloperCard from '../components/cards/DeveloperCard'
 import VibeList from '../components/vibes/VibeList'
 import NewVibe from '../components/vibes/NewVibe'
+import NavigationHeading from '../components/navigations/NavigationHeading'
 
 function HomePage() {
     return (
         <Grid templateColumns={'repeat(19, 1fr)'}>
             <GridItem colSpan={12}>
                 <MainBar>
-                    <Heading px={'1rem'} pt={'2rem'} pb={'1rem'} fontSize={fontSizing.bigger}>
-                        Home
-                    </Heading>
+                    <NavigationHeading text={'Home'} />
                     <NewVibe placeholder={"What's on your mind?"} />
-                    <Divider borderColor={'circle.darker'} />
                     <VibeList />
                 </MainBar>
             </GridItem>
             <GridItem colSpan={7}>
                 <SideBar>
-                    <ProfileCard />
+                    <ProfileCard top />
                     <SuggestionCard />
                     <DeveloperCard />
                 </SideBar>

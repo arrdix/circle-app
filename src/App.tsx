@@ -1,33 +1,19 @@
-import './assets/base.css'
+import { Routes, Route } from 'react-router-dom'
 
-import { Grid, GridItem } from '@chakra-ui/react'
-import MainBar from './components/bars/MainBar'
-import SideBar from './components/bars/SideBar'
-import Navigation from './components/navigations/Navigation'
-import ProfileCard from './components/cards/ProfileCard'
-import SuggestionCard from './components/cards/SuggestionCard'
-import DeveloperCard from './components/cards/DeveloperCard'
+import './assets/base.css'
+import CircleLayout from './layouts/CircleLayout'
+import HomePage from './pages/HomePage'
+import VibeDetailPage from './pages/VibeDetailPage'
 
 function App() {
     return (
         <div className="app">
-            <Grid templateColumns={'repeat(24, 1fr)'}>
-                <GridItem colSpan={5}>
-                    <SideBar>
-                        <Navigation />
-                    </SideBar>
-                </GridItem>
-                <GridItem colSpan={12}>
-                    <MainBar />
-                </GridItem>
-                <GridItem colSpan={7}>
-                    <SideBar>
-                        <ProfileCard />
-                        <SuggestionCard />
-                        <DeveloperCard />
-                    </SideBar>
-                </GridItem>
-            </Grid>
+            <Routes>
+                <Route path="/" element={<CircleLayout />}>
+                    <Route index element={<HomePage />} />
+                    <Route path="/detail" element={<VibeDetailPage />} />
+                </Route>
+            </Routes>
         </div>
     )
 }

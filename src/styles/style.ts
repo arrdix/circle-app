@@ -20,3 +20,8 @@ export const transparentHover = {
     background: 'transparent',
     opacity: '0.5',
 }
+
+export const vibeHover = {
+    background: 'circle.backdropAccent',
+    transition: 'background .5s ease-in-out',
+}

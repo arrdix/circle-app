@@ -10,6 +10,13 @@ interface VibeItemButtonProps {
 }
 
 function VibeItemButton({ icon, value, color, hoverColor }: VibeItemButtonProps) {
+    function handler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+        e.stopPropagation()
+        e.preventDefault()
+
+        console.log('aa')
+    }
+
     return (
         <Button
             variant={'ghost'}
@@ -18,7 +25,9 @@ function VibeItemButton({ icon, value, color, hoverColor }: VibeItemButtonProps)
             gap={'.5rem'}
             color={color}
             padding={0}
+            zIndex={1}
             _hover={{ color: hoverColor, background: 'transparent' }}
+            onClick={(e) => handler(e)}
         >
             <Box fontSize={fontSizing.bigger}>{icon}</Box>
             <Text color={'circle.dark'} fontSize={fontSizing.small} fontWeight={'400'}>

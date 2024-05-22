@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Flex, Spacer, Image } from '@chakra-ui/react'
 import { BiSolidHome, BiSearchAlt, BiHeart, BiUser, BiLogOut } from 'react-icons/bi'
 
@@ -17,7 +18,9 @@ function Navigation() {
             w={'266px'}
         >
             <Image src={'/circle.png'} objectFit={'cover'} width={'60%'} mb={'1rem'} />
-            <NavigationItem icon={<BiSolidHome />} text={'Home'} />
+            <Link to={'/'}>
+                <NavigationItem icon={<BiSolidHome />} text={'Home'} />
+            </Link>
             <NavigationItem icon={<BiSearchAlt />} text={'Search'} />
             <NavigationItem icon={<BiHeart />} text={'Follow'} />
             <NavigationItem icon={<BiUser />} text={'Profile'} />

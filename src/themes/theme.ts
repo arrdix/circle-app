@@ -4,11 +4,12 @@ const circleTheme = extendTheme({
     colors: {
         circle: {
             backdrop: '#171717',
+            backdropAccent: '#1c1c1c',
             font: '#dedede',
             dark: '#757575',
             darker: '#1f1f1f',
             red: '#D71913',
-            accent: '#8E3E63',
+            accent: '#8e3e63',
             darkAccent: '#703450',
         },
     },

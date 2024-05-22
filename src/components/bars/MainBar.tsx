@@ -1,18 +1,15 @@
-import { Box, Heading, Divider } from '@chakra-ui/react'
-import { fontSizing } from '../../styles/style'
+import { Box } from '@chakra-ui/react'
 
-import VibeList from '../vibes/VibeList'
-import NewVibe from '../vibes/NewVibe'
+import { ReactNode } from 'react'
 
-function MainBar() {
+interface MainBarProps {
+    children: ReactNode
+}
+
+function MainBar({ children }: MainBarProps) {
     return (
-        <Box border={'1px'} borderColor={'circle.darker'}>
-            <Heading px={'1rem'} pt={'2rem'} pb={'1rem'} fontSize={fontSizing.bigger}>
-                Home
-            </Heading>
-            <NewVibe />
-            <Divider border={'1ox'} borderColor={'circle.darker'} />
-            <VibeList />
+        <Box as={'section'} border={'1px'} borderColor={'circle.darker'} minHeight={'100vh'}>
+            {children}
         </Box>
     )
 }

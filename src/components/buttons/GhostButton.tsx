@@ -5,9 +5,10 @@ import { transparentHover } from '../../styles/style'
 interface GlassButtonProps {
     children: ReactNode
     color?: string
+    fontSize?: string
 }
 
-function GhostButton({ children, color }: GlassButtonProps) {
+function GhostButton({ children, color, fontSize }: GlassButtonProps) {
     return (
         <Button
             padding={0}
@@ -20,6 +21,7 @@ function GhostButton({ children, color }: GlassButtonProps) {
             minWidth={'none'}
             minHeight={'none'}
             color={color ? color : undefined}
+            fontSize={fontSize ? fontSize : undefined}
             _hover={transparentHover}
         >
             {children}

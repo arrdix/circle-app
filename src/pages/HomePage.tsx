@@ -17,8 +17,8 @@ function HomePage() {
                     <Heading px={'1rem'} pt={'2rem'} pb={'1rem'} fontSize={fontSizing.bigger}>
                         Home
                     </Heading>
-                    <NewVibe />
-                    <Divider border={'1ox'} borderColor={'circle.darker'} />
+                    <NewVibe placeholder={"What's on your mind?"} />
+                    <Divider borderColor={'circle.darker'} />
                     <VibeList />
                 </MainBar>
             </GridItem>

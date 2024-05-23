@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage'
 import VibeDetailPage from './pages/VibeDetailPage'
 import ProfilePage from './pages/ProfilePage'
 import SearchPage from '@/pages/SearchPage'
+import LoginPage from '@/pages/LoginPage'
+import RegisterPage from '@/pages/RegisterPage'
 
 function App() {
     const { pathname } = useLocation()
@@ -28,6 +30,8 @@ function App() {
                     <Route path="/me" element={<ProfilePage />} />
                     <Route path="/search" element={<SearchPage />} />
                 </Route>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
             </Routes>
         </div>
     )

@@ -1,7 +1,7 @@
 import { Box, Input, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react'
 import { BiSearchAlt } from 'react-icons/bi'
 
-function CircleInput() {
+function IconInput() {
     return (
         <Box px={'1rem'} pt={'2rem'}>
             <Stack spacing={4}>
@@ -15,10 +15,23 @@ function CircleInput() {
                         type="text"
                         pl={'2.75rem'}
                         placeholder="Search.."
-                        border={0}
+                        border={'2px'}
+                        borderColor={'transparent'}
                         borderRadius={'2xl'}
                         bg={'circle.darker'}
                         color={'circle.font'}
+                        _active={{
+                            boxShadow: 'none',
+                            borderColor: 'circle.accent',
+                        }}
+                        _focus={{
+                            boxShadow: 'none',
+                            borderColor: 'circle.accent',
+                        }}
+                        _hover={{
+                            boxShadow: 'none',
+                            borderColor: 'circle.accent',
+                        }}
                         _placeholder={{ color: 'circle.dark' }}
                     />
                 </InputGroup>
@@ -27,4 +40,4 @@ function CircleInput() {
     )
 }
 
-export default CircleInput
+export default IconInput

@@ -6,14 +6,14 @@ import ProfileCard from '@/components/cards/ProfileCard'
 import SuggestionCard from '@/components/cards/SuggestionCard'
 import DeveloperCard from '@/components/cards/DeveloperCard'
 import AccountCard from '@/components/cards/AccountCard'
-import CircleInput from '@/components/inputs/CircleInput'
+import IconInput from '@/components/inputs/IconInput'
 
 function SearchPage() {
     return (
         <Grid templateColumns={'repeat(19, 1fr)'}>
             <GridItem colSpan={12}>
                 <MainBar>
-                    <CircleInput />
+                    <IconInput />
                     <Flex direction={'column'} gap={'1rem'} px={'1rem'} mt={'1rem'}>
                         <AccountCard includeBio />
                         <AccountCard />

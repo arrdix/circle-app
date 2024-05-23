@@ -1,7 +1,7 @@
 import { Text, Flex } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
 
-import SuggestionCardItem from './SuggestionCardItem'
+import AccountCard from './AccountCard'
 import BrandCard from './BrandCard'
 
 interface SuggestionCardProps {
@@ -15,9 +15,9 @@ function SuggestionCard({ top }: SuggestionCardProps) {
                 Suggested accounts
             </Text>
             <Flex direction={'column'} gap={'1rem'}>
-                <SuggestionCardItem />
-                <SuggestionCardItem />
-                <SuggestionCardItem />
+                <AccountCard />
+                <AccountCard />
+                <AccountCard />
             </Flex>
         </BrandCard>
     )

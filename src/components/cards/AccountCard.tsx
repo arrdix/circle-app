@@ -3,7 +3,11 @@ import { fontSizing } from '@/styles/style'
 
 import HollowButton from '@/components/buttons/HollowButton'
 
-function SuggestionCardItem() {
+interface AccountCardProps {
+    includeBio?: boolean
+}
+
+function AccountCard({ includeBio }: AccountCardProps) {
     return (
         <Flex gap={'1rem'} alignItems={'center'}>
             <Avatar src={'https://api.dicebear.com/8.x/thumbs/svg?seed=Lola'} />
@@ -14,6 +18,9 @@ function SuggestionCardItem() {
                 <Text fontSize={fontSizing.smaller} color={'circle.dark'}>
                     @arrdix
                 </Text>
+                {includeBio && (
+                    <Text fontSize={fontSizing.smaller}>Valar Morghulis - Valar Dohaeris</Text>
+                )}
             </Flex>
             <Spacer />
             <HollowButton text={'Follow'} />
@@ -21,4 +28,4 @@ function SuggestionCardItem() {
     )
 }
 
-export default SuggestionCardItem
+export default AccountCard

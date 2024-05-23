@@ -21,7 +21,9 @@ function Navigation() {
             <Link to={'/'}>
                 <NavigationItem icon={<BiSolidHome />} text={'Home'} />
             </Link>
-            <NavigationItem icon={<BiSearchAlt />} text={'Search'} />
+            <Link to={'/search'}>
+                <NavigationItem icon={<BiSearchAlt />} text={'Search'} />
+            </Link>
             <NavigationItem icon={<BiHeart />} text={'Follow'} />
             <Link to={'/me'}>
                 <NavigationItem icon={<BiUser />} text={'Profile'} />

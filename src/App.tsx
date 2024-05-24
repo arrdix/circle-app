@@ -10,6 +10,7 @@ import SearchPage from '@/pages/SearchPage'
 import LoginPage from '@/pages/LoginPage'
 import RegisterPage from '@/pages/RegisterPage'
 import ForgotPasswordPage from '@/pages/ForgotPasswordPage'
+import ResetPasswordPage from '@/pages/ResetPasswordPage'
 
 function App() {
     const { pathname } = useLocation()
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/help/forgot" element={<ForgotPasswordPage />} />
+                <Route path="/help/reset" element={<ResetPasswordPage />} />
             </Routes>
         </div>
     )

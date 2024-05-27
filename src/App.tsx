@@ -11,6 +11,7 @@ import LoginPage from '@/pages/LoginPage'
 import RegisterPage from '@/pages/RegisterPage'
 import ForgotPasswordPage from '@/pages/ForgotPasswordPage'
 import ResetPasswordPage from '@/pages/ResetPasswordPage'
+import FollowsPage from '@/pages/FollowsPage'
 
 function App() {
     const { pathname } = useLocation()
@@ -30,6 +31,7 @@ function App() {
                     <Route index element={<HomePage />} />
                     <Route path="/detail/:id" element={<VibeDetailPage />} />
                     <Route path="/me" element={<ProfilePage />} />
+                    <Route path="/follows" element={<FollowsPage />} />
                     <Route path="/search" element={<SearchPage />} />
                 </Route>
                 <Route path="/login" element={<LoginPage />} />

@@ -24,13 +24,17 @@ function Navigation() {
             <Link to={'/search'}>
                 <NavigationItem icon={<BiSearchAlt />} text={'Search'} />
             </Link>
-            <NavigationItem icon={<BiHeart />} text={'Follow'} />
+            <Link to={'/follows'}>
+                <NavigationItem icon={<BiHeart />} text={'Follows'} />
+            </Link>
             <Link to={'/me'}>
                 <NavigationItem icon={<BiUser />} text={'Profile'} />
             </Link>
             <SolidButton text={'Create Vibe'} py={'1.5rem'} />
             <Spacer />
-            <NavigationItem icon={<BiLogOut />} text={'Logout'} />
+            <Link to={'/login'}>
+                <NavigationItem icon={<BiLogOut />} text={'Logout'} />
+            </Link>
         </Flex>
     )
 }

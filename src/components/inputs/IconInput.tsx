@@ -3,7 +3,7 @@ import { BiSearchAlt } from 'react-icons/bi'
 
 function IconInput() {
     return (
-        <Box px={'1rem'} pt={'2rem'}>
+        <Box px={'1rem'}>
             <Stack spacing={4}>
                 <InputGroup color={'circle-dark'}>
                     <InputLeftElement pointerEvents={'none'} color={'circle.dark'}>

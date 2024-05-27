@@ -8,7 +8,7 @@ export const fontSizing = {
 }
 
 export const hollowButtonHover = {
-    border: 'circle.accent',
+    borderColor: 'circle.accent',
     color: 'circle.accent',
 }
 

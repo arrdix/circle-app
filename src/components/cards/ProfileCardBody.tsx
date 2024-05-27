@@ -1,9 +1,13 @@
 import { Text, CardBody } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
 
-function ProfileCardBody() {
+interface ProfileCardBodyProps {
+    py?: string
+}
+
+function ProfileCardBody({ py = '.5rem' }: ProfileCardBodyProps) {
     return (
-        <CardBody padding={0} py={'.5rem'}>
+        <CardBody padding={0} py={py}>
             <Text fontSize={fontSizing.big} fontWeight={'700'}>
                 Jesse Pinkman 💀
             </Text>

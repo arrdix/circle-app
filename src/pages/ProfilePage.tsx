@@ -11,6 +11,7 @@ import ProfileCardBody from '@/components/cards/ProfileCardBody'
 import ProfileCardFooter from '@/components/cards/ProfileCardFooter'
 import NavigationHeading from '@/components/navigations/NavigationHeading'
 import BrandTabs from '@/components/Utils/BrandTabs'
+import VibeList from '@/components/vibes/VibeList'
 
 function ProfilePage() {
     return (
@@ -20,12 +21,17 @@ function ProfilePage() {
                     <Link to={'/'}>
                         <NavigationHeading icon={<BiLeftArrowAlt />} text={'Jesse Pinkman 💀'} />
                     </Link>
-                    <Card bg={'circle.backdrop'} px={'1rem'} color={'circle.font'} mb={'1rem'}>
+                    <Card bg={'circle.backdrop'} px={'1rem'} color={'circle.font'} mb={'1.5rem'}>
                         <ProfileCardHeader buttonText={'Edit Profile'} />
-                        <ProfileCardBody />
+                        <ProfileCardBody py={'1rem'} />
                         <ProfileCardFooter />
                     </Card>
-                    <BrandTabs />
+                    <BrandTabs
+                        leftTitle={'Vibes'}
+                        leftContent={<VibeList />}
+                        rightTitle={'Media'}
+                        rightContent={<p>Under Maintenance ⚠️</p>}
+                    />
                 </MainBar>
             </GridItem>
             <GridItem colSpan={7}>

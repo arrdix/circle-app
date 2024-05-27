@@ -1,22 +1,30 @@
 import { Grid, GridItem } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
+import { BiLeftArrowAlt } from 'react-icons/bi'
 
 import MainBar from '@/components/bars/MainBar'
 import SideBar from '@/components/bars/SideBar'
-import ProfileCard from '@/components/cards/ProfileCard'
 import SuggestionCard from '@/components/cards/SuggestionCard'
 import DeveloperCard from '@/components/cards/DeveloperCard'
-import VibeList from '@/components/vibes/VibeList'
-import NewVibe from '@/components/vibes/NewVibe'
+import BrandTabs from '@/components/Utils/BrandTabs'
+import AccountListCard from '@/components/cards/AccountListCard'
 import NavigationHeading from '@/components/navigations/NavigationHeading'
+import ProfileCard from '@/components/cards/ProfileCard'
 
-function HomePage() {
+function FollowsPage() {
     return (
         <Grid templateColumns={'repeat(19, 1fr)'}>
             <GridItem colSpan={12}>
                 <MainBar>
-                    <NavigationHeading text={'Home'} disabled />
-                    <NewVibe placeholder={"What's on your mind?"} />
-                    <VibeList />
+                    <Link to={'/'}>
+                        <NavigationHeading icon={<BiLeftArrowAlt />} text={'Follows'} />
+                    </Link>
+                    <BrandTabs
+                        leftTitle={'Followers'}
+                        leftContent={<AccountListCard />}
+                        rightTitle={'Following'}
+                        rightContent={<AccountListCard />}
+                    />
                 </MainBar>
             </GridItem>
             <GridItem colSpan={7}>
@@ -30,4 +38,4 @@ function HomePage() {
     )
 }
 
-export default HomePage
+export default FollowsPage

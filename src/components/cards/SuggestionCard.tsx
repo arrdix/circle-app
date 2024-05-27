@@ -15,7 +15,7 @@ function SuggestionCard({ top }: SuggestionCardProps) {
                 Suggested accounts
             </Text>
             <Flex direction={'column'} gap={'1rem'}>
-                <AccountCard />
+                <AccountCard followed />
                 <AccountCard />
                 <AccountCard />
             </Flex>

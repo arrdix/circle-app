@@ -1,17 +1,23 @@
 import { Tabs, TabList, Tab, TabPanels, TabPanel, TabIndicator } from '@chakra-ui/react'
 import { tabStyle } from '@/styles/style'
+import { ReactNode } from 'react'
 
-import VibeList from '@/components/vibes/VibeList'
+interface BrandTabsProps {
+    leftTitle: string
+    leftContent: ReactNode
+    rightTitle: string
+    rightContent: ReactNode
+}
 
-function BrandTabs() {
+function BrandTabs({ leftTitle, leftContent, rightTitle, rightContent }: BrandTabsProps) {
     return (
         <Tabs isLazy>
             <TabList display={'flex'} justifyContent={'center'}>
-                <Tab flex={1} _selected={tabStyle} _hover={tabStyle} _active={tabStyle}>
-                    Vibes
+                <Tab flex={1} _selected={tabStyle} _hover={tabStyle} _active={tabStyle} pt={0}>
+                    {leftTitle}
                 </Tab>
-                <Tab flex={1} _selected={tabStyle} _hover={tabStyle} _active={tabStyle}>
-                    Media
+                <Tab flex={1} _selected={tabStyle} _hover={tabStyle} _active={tabStyle} pt={0}>
+                    {rightTitle}
                 </Tab>
             </TabList>
             <TabIndicator
@@ -21,12 +27,8 @@ function BrandTabs() {
                 borderRadius={'1px'}
             />
             <TabPanels>
-                <TabPanel padding={0}>
-                    <VibeList />
-                </TabPanel>
-                <TabPanel>
-                    <p>Under Maintenance ⚠️</p>
-                </TabPanel>
+                <TabPanel padding={0}>{leftContent}</TabPanel>
+                <TabPanel padding={0}>{rightContent}</TabPanel>
             </TabPanels>
         </Tabs>
     )

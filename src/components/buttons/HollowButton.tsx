@@ -3,17 +3,20 @@ import { fontSizing, hollowButtonHover } from '@/styles/style'
 
 interface HollowButtonProps {
     text: string
+    dark?: boolean
 }
 
-function HollowButton({ text }: HollowButtonProps) {
+function HollowButton({ text, dark }: HollowButtonProps) {
     return (
         <Button
+            minWidth={'115px'}
             variant={'outline'}
             borderRadius={'2xl'}
             border={'2px'}
-            px={'1.75rem'}
+            px={'1.25rem'}
             fontSize={fontSizing.small}
-            color={'circle.font'}
+            borderColor={dark ? 'circle.dark' : 'circle.font'}
+            color={dark ? 'circle.dark' : 'color.font'}
             _hover={hollowButtonHover}
         >
             {text}

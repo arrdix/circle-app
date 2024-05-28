@@ -12,6 +12,7 @@ import ProfileCardFooter from '@/components/cards/ProfileCardFooter'
 import NavigationHeading from '@/components/navigations/NavigationHeading'
 import BrandTabs from '@/components/Utils/BrandTabs'
 import VibeList from '@/components/vibes/VibeList'
+import MediaCollection from '@/components/Utils/MediaCollection'
 
 function ProfilePage() {
     return (
@@ -30,7 +31,7 @@ function ProfilePage() {
                         leftTitle={'Vibes'}
                         leftContent={<VibeList />}
                         rightTitle={'Media'}
-                        rightContent={<p>Under Maintenance ⚠️</p>}
+                        rightContent={<MediaCollection />}
                     />
                 </MainBar>
             </GridItem>

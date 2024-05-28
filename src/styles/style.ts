@@ -30,3 +30,20 @@ export const tabStyle = {
     color: 'circle.font',
     borderColor: 'circle.accent',
 }
+
+export const hollowInputHover = {
+    background: 'none',
+    boxShadow: 'none',
+    borderColor: 'circle.accent',
+}
+
+export const iconInputHover = {
+    boxShadow: 'none',
+    borderColor: 'circle.accent',
+}
+
+export const solidInputHover = {
+    background: 'none',
+    boxShadow: 'none',
+    borderColor: 'transparent',
+}

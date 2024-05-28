@@ -6,11 +6,22 @@ interface GhostButtonProps {
     children: ReactNode
     color?: string
     fontSize?: string
+    onClick?: () => void
 }
 
-function GhostButton({ children, color, fontSize }: GhostButtonProps) {
+function GhostButton({ children, color, fontSize, onClick }: GhostButtonProps) {
+    function onClickHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+        if (onClick) {
+            e.stopPropagation()
+            e.preventDefault()
+
+            onClick()
+        }
+    }
+
     return (
         <Button
+            onClick={(e) => onClickHandler(e)}
             padding={0}
             height={'auto'}
             width={'auto'}

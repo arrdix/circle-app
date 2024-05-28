@@ -22,7 +22,7 @@
             {
                 "id": 2,
                 "content": {
-                    "vibePhoto": "https://picsum.photos/500/300?grayscale",
+                    "vibePhoto": "https://picsum.photos/1600/900?grayscale",
                     "vibe": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed justo semper, fauci bus quam in, condimentum lectus. Phasellus eu ex arcu."
                 },
                 "user": {
@@ -90,7 +90,7 @@
             {
                 "id": 6,
                 "content": {
-                    "vibePhoto": "https://picsum.photos/400/600",
+                    "vibePhoto": "https://picsum.photos/500/750",
                     "vibe": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed justo semper, fauci bus quam in, condimentum lectus. Phasellus eu ex arcu."
                 },
                 "user": {

@@ -1,10 +1,8 @@
-import { Heading } from '@chakra-ui/react'
-import { fontSizing } from '@/styles/style'
-
 import BrandCard from './BrandCard'
 import ProfileCardHeader from './ProfileCardHeader'
 import ProfileCardBody from './ProfileCardBody'
 import ProfileCardFooter from './ProfileCardFooter'
+import BrandHeading from '@/components/Utils/BrandHeading'
 
 interface ProfileCardProps {
     top?: boolean
@@ -13,9 +11,7 @@ interface ProfileCardProps {
 function ProfileCard({ top }: ProfileCardProps) {
     return (
         <BrandCard top={top && top}>
-            <Heading fontWeight={'700'} fontSize={fontSizing.big} mb={'1rem'}>
-                My Profile
-            </Heading>
+            <BrandHeading text={'My Profile'} />
             <ProfileCardHeader buttonText={'Edit Profile'} />
             <ProfileCardBody />
             <ProfileCardFooter />

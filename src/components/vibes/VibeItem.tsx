@@ -1,75 +1,51 @@
-import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Text,
-    Flex,
-    Avatar,
-    Box,
-    Divider,
-    Image,
-} from '@chakra-ui/react'
-import { BiSolidHeart, BiCommentDetail } from 'react-icons/bi'
+import { Card, Flex, Avatar, Box, Divider, useDisclosure } from '@chakra-ui/react'
 import { VibeType, UserType, ContentType } from '@/types/types'
-import { fontSizing, vibeHover } from '@/styles/style'
+import { vibeHover } from '@/styles/style'
 
-import VibeItemButton from './VibeItemButton'
+import VibeItemHeader from '@/components/vibes/VibeItemHeader'
+import VibeItemBody from '@/components/vibes/VibeItemBody'
+import VibeItemFooter from '@/components/vibes/VibeItemFooter'
+import ImageModal from '@/components/modals/ImageModal'
 
-function VibeItem({ content, createdAt, likes, replies, isLiked, user }: VibeType) {
+interface VibeItemProps extends VibeType {
+    withoutPhoto?: boolean
+}
+
+function VibeItem({
+    id,
+    content,
+    createdAt,
+    likes,
+    replies,
+    isLiked,
+    user,
+    withoutPhoto,
+}: VibeItemProps) {
     const { name, username, profilePicture }: UserType = user
     const { vibe, vibePhoto }: ContentType = content
-    console.log(createdAt)
-    console.log(typeof vibePhoto)
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    // console.log(createdAt)
     return (
         <Box>
             <Card bg={'circle.backdrop'} color={'circle.font'} p={'1rem'} _hover={vibeHover}>
                 <Flex gap={'1rem'}>
                     <Avatar src={profilePicture} />
                     <Flex direction={'column'} gap={'.25rem'}>
-                        <CardHeader display={'flex'} gap={'.5rem'} alignItems={'end'} padding={0}>
-                            <Text fontSize={fontSizing.small} fontWeight={'700'}>
-                                {name}
-                            </Text>
-                            <Text fontSize={fontSizing.small} color={'circle.dark'}>
-                                {username}
-                            </Text>
-                            <Text fontSize={fontSizing.small} color={'circle.dark'}>
-                                • 4h
-                            </Text>
-                        </CardHeader>
-                        <CardBody padding={0}>
-                            <Text fontSize={fontSizing.small} mb={'.75rem'}>
-                                {vibe}
-                            </Text>
-                            {vibePhoto && (
-                                <Image
-                                    src={vibePhoto}
-                                    objectFit={'cover'}
-                                    maxWidth={'100%'}
-                                    height={'auto'}
-                                    borderRadius={'lg'}
-                                />
-                            )}
-                        </CardBody>
-                        <CardFooter display={'flex'} alignItems={'center'} gap={'1rem'} padding={0}>
-                            <VibeItemButton
-                                icon={<BiSolidHeart />}
-                                value={likes}
-                                color={isLiked ? 'circle.red' : 'circle.dark'}
-                                hoverColor={isLiked ? 'circle.dark' : 'circle.red'}
-                            />
-                            <VibeItemButton
-                                icon={<BiCommentDetail />}
-                                value={replies}
-                                color={'circle.dark'}
-                                hoverColor={'circle.darker'}
-                            />
-                        </CardFooter>
+                        <VibeItemHeader name={name} username={username} />
+                        <VibeItemBody
+                            vibe={vibe}
+                            vibeId={id}
+                            vibePhoto={withoutPhoto ? undefined : vibePhoto}
+                            onOpen={onOpen}
+                        />
+                        <VibeItemFooter likes={likes} replies={replies} isLiked={isLiked} />
                     </Flex>
                 </Flex>
             </Card>
             <Divider border={'1px'} borderColor={'circle.darker'} />
+            <ImageModal isOpen={isOpen} onClose={onClose} vibePhoto={vibePhoto} />
         </Box>
     )
 }

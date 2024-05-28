@@ -7,7 +7,7 @@ export interface UserType {
 
 export interface ContentType {
     vibe: string
-    vibePhoto: string | undefined
+    vibePhoto: string | null
 }
 
 export interface VibeType {

@@ -11,7 +11,7 @@ import VibeDetail from '@/components/vibes/VibeDetail'
 interface ImageModalProps {
     onClose: () => void
     isOpen: boolean
-    vibePhoto: string | undefined
+    vibePhoto: string | null
 }
 
 function ImageModal({ isOpen, onClose, vibePhoto }: ImageModalProps) {
@@ -42,7 +42,7 @@ function ImageModal({ isOpen, onClose, vibePhoto }: ImageModalProps) {
                     flex={2}
                 >
                     <Image
-                        src={vibePhoto}
+                        src={vibePhoto ? vibePhoto : undefined}
                         width={'auto'}
                         height={'auto'}
                         maxWidth={'100%'}

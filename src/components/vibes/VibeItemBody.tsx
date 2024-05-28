@@ -7,7 +7,7 @@ import { useSearchParams } from 'react-router-dom'
 interface VibeItemBodyProps {
     vibe: string
     vibeId: number
-    vibePhoto: string | undefined
+    vibePhoto: string | null
     onOpen: () => void
 }
 

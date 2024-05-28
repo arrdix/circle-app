@@ -26,7 +26,7 @@ function VibeItem({
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    // console.log(createdAt)
+    console.log(createdAt)
     return (
         <Box>
             <Card bg={'circle.backdrop'} color={'circle.font'} p={'1rem'} _hover={vibeHover}>
@@ -37,7 +37,7 @@ function VibeItem({
                         <VibeItemBody
                             vibe={vibe}
                             vibeId={id}
-                            vibePhoto={withoutPhoto ? undefined : vibePhoto}
+                            vibePhoto={withoutPhoto ? null : vibePhoto}
                             onOpen={onOpen}
                         />
                         <VibeItemFooter likes={likes} replies={replies} isLiked={isLiked} />

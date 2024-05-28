@@ -1,8 +1,8 @@
-import { Text, Flex } from '@chakra-ui/react'
-import { fontSizing } from '@/styles/style'
+import { Flex } from '@chakra-ui/react'
 
 import AccountCard from './AccountCard'
 import BrandCard from './BrandCard'
+import BrandHeading from '@/components/Utils/BrandHeading'
 
 interface SuggestionCardProps {
     top?: boolean
@@ -11,9 +11,7 @@ interface SuggestionCardProps {
 function SuggestionCard({ top }: SuggestionCardProps) {
     return (
         <BrandCard top={top && top}>
-            <Text fontWeight={'700'} fontSize={fontSizing.big} mb={'1rem'}>
-                Suggested accounts
-            </Text>
+            <BrandHeading text={'Suggested accounts'} />
             <Flex direction={'column'} gap={'1rem'}>
                 <AccountCard followed />
                 <AccountCard />

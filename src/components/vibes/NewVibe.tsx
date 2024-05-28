@@ -1,4 +1,4 @@
-import { Avatar, Flex, Spacer, FormControl, Input, Box, Divider } from '@chakra-ui/react'
+import { Avatar, Flex, Spacer, FormControl, Box, Divider, Textarea } from '@chakra-ui/react'
 import { BiImageAdd } from 'react-icons/bi'
 import { fontSizing } from '@/styles/style'
 
@@ -13,13 +13,15 @@ interface NewVibeProps {
 function NewVibe({ placeholder, buttonText }: NewVibeProps) {
     return (
         <Box>
-            <Flex direction={'column'} justifyContent={'center'} margin={'1rem'} gap={'1rem'}>
-                <Flex alignItems={'center'} gap={'1rem'}>
+            <Flex direction={'column'} justifyContent={'center'} gap={'1rem'}>
+                <Flex alignItems={'start'} gap={'1rem'} ml={'1rem'} mt={'1rem'}>
                     <Avatar src={'https://api.dicebear.com/8.x/thumbs/svg?seed=Sheba'} />
                     <FormControl color={'circle.font'}>
-                        <Input
+                        <Textarea
                             px={0}
                             border={0}
+                            minHeight={'120px'}
+                            resize={'none'}
                             placeholder={placeholder}
                             fontSize={fontSizing.big}
                             _active={{ background: 'none', boxShadow: 'none' }}
@@ -28,7 +30,14 @@ function NewVibe({ placeholder, buttonText }: NewVibeProps) {
                         />
                     </FormControl>
                 </Flex>
-                <Flex alignItems={'center'} gap={'1rem'} color={'circle.accent'}>
+                <Divider borderColor={'circle.darker'} />
+                <Flex
+                    alignItems={'center'}
+                    gap={'1rem'}
+                    color={'circle.accent'}
+                    mb={'1rem'}
+                    mr={'1rem'}
+                >
                     <Spacer />
                     <GhostButton color={'circle.accent'}>
                         <BiImageAdd fontSize={'2rem'} />

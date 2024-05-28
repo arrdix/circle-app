@@ -5,7 +5,11 @@ import { BiSolidHome, BiSearchAlt, BiHeart, BiUser, BiLogOut } from 'react-icons
 import NavigationItem from './NavigationItem'
 import SolidButton from '@/components/buttons/SolidButton'
 
-function Navigation() {
+interface NavigationProps {
+    onOpen: () => void
+}
+
+function Navigation({ onOpen }: NavigationProps) {
     return (
         <Flex
             as={'nav'}
@@ -30,7 +34,7 @@ function Navigation() {
             <Link to={'/me'}>
                 <NavigationItem icon={<BiUser />} text={'Profile'} />
             </Link>
-            <SolidButton text={'Create Vibe'} py={'1.5rem'} />
+            <SolidButton onClick={onOpen} text={'Create Vibe'} py={'1.5rem'} />
             <Spacer />
             <Link to={'/login'}>
                 <NavigationItem icon={<BiLogOut />} text={'Logout'} />

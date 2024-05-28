@@ -2,13 +2,15 @@ import { Button } from '@chakra-ui/react'
 import { fontSizing, hollowButtonHover } from '@/styles/style'
 
 interface HollowButtonProps {
-    text: string
+    onClick?: () => void
+    text?: string
     dark?: boolean
 }
 
-function HollowButton({ text, dark }: HollowButtonProps) {
+function HollowButton({ onClick, text, dark }: HollowButtonProps) {
     return (
         <Button
+            onClick={onClick}
             minWidth={'115px'}
             variant={'outline'}
             borderRadius={'2xl'}

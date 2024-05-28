@@ -2,13 +2,15 @@ import { Button } from '@chakra-ui/react'
 import { solidButtonHover } from '@/styles/style'
 
 interface SolidButtonProps {
+    onClick?: () => void
     text: string
     py?: string
 }
 
-function SolidButton({ text, py }: SolidButtonProps) {
+function SolidButton({ onClick, text, py }: SolidButtonProps) {
     return (
         <Button
+            onClick={onClick}
             width={'100%'}
             borderRadius={'2xl'}
             bg={'circle.accent'}

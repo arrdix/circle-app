@@ -1,31 +1,30 @@
-import { fontSizing, hollowInputHover } from '@/styles/style'
+import { fontSizing, solidInputHover } from '@/styles/style'
 import { Input } from '@chakra-ui/react'
 
-interface HollowInputProps {
+interface SolidInputProps {
     type: string
     placeholder: string
     value?: string
 }
 
-function HollowInput({ type, placeholder, value }: HollowInputProps) {
+function SolidInput({ type, placeholder, value }: SolidInputProps) {
     return (
         <Input
             type={type}
-            variant={'flushed'}
+            variant={'filled'}
             px={'1rem'}
-            border={'1px'}
-            borderColor={'circle.dark'}
+            bg={'circle.darker'}
             borderRadius={'lg'}
             placeholder={placeholder}
             value={value}
             fontSize={fontSizing.small}
             color={'circle.font'}
-            _active={hollowInputHover}
-            _focus={hollowInputHover}
-            _hover={hollowInputHover}
+            _active={solidInputHover}
+            _focus={solidInputHover}
+            _hover={solidInputHover}
             _placeholder={{ color: 'circle.dark' }}
         />
     )
 }
 
-export default HollowInput
+export default SolidInput

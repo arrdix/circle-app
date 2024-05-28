@@ -1,3 +1,4 @@
+import { iconInputHover } from '@/styles/style'
 import { Box, Input, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react'
 import { BiSearchAlt } from 'react-icons/bi'
 
@@ -20,18 +21,9 @@ function IconInput() {
                         borderRadius={'2xl'}
                         bg={'circle.darker'}
                         color={'circle.font'}
-                        _active={{
-                            boxShadow: 'none',
-                            borderColor: 'circle.accent',
-                        }}
-                        _focus={{
-                            boxShadow: 'none',
-                            borderColor: 'circle.accent',
-                        }}
-                        _hover={{
-                            boxShadow: 'none',
-                            borderColor: 'circle.accent',
-                        }}
+                        _active={iconInputHover}
+                        _focus={iconInputHover}
+                        _hover={iconInputHover}
                         _placeholder={{ color: 'circle.dark' }}
                     />
                 </InputGroup>

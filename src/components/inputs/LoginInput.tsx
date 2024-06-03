@@ -1,32 +1,30 @@
 import { Box, FormControl, Input } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
-import { RegisterDataType } from '@/types/types'
 
 import SolidButton from '@/components/buttons/SolidButton'
+import { LoginDataType } from '@/types/types'
 
-interface RegisterInputProps {
-    onRegister: (data: RegisterDataType) => void
+interface LoginInputProps {
+    onLogin: (data: LoginDataType) => void
 }
 
-function RegisterInput(props: RegisterInputProps) {
+function LoginInput(props: LoginInputProps) {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
+    } = useForm<LoginDataType>({
         defaultValues: {
             username: '',
-            name: '',
-            email: '',
             password: '',
         },
     })
 
-    const registerValidation = {
+    const loginValidation = {
         required: 'Must not be empty',
         minLength: {
             value: 4,
-            message: 'At least 4 chars.',
+            message: 'Must be at least 4 chars.',
         },
     }
 
@@ -36,28 +34,14 @@ function RegisterInput(props: RegisterInputProps) {
                 type={'text'}
                 placeholder="Username"
                 variant={'hollow'}
-                {...register('username', registerValidation)}
+                {...register('username', loginValidation)}
             />
             <p>{errors.username?.message}</p>
             <Input
-                type={'text'}
-                placeholder="Name"
-                variant={'hollow'}
-                {...register('name', registerValidation)}
-            />
-            <p>{errors.name?.message}</p>
-            <Input
-                type={'email'}
-                placeholder="Email"
-                variant={'hollow'}
-                {...register('email', registerValidation)}
-            />
-            <p>{errors.email?.message}</p>
-            <Input
                 type={'password'}
-                placeholder="Passoword"
+                placeholder="Password"
                 variant={'hollow'}
-                {...register('password', registerValidation)}
+                {...register('password', loginValidation)}
             />
             <p>{errors.password?.message}</p>
 
@@ -65,7 +49,7 @@ function RegisterInput(props: RegisterInputProps) {
                 <SolidButton
                     text={'Create'}
                     onClick={handleSubmit((data) => {
-                        props.onRegister(data)
+                        props.onLogin(data)
                     })}
                 />
             </Box>
@@ -73,4 +57,4 @@ function RegisterInput(props: RegisterInputProps) {
     )
 }
 
-export default RegisterInput
+export default LoginInput

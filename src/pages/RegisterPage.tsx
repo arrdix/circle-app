@@ -1,19 +1,21 @@
 import { Link as ReactLink, useNavigate } from 'react-router-dom'
 import { Container, Flex, Text, Image, Link as CircleLink } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
-import { registerDataType } from '@/types/types'
-import { asyncUserRegister } from '@/states/auth/action'
-import { useAppDispatch } from '@/app/hooks'
+import { RegisterDataType } from '@/types/types'
 
 import RegisterInput from '@/components/inputs/RegisterInput'
+import API from '@/networks/api'
 
 function RegisterPage() {
-    const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
-    function onRegister(data: registerDataType): void {
-        dispatch(asyncUserRegister(data))
-        navigate('/login')
+    async function onRegister(data: RegisterDataType): Promise<void> {
+        try {
+            await API.REGISTER(data)
+            navigate('/login')
+        } catch (error) {
+            alert(error)
+        }
     }
 
     return (

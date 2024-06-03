@@ -5,6 +5,15 @@ export interface UserType {
     profilePicture: string
 }
 
+export interface UserTypes {
+    id: number
+    username: string
+    name: string
+    email: string
+    avatar: string
+    bio: string | null
+}
+
 export interface ContentType {
     vibe: string
     vibePhoto: string | null
@@ -20,9 +29,14 @@ export interface VibeType {
     user: UserType
 }
 
-export interface registerDataType {
+export interface RegisterDataType {
     username: string
     name: string
     email: string
+    password: string
+}
+
+export interface LoginDataType {
+    username: string
     password: string
 }

@@ -2,12 +2,16 @@ import { Link as ReactLink } from 'react-router-dom'
 import { Container, Flex, Text, Image, Link as CircleLink } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
 import { registerDataType } from '@/types/types'
+import { asyncUserRegister } from '@/states/auth/action'
+import { useAppDispatch } from '@/app/hooks'
 
 import RegisterInput from '@/components/inputs/RegisterInput'
 
 function RegisterPage() {
+    const dispatch = useAppDispatch()
+
     function onRegister(data: registerDataType): void {
-        console.log(data)
+        dispatch(asyncUserRegister(data))
     }
 
     return (

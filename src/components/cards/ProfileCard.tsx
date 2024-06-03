@@ -2,7 +2,7 @@ import BrandCard from './BrandCard'
 import ProfileCardHeader from './ProfileCardHeader'
 import ProfileCardBody from './ProfileCardBody'
 import ProfileCardFooter from './ProfileCardFooter'
-import BrandHeading from '@/components/Utils/BrandHeading'
+import BrandHeading from '@/components/utils/BrandHeading'
 
 interface ProfileCardProps {
     top?: boolean

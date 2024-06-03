@@ -1,6 +1,6 @@
 import { Card, Box, Flex, Divider } from '@chakra-ui/react'
 import ProfileCardHeader from '@/components/cards/ProfileCardHeader'
-import BrandHeading from '@/components/Utils/BrandHeading'
+import BrandHeading from '@/components/utils/BrandHeading'
 import SolidButton from '@/components/buttons/SolidButton'
 import SolidInput from '@/components/inputs/SolidInput'
 

@@ -5,13 +5,14 @@ import { fontSizing } from '@/styles/style'
 import GhostButton from '@/components/buttons/GhostButton'
 
 interface NavigationItemProps {
+    onLogout?: () => void
     icon: ReactNode
     text: string
 }
 
-function NavigationItem({ icon, text }: NavigationItemProps) {
+function NavigationItem({ icon, text, onLogout }: NavigationItemProps) {
     return (
-        <GhostButton>
+        <GhostButton onClick={onLogout}>
             <Flex
                 gap={'1rem'}
                 alignItems={'center'}

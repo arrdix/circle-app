@@ -1,33 +1,31 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import CONFIGS from '@/configs/configs'
-import { LoginDataType, RegisterDataType } from '@/types/types'
+import { LoginDataType, RegisterDataType, UserTypes } from '@/types/types'
 
 class API {
-    async REGISTER(data: RegisterDataType) {
-        const response = await axios.post(`${CONFIGS.BASE_URL}/register`, {
+    async REGISTER(data: RegisterDataType): Promise<AxiosResponse> {
+        return await axios.post(`${CONFIGS.BASE_URL}/register`, {
             username: data.username,
             name: data.name,
             email: data.email,
             password: data.password,
         })
+    }
 
-        const token = response.data.data
+    async LOGIN(data: LoginDataType): Promise<string> {
+        const response: AxiosResponse = await axios.post(`${CONFIGS.BASE_URL}/login`, {
+            username: data.username,
+            password: data.password,
+        })
+
+        const token: string = response.data.data.token
         this.SET_TOKEN(token)
 
         return token
     }
 
-    async LOGIN(data: LoginDataType) {
-        const response = await axios.post(`${CONFIGS.BASE_URL}/login`, {
-            username: data.username,
-            password: data.password,
-        })
-
-        return response.data.data
-    }
-
-    async GET_LOGGED_USER(token: string) {
-        const response = await axios.get(`${CONFIGS.BASE_URL}/me`, {
+    async GET_LOGGED_USER(token: string): Promise<UserTypes> {
+        const response: AxiosResponse = await axios.get(`${CONFIGS.BASE_URL}/me`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -36,11 +34,11 @@ class API {
         return response.data.data
     }
 
-    SET_TOKEN(token: string) {
-        localStorage.setItem('token', token)
+    SET_TOKEN(payload: string): void {
+        localStorage.setItem('token', payload)
     }
 
-    GET_TOKEN() {
+    GET_TOKEN(): string | null {
         return localStorage.getItem('token')
     }
 }

@@ -22,6 +22,6 @@ export const loggedUserSlice = createSlice({
     },
 })
 
-export const { setLoggedUser } = loggedUserSlice.actions
+export const { setLoggedUser, unsetLoggedUser } = loggedUserSlice.actions
 
 export default loggedUserSlice.reducer

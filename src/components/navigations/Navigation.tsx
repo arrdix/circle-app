@@ -1,6 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Flex, Spacer, Image } from '@chakra-ui/react'
 import { BiSolidHome, BiSearchAlt, BiHeart, BiUser, BiLogOut } from 'react-icons/bi'
+import { useAppDispatch } from '@/app/hooks'
+import { unsetLoggedUser } from '@/features/auth/authSlice'
+import API from '@/networks/api'
 
 import NavigationItem from './NavigationItem'
 import SolidButton from '@/components/buttons/SolidButton'
@@ -10,6 +13,20 @@ interface NavigationProps {
 }
 
 function Navigation({ onOpen }: NavigationProps) {
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+
+    async function onLogout() {
+        try {
+            API.SET_TOKEN('')
+            dispatch(unsetLoggedUser())
+
+            navigate('/login')
+        } catch (error) {
+            alert(error)
+        }
+    }
+
     return (
         <Flex
             as={'nav'}
@@ -36,9 +53,8 @@ function Navigation({ onOpen }: NavigationProps) {
             </Link>
             <SolidButton onClick={onOpen} text={'Create Vibe'} py={'1.5rem'} />
             <Spacer />
-            <Link to={'/login'}>
-                <NavigationItem icon={<BiLogOut />} text={'Logout'} />
-            </Link>
+
+            <NavigationItem icon={<BiLogOut />} text={'Logout'} onLogout={onLogout} />
         </Flex>
     )
 }

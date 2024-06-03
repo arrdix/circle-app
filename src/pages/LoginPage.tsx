@@ -1,7 +1,7 @@
 import { Link as ReactLink, useNavigate } from 'react-router-dom'
 import { Container, Flex, Text, Image, Link as CircleLink } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
-import { LoginDataType } from '@/types/types'
+import { LoginDataType, UserTypes } from '@/types/types'
 import { useAppDispatch } from '@/app/hooks'
 import { setLoggedUser } from '@/features/auth/authSlice'
 
@@ -14,8 +14,8 @@ function LoginPage() {
 
     async function onLogin(data: LoginDataType): Promise<void> {
         try {
-            const token = await API.LOGIN(data)
-            const loggedUser = await API.GET_LOGGED_USER(token.token)
+            const token: string = await API.LOGIN(data)
+            const loggedUser: UserTypes = await API.GET_LOGGED_USER(token)
 
             dispatch(setLoggedUser(loggedUser))
             navigate('/')

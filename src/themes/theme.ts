@@ -1,4 +1,30 @@
 import { extendTheme } from '@chakra-ui/react'
+import { inputAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(
+    inputAnatomy.keys
+)
+
+const hollow = definePartsStyle({
+    field: {
+        border: '1px solid',
+        borderColor: 'circle.dark',
+        background: 'transparent',
+        borderRadius: 'lg',
+        _hover: {
+            background: 'none',
+            boxShadow: 'none',
+            borderColor: 'circle.accent',
+        },
+        _placeholder: {
+            color: 'circle.dark',
+        },
+    },
+})
+
+const inputTheme = defineMultiStyleConfig({
+    variants: { hollow },
+})
 
 const circleTheme = extendTheme({
     colors: {
@@ -23,6 +49,7 @@ const circleTheme = extendTheme({
             },
         },
     },
+    components: { Input: inputTheme },
 })
 
 export default circleTheme

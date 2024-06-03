@@ -19,3 +19,9 @@ export interface VibeType {
     content: ContentType
     user: UserType
 }
+
+export interface registerDataType {
+    username: string
+    email: string
+    password: string
+}

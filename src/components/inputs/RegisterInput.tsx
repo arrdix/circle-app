@@ -16,6 +16,7 @@ function RegisterInput(props: RegisterInputProps) {
     } = useForm({
         defaultValues: {
             username: '',
+            name: '',
             email: '',
             password: '',
         },
@@ -38,6 +39,13 @@ function RegisterInput(props: RegisterInputProps) {
                 {...register('username', registerValidation)}
             />
             <p>{errors.username?.message}</p>
+            <Input
+                type={'text'}
+                placeholder="Name"
+                variant={'hollow'}
+                {...register('name', registerValidation)}
+            />
+            <p>{errors.name?.message}</p>
             <Input
                 type={'email'}
                 placeholder="Email"

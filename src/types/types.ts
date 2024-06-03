@@ -22,6 +22,7 @@ export interface VibeType {
 
 export interface registerDataType {
     username: string
+    name: string
     email: string
     password: string
 }

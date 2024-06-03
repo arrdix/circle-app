@@ -1,11 +1,12 @@
+import API from '@/networks/api'
 import { registerDataType } from '@/types/types'
 
 function asyncUserRegister(data: registerDataType) {
     return async () => {
         try {
-            console.log(data)
+            await API.REGISTER(data)
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
 }

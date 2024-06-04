@@ -1,10 +1,11 @@
-import { Box, FormControl, Input } from '@chakra-ui/react'
+import { Box, FormControl } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { RegisterDataType } from '@/types/types'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { RegisterSchema } from '@/validators/validator'
 
 import SolidButton from '@/components/buttons/SolidButton'
-import { RegisterSchema } from '@/validators/validator'
+import ValidatedInput from '@/components/inputs/ValidatedInput'
 
 interface RegisterInputProps {
     onRegister: (data: RegisterDataType) => void
@@ -21,39 +22,34 @@ function RegisterInput(props: RegisterInputProps) {
 
     return (
         <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
-            <Input
-                autoFocus
-                id={'username'}
-                type={'text'}
+            <ValidatedInput<RegisterDataType>
+                type="text"
                 placeholder="Username"
-                variant={'hollow'}
-                {...register('username')}
+                name="username"
+                register={register}
+                error={errors.username}
             />
-            <p>{errors.username?.message}</p>
-            <Input
-                id={'name'}
-                type={'text'}
+            <ValidatedInput<RegisterDataType>
+                type="text"
                 placeholder="Name"
-                variant={'hollow'}
-                {...register('name')}
+                name="name"
+                register={register}
+                error={errors.name}
             />
-            <p>{errors.name?.message}</p>
-            <Input
-                id={'email'}
-                type={'email'}
+            <ValidatedInput<RegisterDataType>
+                type="email"
                 placeholder="Email"
-                variant={'hollow'}
-                {...register('email')}
+                name="email"
+                register={register}
+                error={errors.email}
             />
-            <p>{errors.email?.message}</p>
-            <Input
-                id={'password'}
-                type={'password'}
-                placeholder="Passoword"
-                variant={'hollow'}
-                {...register('password')}
+            <ValidatedInput<RegisterDataType>
+                type="password"
+                placeholder="Password"
+                name="password"
+                register={register}
+                error={errors.password}
             />
-            <p>{errors.password?.message}</p>
 
             <Box mt={'.5rem'}>
                 <SolidButton

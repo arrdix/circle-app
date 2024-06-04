@@ -1,10 +1,11 @@
-import { Box, FormControl, Input } from '@chakra-ui/react'
+import { Box, FormControl, Text } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { ResetDataType } from '@/types/types'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { ResetSchema } from '@/validators/validator'
 
 import SolidButton from '@/components/buttons/SolidButton'
-import { ResetSchema } from '@/validators/validator'
+import ValidatedInput from '@/components/inputs/ValidatedInput'
 
 interface ResetInputProps {
     onReset: (data: ResetDataType) => void
@@ -21,25 +22,23 @@ function ResetInput(props: ResetInputProps) {
 
     return (
         <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
-            <Input
-                autoFocus
-                id={'new-password'}
-                type={'text'}
+            <ValidatedInput<ResetDataType>
+                type="text"
                 placeholder="New Password"
-                variant={'hollow'}
-                {...register('newPassword')}
+                name="newPassword"
+                register={register}
+                error={errors.newPassword}
             />
-            <p>{errors.newPassword?.message}</p>
-
-            <Input
-                id={'confirmed-password'}
-                type={'text'}
+            <ValidatedInput<ResetDataType>
+                type="text"
                 placeholder="Confirm Password"
-                variant={'hollow'}
-                {...register('confirmedPassword')}
+                name="confirmedPassword"
+                register={register}
+                error={errors.confirmedPassword}
             />
-            <p>{errors.confirmedPassword?.message}</p>
-            <p>{errors.general?.message}</p>
+            <Text mt={'.5rem'} color={'circle.error'}>
+                {errors.general?.message}
+            </Text>
 
             <Box mt={'.5rem'}>
                 <SolidButton

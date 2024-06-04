@@ -1,11 +1,12 @@
-import { Box, FormControl, Input, Link as CircleLink } from '@chakra-ui/react'
+import { Box, FormControl, Link as CircleLink } from '@chakra-ui/react'
 import { Link as ReactLink } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { LoginDataType } from '@/types/types'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { LoginSchema } from '@/validators/validator'
 
 import SolidButton from '@/components/buttons/SolidButton'
-import { LoginSchema } from '@/validators/validator'
+import ValidatedInput from '@/components/inputs/ValidatedInput'
 
 interface LoginInputProps {
     onLogin: (data: LoginDataType) => void
@@ -22,23 +23,20 @@ function LoginInput(props: LoginInputProps) {
 
     return (
         <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
-            <Input
-                autoFocus
-                id={'username'}
-                type={'text'}
+            <ValidatedInput<LoginDataType>
+                type="text"
                 placeholder="Username"
-                variant={'hollow'}
-                {...register('username')}
+                name="username"
+                register={register}
+                error={errors.username}
             />
-            <p>{errors.username?.message}</p>
-            <Input
-                id={'password'}
-                type={'password'}
+            <ValidatedInput<LoginDataType>
+                type="password"
                 placeholder="Password"
-                variant={'hollow'}
-                {...register('password')}
+                name="password"
+                register={register}
+                error={errors.password}
             />
-            <p>{errors.password?.message}</p>
 
             <CircleLink as={ReactLink} to={'/help/forgot'} ml={'auto'}>
                 Forgot password?
@@ -46,7 +44,7 @@ function LoginInput(props: LoginInputProps) {
 
             <Box mt={'.5rem'}>
                 <SolidButton
-                    text={'Create'}
+                    text={'Login'}
                     onClick={handleSubmit((data) => {
                         props.onLogin(data)
                     })}

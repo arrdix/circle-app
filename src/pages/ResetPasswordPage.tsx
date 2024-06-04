@@ -35,8 +35,8 @@ function ResetPassword() {
 
     return (
         <Container height={'100vh'} width={'400px'}>
-            <Flex direction={'column'} gap={'1rem'} justifyContent={'center'} height={'50%'}>
-                <Image src={'/circle.png'} width={'35%'} />
+            <Flex direction={'column'} gap={'1rem'}>
+                <Image src={'/circle.png'} width={'35%'} mt={'3rem'} />
                 <Text fontSize={fontSizing.bigger} fontWeight={'600'} mt={'-.75rem'}>
                     Reset Password
                 </Text>

@@ -1,10 +1,11 @@
-import { Box, FormControl, Input } from '@chakra-ui/react'
+import { Box, FormControl } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { ForgotDataType } from '@/types/types'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { ForgotSchema } from '@/validators/validator'
 
 import SolidButton from '@/components/buttons/SolidButton'
-import { ForgotSchema } from '@/validators/validator'
+import ValidatedInput from '@/components/inputs/ValidatedInput'
 
 interface ForgotInputProps {
     onForgot: (data: ForgotDataType) => void
@@ -21,15 +22,13 @@ function ForgotInput(props: ForgotInputProps) {
 
     return (
         <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
-            <Input
-                autoFocus
-                id={'email'}
-                type={'text'}
+            <ValidatedInput<ForgotDataType>
+                type="text"
                 placeholder="Email"
-                variant={'hollow'}
-                {...register('email')}
+                name="email"
+                register={register}
+                error={errors.email}
             />
-            <p>{errors.email?.message}</p>
 
             <Box mt={'.5rem'}>
                 <SolidButton

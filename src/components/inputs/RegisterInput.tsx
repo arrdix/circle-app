@@ -1,8 +1,10 @@
 import { Box, FormControl, Input } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { RegisterDataType } from '@/types/types'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 import SolidButton from '@/components/buttons/SolidButton'
+import { RegisterSchema } from '@/validators/validator'
 
 interface RegisterInputProps {
     onRegister: (data: RegisterDataType) => void
@@ -13,22 +15,9 @@ function RegisterInput(props: RegisterInputProps) {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
-        defaultValues: {
-            username: '',
-            name: '',
-            email: '',
-            password: '',
-        },
+    } = useForm<RegisterDataType>({
+        resolver: zodResolver(RegisterSchema),
     })
-
-    const registerValidation = {
-        required: 'Must not be empty',
-        minLength: {
-            value: 4,
-            message: 'At least 4 chars.',
-        },
-    }
 
     return (
         <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
@@ -36,28 +25,18 @@ function RegisterInput(props: RegisterInputProps) {
                 type={'text'}
                 placeholder="Username"
                 variant={'hollow'}
-                {...register('username', registerValidation)}
+                {...register('username')}
             />
             <p>{errors.username?.message}</p>
-            <Input
-                type={'text'}
-                placeholder="Name"
-                variant={'hollow'}
-                {...register('name', registerValidation)}
-            />
+            <Input type={'text'} placeholder="Name" variant={'hollow'} {...register('name')} />
             <p>{errors.name?.message}</p>
-            <Input
-                type={'email'}
-                placeholder="Email"
-                variant={'hollow'}
-                {...register('email', registerValidation)}
-            />
+            <Input type={'email'} placeholder="Email" variant={'hollow'} {...register('email')} />
             <p>{errors.email?.message}</p>
             <Input
                 type={'password'}
                 placeholder="Passoword"
                 variant={'hollow'}
-                {...register('password', registerValidation)}
+                {...register('password')}
             />
             <p>{errors.password?.message}</p>
 

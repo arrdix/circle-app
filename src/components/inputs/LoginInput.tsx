@@ -1,8 +1,10 @@
 import { Box, FormControl, Input } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { LoginDataType } from '@/types/types'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 import SolidButton from '@/components/buttons/SolidButton'
+import { LoginSchema } from '@/validators/validator'
 
 interface LoginInputProps {
     onLogin: (data: LoginDataType) => void
@@ -14,19 +16,8 @@ function LoginInput(props: LoginInputProps) {
         handleSubmit,
         formState: { errors },
     } = useForm<LoginDataType>({
-        defaultValues: {
-            username: '',
-            password: '',
-        },
+        resolver: zodResolver(LoginSchema),
     })
-
-    const loginValidation = {
-        required: 'Must not be empty',
-        minLength: {
-            value: 4,
-            message: 'Must be at least 4 chars.',
-        },
-    }
 
     return (
         <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
@@ -34,14 +25,14 @@ function LoginInput(props: LoginInputProps) {
                 type={'text'}
                 placeholder="Username"
                 variant={'hollow'}
-                {...register('username', loginValidation)}
+                {...register('username')}
             />
             <p>{errors.username?.message}</p>
             <Input
                 type={'password'}
                 placeholder="Password"
                 variant={'hollow'}
-                {...register('password', loginValidation)}
+                {...register('password')}
             />
             <p>{errors.password?.message}</p>
 

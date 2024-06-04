@@ -12,16 +12,22 @@ class API {
         })
     }
 
-    async LOGIN(data: LoginDataType): Promise<string> {
-        const response: AxiosResponse = await axios.post(`${CONFIGS.BASE_URL}/login`, {
-            username: data.username,
-            password: data.password,
-        })
+    async LOGIN(data: LoginDataType) {
+        try {
+            const response: AxiosResponse = await axios.post(`${CONFIGS.BASE_URL}/login`, {
+                username: data.username,
+                password: data.password,
+            })
 
-        const token: string = response.data.data.token
-        this.SET_TOKEN(token)
+            const token: string = response.data.data.token
+            this.SET_TOKEN(token)
 
-        return token
+            return token
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+        }
     }
 
     async GET_LOGGED_USER(token: string): Promise<UserTypes> {

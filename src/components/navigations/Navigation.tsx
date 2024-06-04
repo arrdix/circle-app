@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Flex, Spacer, Image } from '@chakra-ui/react'
 import { BiSolidHome, BiSearchAlt, BiHeart, BiUser, BiLogOut } from 'react-icons/bi'
-import { useAppDispatch } from '@/app/hooks'
+import { useDispatch } from 'react-redux'
 import { unsetLoggedUser } from '@/features/auth/authSlice'
 import API from '@/networks/api'
 
@@ -13,7 +13,7 @@ interface NavigationProps {
 }
 
 function Navigation({ onOpen }: NavigationProps) {
-    const dispatch = useAppDispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     async function onLogout() {

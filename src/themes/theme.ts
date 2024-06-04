@@ -16,6 +16,19 @@ const hollow = definePartsStyle({
             boxShadow: 'none',
             borderColor: 'circle.accent',
         },
+        _active: {
+            background: 'none',
+            boxShadow: 'none',
+            borderColor: 'circle.accent',
+        },
+        _focus: {
+            background: 'none',
+            boxShadow: 'none',
+            borderColor: 'circle.accent',
+        },
+        _autofill: {
+            transition: 'background-color 0s 600000s, color 0s 600000s',
+        },
         _placeholder: {
             color: 'circle.dark',
         },

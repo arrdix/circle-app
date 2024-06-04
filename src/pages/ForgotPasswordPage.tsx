@@ -1,19 +1,32 @@
-import { Link as ReactLink } from 'react-router-dom'
-import {
-    Container,
-    Flex,
-    FormControl,
-    Text,
-    Image,
-    Link as CircleLink,
-    Box,
-} from '@chakra-ui/react'
+import { Link as ReactLink, useNavigate } from 'react-router-dom'
+import { Container, Flex, Text, Image, Link as CircleLink } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
 
-import SolidButton from '@/components/buttons/SolidButton'
-import HollowInput from '@/components/inputs/HollowInput'
+import ForgotInput from '@/components/inputs/ForgotInput'
+import { ForgotDataType } from '@/types/types'
+import API from '@/networks/api'
+import useCircleToast from '@/hooks/useCircleToast'
 
 function ForgotPasswordPage() {
+    const navigate = useNavigate()
+    const createToast = useCircleToast()
+
+    async function onForgot(data: ForgotDataType) {
+        const watchedPromise = forgotHandler(data)
+        createToast(watchedPromise, {
+            title: 'Forgot Password',
+            message: 'We got you! Please change your password.',
+        })
+    }
+
+    async function forgotHandler(data: ForgotDataType) {
+        const token = await API.FORGOT_PASSWORD(data)
+
+        navigate('/help/reset', {
+            state: token,
+        })
+    }
+
     return (
         <Container height={'100vh'} width={'400px'}>
             <Flex direction={'column'} gap={'1rem'} justifyContent={'center'} height={'50%'}>
@@ -21,14 +34,9 @@ function ForgotPasswordPage() {
                 <Text fontSize={fontSizing.bigger} fontWeight={'600'} mt={'-.75rem'}>
                     Forgot Password
                 </Text>
-                <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
-                    <HollowInput type={'email'} placeholder={'Email'} />
-                    <Box mt={'.5rem'}>
-                        <SolidButton text={'Send Instruction'} />
-                    </Box>
-                </FormControl>
+                <ForgotInput onForgot={onForgot} />
                 <Text>
-                    Already have an account?
+                    Suddenly remember it?
                     <CircleLink as={ReactLink} to={'/login'} color={'circle.accent'} ml={'.25rem'}>
                         Login.
                     </CircleLink>

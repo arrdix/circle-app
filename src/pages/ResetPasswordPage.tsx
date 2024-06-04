@@ -1,10 +1,38 @@
-import { Container, Flex, FormControl, Text, Image, Box } from '@chakra-ui/react'
+import { Container, Flex, Text, Image } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
+import { useLocation, useNavigate } from 'react-router-dom'
 
-import SolidButton from '@/components/buttons/SolidButton'
-import HollowInput from '@/components/inputs/HollowInput'
+import ResetInput from '@/components/inputs/ResetInput'
+import { ResetDataType } from '@/types/types'
+import api from '@/networks/api'
+import { useEffect } from 'react'
+import useCircleToast from '@/hooks/useCircleToast'
 
 function ResetPassword() {
+    const navigate = useNavigate()
+    const createToast = useCircleToast()
+    const { state: token } = useLocation()
+
+    useEffect(() => {
+        if (!token) {
+            navigate('/')
+        }
+    }, [navigate, token])
+
+    async function onReset(data: ResetDataType) {
+        const watchedPromise = resetHandler(data)
+        createToast(watchedPromise, {
+            title: 'Reset Password',
+            message: 'Password changed! Please login with your new password.',
+        })
+
+        navigate('/')
+    }
+
+    async function resetHandler(data: ResetDataType) {
+        await api.RESET_PASSWORD(data, token)
+    }
+
     return (
         <Container height={'100vh'} width={'400px'}>
             <Flex direction={'column'} gap={'1rem'} justifyContent={'center'} height={'50%'}>
@@ -12,13 +40,7 @@ function ResetPassword() {
                 <Text fontSize={fontSizing.bigger} fontWeight={'600'} mt={'-.75rem'}>
                     Reset Password
                 </Text>
-                <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
-                    <HollowInput type={'text'} placeholder={'New password'} />
-                    <HollowInput type={'text'} placeholder={'Confirm new password'} />
-                    <Box mt={'.5rem'}>
-                        <SolidButton text={'Create New Password'} />
-                    </Box>
-                </FormControl>
+                <ResetInput onReset={onReset} />
             </Flex>
         </Container>
     )

@@ -22,17 +22,32 @@ function RegisterInput(props: RegisterInputProps) {
     return (
         <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
             <Input
+                autoFocus
+                id={'username'}
                 type={'text'}
                 placeholder="Username"
                 variant={'hollow'}
                 {...register('username')}
             />
             <p>{errors.username?.message}</p>
-            <Input type={'text'} placeholder="Name" variant={'hollow'} {...register('name')} />
+            <Input
+                id={'name'}
+                type={'text'}
+                placeholder="Name"
+                variant={'hollow'}
+                {...register('name')}
+            />
             <p>{errors.name?.message}</p>
-            <Input type={'email'} placeholder="Email" variant={'hollow'} {...register('email')} />
+            <Input
+                id={'email'}
+                type={'email'}
+                placeholder="Email"
+                variant={'hollow'}
+                {...register('email')}
+            />
             <p>{errors.email?.message}</p>
             <Input
+                id={'password'}
                 type={'password'}
                 placeholder="Passoword"
                 variant={'hollow'}

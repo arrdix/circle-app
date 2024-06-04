@@ -40,3 +40,13 @@ export interface LoginDataType {
     username: string
     password: string
 }
+
+export interface ForgotDataType {
+    email: string
+}
+
+export interface ResetDataType {
+    newPassword: string
+    confirmedPassword: string
+    general?: string
+}

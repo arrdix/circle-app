@@ -17,14 +17,10 @@ function Navigation({ onOpen }: NavigationProps) {
     const navigate = useNavigate()
 
     async function onLogout() {
-        try {
-            API.SET_TOKEN('')
-            dispatch(unsetLoggedUser())
+        API.SET_TOKEN('')
+        dispatch(unsetLoggedUser())
 
-            navigate('/login')
-        } catch (error) {
-            alert(error)
-        }
+        navigate('/login')
     }
 
     return (

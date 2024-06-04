@@ -3,19 +3,25 @@ import { Container, Flex, Text, Image, Link as CircleLink } from '@chakra-ui/rea
 import { fontSizing } from '@/styles/style'
 import { RegisterDataType } from '@/types/types'
 
+import useCircleToast from '@/hooks/useCircleToast'
 import RegisterInput from '@/components/inputs/RegisterInput'
 import API from '@/networks/api'
 
 function RegisterPage() {
     const navigate = useNavigate()
+    const createToast = useCircleToast()
 
     async function onRegister(data: RegisterDataType): Promise<void> {
-        try {
-            await API.REGISTER(data)
-            navigate('/login')
-        } catch (error) {
-            alert(error)
-        }
+        const watchedPromise = registerHandler(data)
+        createToast(watchedPromise, {
+            title: 'Register',
+            message: 'Account created!',
+        })
+    }
+
+    async function registerHandler(data: RegisterDataType): Promise<unknown> {
+        await API.REGISTER(data)
+        return navigate('/login')
     }
 
     return (

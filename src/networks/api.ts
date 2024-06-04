@@ -3,16 +3,22 @@ import CONFIGS from '@/configs/configs'
 import { LoginDataType, RegisterDataType, UserTypes } from '@/types/types'
 
 class API {
-    async REGISTER(data: RegisterDataType): Promise<AxiosResponse> {
-        return await axios.post(`${CONFIGS.BASE_URL}/register`, {
-            username: data.username,
-            name: data.name,
-            email: data.email,
-            password: data.password,
-        })
+    async REGISTER(data: RegisterDataType): Promise<AxiosResponse | undefined> {
+        try {
+            return await axios.post(`${CONFIGS.BASE_URL}/register`, {
+                username: data.username,
+                name: data.name,
+                email: data.email,
+                password: data.password,
+            })
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+        }
     }
 
-    async LOGIN(data: LoginDataType) {
+    async LOGIN(data: LoginDataType): Promise<string | undefined> {
         try {
             const response: AxiosResponse = await axios.post(`${CONFIGS.BASE_URL}/login`, {
                 username: data.username,

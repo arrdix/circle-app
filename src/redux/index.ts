@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import loggedUserReducer from '@/features/auth/authSlice'
+import isPreloadedReducer from '@/features/preloaded/preloadedSlice'
 
 const store = configureStore({
     reducer: {
         loggedUser: loggedUserReducer,
+        isPreloaded: isPreloadedReducer,
     },
 })
 

@@ -10,9 +10,9 @@ import ProfileCardHeader from '@/components/cards/ProfileCardHeader'
 import ProfileCardBody from '@/components/cards/ProfileCardBody'
 import ProfileCardFooter from '@/components/cards/ProfileCardFooter'
 import NavigationHeading from '@/components/navigations/NavigationHeading'
-import BrandTabs from '@/components/utils/BrandTabs'
+import BrandTabs from '@/components/utilities/BrandTabs'
 import VibeList from '@/components/vibes/VibeList'
-import MediaCollection from '@/components/utils/MediaCollection'
+import MediaCollection from '@/components/utilities/MediaCollection'
 
 function ProfilePage() {
     return (

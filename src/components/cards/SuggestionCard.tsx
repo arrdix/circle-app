@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 
 import AccountCard from './AccountCard'
 import BrandCard from './BrandCard'
-import BrandHeading from '@/components/utils/BrandHeading'
+import BrandHeading from '@/components/utilities/BrandHeading'
 
 interface SuggestionCardProps {
     top?: boolean

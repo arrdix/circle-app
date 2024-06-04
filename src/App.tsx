@@ -1,7 +1,13 @@
 import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@/redux'
+import { setPreloaded } from '@/features/preloaded/preloadedSlice'
+import { UserTypes } from '@/types/types'
+import { setLoggedUser, unsetLoggedUser } from '@/features/auth/authSlice'
 
 import './assets/base.css'
+import API from '@/networks/api'
 import CircleLayout from './layouts/CircleLayout'
 import HomePage from './pages/HomePage'
 import VibeDetailPage from './pages/VibeDetailPage'
@@ -12,9 +18,14 @@ import RegisterPage from '@/pages/RegisterPage'
 import ForgotPasswordPage from '@/pages/ForgotPasswordPage'
 import ResetPasswordPage from '@/pages/ResetPasswordPage'
 import FollowsPage from '@/pages/FollowsPage'
+import SplashScreen from '@/components/utilities/SplashScreen'
 
 function App() {
+    const isPreloaded = useSelector((states: RootState) => states.isPreloaded.value)
+    const loggedUser = useSelector((states: RootState) => states.loggedUser.value)
+
     const { pathname } = useLocation()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         window.scrollTo({
@@ -23,6 +34,45 @@ function App() {
             behavior: 'smooth',
         })
     }, [pathname])
+
+    useEffect(() => {
+        async function isUserLogged() {
+            try {
+                const loggedUser: UserTypes = await API.GET_LOGGED_USER()
+                dispatch(setLoggedUser(loggedUser))
+            } catch (error) {
+                dispatch(unsetLoggedUser())
+            } finally {
+                // might be deleted later XD
+                setTimeout(() => {
+                    dispatch(setPreloaded(false))
+                }, 2000)
+            }
+        }
+
+        isUserLogged()
+    }, [dispatch])
+
+    if (isPreloaded) {
+        return (
+            <div className="app">
+                <SplashScreen />
+            </div>
+        )
+    }
+
+    if (!loggedUser) {
+        return (
+            <div className="app">
+                <Routes>
+                    <Route path="/*" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/help/forgot" element={<ForgotPasswordPage />} />
+                    <Route path="/help/reset" element={<ResetPasswordPage />} />
+                </Routes>
+            </div>
+        )
+    }
 
     return (
         <div className="app">
@@ -34,10 +84,6 @@ function App() {
                     <Route path="/follows" element={<FollowsPage />} />
                     <Route path="/search" element={<SearchPage />} />
                 </Route>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/help/forgot" element={<ForgotPasswordPage />} />
-                <Route path="/help/reset" element={<ResetPasswordPage />} />
             </Routes>
         </div>
     )

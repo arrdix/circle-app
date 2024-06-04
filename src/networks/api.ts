@@ -36,10 +36,10 @@ class API {
         }
     }
 
-    async GET_LOGGED_USER(token: string): Promise<UserTypes> {
+    async GET_LOGGED_USER(): Promise<UserTypes> {
         const response: AxiosResponse = await axios.get(`${CONFIGS.BASE_URL}/me`, {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${this.GET_TOKEN()}`,
             },
         })
 

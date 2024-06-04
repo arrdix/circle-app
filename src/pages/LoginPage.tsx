@@ -1,4 +1,4 @@
-import { Link as ReactLink, useNavigate } from 'react-router-dom'
+import { Link as ReactLink } from 'react-router-dom'
 import { Container, Flex, Text, Image, Link as CircleLink } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
 import { LoginDataType, UserTypes } from '@/types/types'
@@ -11,7 +11,6 @@ import API from '@/networks/api'
 
 function LoginPage() {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const createToast = useCircleToast()
 
     async function onLogin(data: LoginDataType): Promise<void> {
@@ -26,9 +25,8 @@ function LoginPage() {
         const token: string | undefined = await API.LOGIN(data)
 
         if (token) {
-            const loggedUser: UserTypes = await API.GET_LOGGED_USER(token)
+            const loggedUser: UserTypes = await API.GET_LOGGED_USER()
             dispatch(setLoggedUser(loggedUser))
-            return navigate('/')
         }
     }
 

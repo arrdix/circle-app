@@ -20,7 +20,7 @@ function Navigation({ onOpen }: NavigationProps) {
         API.SET_TOKEN('')
         dispatch(unsetLoggedUser())
 
-        navigate('/login')
+        navigate('/')
     }
 
     return (

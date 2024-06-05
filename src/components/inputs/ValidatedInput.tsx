@@ -1,7 +1,7 @@
 import { Box, Collapse, Input, Text } from '@chakra-ui/react'
 import { FieldError, UseFormRegister, FieldValues, Path } from 'react-hook-form'
 
-interface FormFieldProps<T extends FieldValues> {
+interface ValidatedInputProps<T extends FieldValues> {
     type: string
     placeholder: string
     name: Path<T>
@@ -9,9 +9,9 @@ interface FormFieldProps<T extends FieldValues> {
     error: FieldError | undefined
 }
 
-function ValidatedInput<T extends FieldValues>(props: FormFieldProps<T>) {
+function ValidatedInput<T extends FieldValues>(props: ValidatedInputProps<T>) {
     const { type, placeholder, name, error, register } = props
-    const isOpen = error ? true : false
+    const isCollapsed = error ? true : false
 
     return (
         <Box>
@@ -23,7 +23,7 @@ function ValidatedInput<T extends FieldValues>(props: FormFieldProps<T>) {
                 {...register(name)}
             />
 
-            <Collapse in={isOpen} transition={{ enter: { duration: 0.5 } }}>
+            <Collapse in={isCollapsed} transition={{ enter: { duration: 0.5 } }}>
                 <Text mt={'.5rem'} color={'circle.error'}>
                     {error && error.message}
                 </Text>

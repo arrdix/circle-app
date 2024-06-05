@@ -3,6 +3,9 @@ body {
     padding: 0;
     overflow: scroll;
 }
+label {
+    cursor: pointer;
+}
 #root {
     margin: auto;
     max-width: 1280px;

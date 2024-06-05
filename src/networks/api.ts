@@ -140,6 +140,24 @@ class API {
         }
     }
 
+    async POST_VIBE(data: FormData): Promise<string> {
+        try {
+            const response: AxiosResponse = await axios.post(`${CONFIGS.BASE_URL}/vibes`, data, {
+                headers: {
+                    Authorization: `Bearer ${this.GET_TOKEN()}`,
+                },
+            })
+
+            return response.data.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
     async GET_ALL_USERS(): Promise<UserType[]> {
         try {
             const response = await axios.get(`${CONFIGS.BASE_URL}/users`, {

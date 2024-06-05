@@ -24,16 +24,16 @@ function LoginInput(props: LoginInputProps) {
     return (
         <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
             <ValidatedInput<LoginDataType>
-                type="text"
-                placeholder="Username"
-                name="username"
+                type={'text'}
+                placeholder={'Username'}
+                name={'username'}
                 register={register}
                 error={errors.username}
             />
             <ValidatedInput<LoginDataType>
-                type="password"
-                placeholder="Password"
-                name="password"
+                type={'password'}
+                placeholder={'Password'}
+                name={'password'}
                 register={register}
                 error={errors.password}
             />

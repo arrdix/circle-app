@@ -1,35 +1,64 @@
-import { Avatar, Flex, Spacer, FormControl, Box, Divider, Textarea } from '@chakra-ui/react'
+import { Avatar, Flex, Spacer, Box, Divider, Input, FormControl } from '@chakra-ui/react'
 import { BiImageAdd } from 'react-icons/bi'
-import { fontSizing } from '@/styles/style'
+import { useForm } from 'react-hook-form'
+import { VibeDataType } from '@/types/types'
+import { VibeSchema } from '@/validators/validator'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect, useState } from 'react'
 
 import SolidButton from '@/components/buttons/SolidButton'
-import GhostButton from '@/components/buttons/GhostButton'
+import VibeInput from '@/components/inputs/VibeInput'
+import ImagePreview from '@/components/utilities/ImagePreview'
 
 interface NewVibeProps {
+    onPost: (data: VibeDataType) => void
     placeholder: string
     buttonText?: string
+    imagePreviewId: string
+    isSafeToReset: boolean
 }
 
-function NewVibe({ placeholder, buttonText }: NewVibeProps) {
+function NewVibe(props: NewVibeProps) {
+    const { placeholder, buttonText, imagePreviewId, isSafeToReset } = props
+    const [imagePreview, setImagePreview] = useState<string>('')
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        resetField,
+    } = useForm<VibeDataType>({
+        resolver: zodResolver(VibeSchema),
+    })
+
+    function onImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const files = e.target.files
+
+        if (files) {
+            setImagePreview(URL.createObjectURL(files[0]))
+        }
+    }
+
+    useEffect(() => {
+        if (!isSafeToReset) return
+
+        resetField('content')
+        setImagePreview('')
+    }, [isSafeToReset, resetField])
+
     return (
         <Box>
             <Flex direction={'column'} justifyContent={'center'} gap={'1rem'}>
-                <Flex alignItems={'start'} gap={'1rem'} ml={'1rem'} mt={'1rem'}>
+                <Flex alignItems={'start'} gap={'1rem'} mx={'1rem'} mt={'1rem'}>
                     <Avatar src={'https://api.dicebear.com/8.x/thumbs/svg?seed=Sheba'} />
-                    <FormControl color={'circle.font'}>
-                        <Textarea
-                            px={0}
-                            border={0}
-                            minHeight={'120px'}
-                            resize={'none'}
-                            placeholder={placeholder}
-                            fontSize={fontSizing.big}
-                            _active={{ background: 'none', boxShadow: 'none' }}
-                            _focus={{ background: 'none', boxShadow: 'none' }}
-                            _placeholder={{ color: 'circle.dark' }}
-                        />
-                    </FormControl>
+                    <VibeInput
+                        placeholder={placeholder}
+                        name={'content'}
+                        register={register}
+                        error={errors.content}
+                    />
                 </Flex>
+                <ImagePreview imagePreview={imagePreview} onClose={() => setImagePreview('')} />
                 <Divider borderColor={'circle.darker'} />
                 <Flex
                     alignItems={'center'}
@@ -39,11 +68,27 @@ function NewVibe({ placeholder, buttonText }: NewVibeProps) {
                     mr={'1rem'}
                 >
                     <Spacer />
-                    <GhostButton color={'circle.accent'}>
-                        <BiImageAdd fontSize={'2rem'} />
-                    </GhostButton>
+                    <FormControl display={'flex'} justifyContent={'flex-end'} alignItems={'center'}>
+                        <Input
+                            type={'file'}
+                            height={0}
+                            width={0}
+                            border={0}
+                            id={imagePreviewId}
+                            variant={'hollow'}
+                            placeholder={placeholder}
+                            {...register('image')}
+                            onChange={(e) => onImageChange(e)}
+                        />
+                        <label htmlFor={imagePreviewId}>
+                            <BiImageAdd fontSize={'2rem'} />
+                        </label>
+                    </FormControl>
                     <Box width={'15%'}>
-                        <SolidButton text={buttonText ? buttonText : 'Post'} />
+                        <SolidButton
+                            text={buttonText ? buttonText : 'Post'}
+                            onClick={handleSubmit((data) => props.onPost(data))}
+                        />
                     </Box>
                 </Flex>
             </Flex>

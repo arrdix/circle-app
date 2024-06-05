@@ -70,3 +70,9 @@ export interface ResetDataType {
     confirmedPassword: string
     general?: string
 }
+
+export interface VibeDataType {
+    content: string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    image: any
+}

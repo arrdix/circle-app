@@ -23,16 +23,16 @@ function ResetInput(props: ResetInputProps) {
     return (
         <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
             <ValidatedInput<ResetDataType>
-                type="text"
-                placeholder="New Password"
-                name="newPassword"
+                type={'text'}
+                placeholder={'New Password'}
+                name={'newPassword'}
                 register={register}
                 error={errors.newPassword}
             />
             <ValidatedInput<ResetDataType>
-                type="text"
-                placeholder="Confirm Password"
-                name="confirmedPassword"
+                type={'text'}
+                placeholder={'Confirm Password'}
+                name={'confirmedPassword'}
                 register={register}
                 error={errors.confirmedPassword}
             />

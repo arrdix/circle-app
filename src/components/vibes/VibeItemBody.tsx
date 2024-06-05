@@ -1,8 +1,8 @@
 import { CardBody, Text, Image } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
+import { useSearchParams } from 'react-router-dom'
 
 import GhostButton from '@/components/buttons/GhostButton'
-import { useSearchParams } from 'react-router-dom'
 
 interface VibeItemBodyProps {
     vibeId: number
@@ -32,6 +32,7 @@ function VibeItemBody({ vibeContent, vibeId, vibeImage, onOpen }: VibeItemBodyPr
                         width={'auto'}
                         height={'auto'}
                         borderRadius={'lg'}
+                        mt={'1rem'}
                     />
                 </GhostButton>
             )}

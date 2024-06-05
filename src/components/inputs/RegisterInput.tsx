@@ -23,30 +23,30 @@ function RegisterInput(props: RegisterInputProps) {
     return (
         <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
             <ValidatedInput<RegisterDataType>
-                type="text"
-                placeholder="Username"
-                name="username"
+                type={'text'}
+                placeholder={'Username'}
+                name={'username'}
                 register={register}
                 error={errors.username}
             />
             <ValidatedInput<RegisterDataType>
-                type="text"
-                placeholder="Name"
-                name="name"
+                type={'text'}
+                placeholder={'Name'}
+                name={'name'}
                 register={register}
                 error={errors.name}
             />
             <ValidatedInput<RegisterDataType>
-                type="email"
-                placeholder="Email"
-                name="email"
+                type={'email'}
+                placeholder={'Email'}
+                name={'email'}
                 register={register}
                 error={errors.email}
             />
             <ValidatedInput<RegisterDataType>
-                type="password"
-                placeholder="Password"
-                name="password"
+                type={'password'}
+                placeholder={'Password'}
+                name={'password'}
                 register={register}
                 error={errors.password}
             />

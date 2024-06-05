@@ -50,3 +50,15 @@ export const ResetSchema: ZodType<ResetDataType> = z
         message: 'Passwords do not match.',
         path: ['general'],
     })
+
+export const VibeSchema: ZodType = z.object({
+    content: z
+        .string()
+        .min(1, {
+            message: 'Vibe must not be empty.',
+        })
+        .max(255, {
+            message: 'Vibe must be less than 255 chars.',
+        }),
+    image: z.any(),
+})

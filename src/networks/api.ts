@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import CONFIGS from '@/configs/configs'
 import {
+    DetailedVibeType,
     ForgotDataType,
     LoginDataType,
     RegisterDataType,
@@ -121,9 +122,45 @@ class API {
         }
     }
 
+    async GET_DETAILED_VIBE(id: number): Promise<DetailedVibeType> {
+        try {
+            const response = await axios.get(`${CONFIGS.BASE_URL}/vibes/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${this.GET_TOKEN()}`,
+                },
+            })
+
+            return response.data.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
     async GET_ALL_USERS(): Promise<UserType[]> {
         try {
             const response = await axios.get(`${CONFIGS.BASE_URL}/users`, {
+                headers: {
+                    Authorization: `Bearer ${this.GET_TOKEN()}`,
+                },
+            })
+
+            return response.data.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
+    async GET_USER(id: number): Promise<UserType> {
+        try {
+            const response = await axios.get(`${CONFIGS.BASE_URL}/users/${id}`, {
                 headers: {
                     Authorization: `Bearer ${this.GET_TOKEN()}`,
                 },

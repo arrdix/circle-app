@@ -22,9 +22,7 @@ function VibeItemBody({ vibeContent, vibeId, vibeImage, onOpen }: VibeItemBodyPr
 
     return (
         <CardBody padding={0}>
-            <Text fontSize={fontSizing.small} mb={'.75rem'}>
-                {vibeContent}
-            </Text>
+            <Text fontSize={fontSizing.small}>{vibeContent}</Text>
             {vibeImage && (
                 <GhostButton onClick={onPhotoClick}>
                     <Image

@@ -16,6 +16,37 @@ export interface VibeType {
     totalReplies: number
     totalLikes: number
     isLiked: boolean
+    author: UserType | undefined
+}
+
+export interface DetailedUserType {
+    id: number
+    username: string
+    name: string
+    email: string
+    avatar: string
+    bio: string | null
+    isFollowed: boolean
+}
+
+export interface DetailedVibeType {
+    id: number
+    content: string
+    image: string | null
+    createdAt: string
+    authorId: number
+    replies: VibeType[]
+    likes: LikeType[]
+    totalReplies: number
+    totalLikes: number
+    isLiked: boolean
+    author: UserType
+}
+
+export interface LikeType {
+    id: number
+    authorId: number
+    targetId: number
 }
 
 export interface RegisterDataType {

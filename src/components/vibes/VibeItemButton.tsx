@@ -4,7 +4,7 @@ import { fontSizing } from '@/styles/style'
 
 interface VibeItemButtonProps {
     icon: ReactNode
-    value: number
+    value?: number
     color: string
     hoverColor: string
 }

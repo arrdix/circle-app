@@ -5,7 +5,8 @@ import {
     LoginDataType,
     RegisterDataType,
     ResetDataType,
-    UserTypes,
+    UserType,
+    VibeType,
 } from '@/types/types'
 
 class API {
@@ -46,7 +47,7 @@ class API {
         }
     }
 
-    async GET_LOGGED_USER(): Promise<UserTypes> {
+    async GET_LOGGED_USER(): Promise<UserType> {
         try {
             const response: AxiosResponse = await axios.get(`${CONFIGS.BASE_URL}/me`, {
                 headers: {
@@ -94,7 +95,42 @@ class API {
                 }
             )
         } catch (error) {
-            console.log(error)
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
+    async GET_ALL_VIBES(): Promise<VibeType[]> {
+        try {
+            const response = await axios.get(`${CONFIGS.BASE_URL}/vibes`, {
+                headers: {
+                    Authorization: `Bearer ${this.GET_TOKEN()}`,
+                },
+            })
+
+            return response.data.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
+    async GET_ALL_USERS(): Promise<UserType[]> {
+        try {
+            const response = await axios.get(`${CONFIGS.BASE_URL}/users`, {
+                headers: {
+                    Authorization: `Bearer ${this.GET_TOKEN()}`,
+                },
+            })
+
+            return response.data.data
+        } catch (error) {
             if (axios.isAxiosError(error)) {
                 throw error
             }

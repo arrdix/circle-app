@@ -5,13 +5,13 @@ import GhostButton from '@/components/buttons/GhostButton'
 import { useSearchParams } from 'react-router-dom'
 
 interface VibeItemBodyProps {
-    vibe: string
     vibeId: number
-    vibePhoto: string | null
+    vibeContent: string
+    vibeImage: string | null
     onOpen: () => void
 }
 
-function VibeItemBody({ vibe, vibeId, vibePhoto, onOpen }: VibeItemBodyProps) {
+function VibeItemBody({ vibeContent, vibeId, vibeImage, onOpen }: VibeItemBodyProps) {
     const [, setSearchParams] = useSearchParams()
 
     function onPhotoClick(): void {
@@ -23,12 +23,12 @@ function VibeItemBody({ vibe, vibeId, vibePhoto, onOpen }: VibeItemBodyProps) {
     return (
         <CardBody padding={0}>
             <Text fontSize={fontSizing.small} mb={'.75rem'}>
-                {vibe}
+                {vibeContent}
             </Text>
-            {vibePhoto && (
+            {vibeImage && (
                 <GhostButton onClick={onPhotoClick}>
                     <Image
-                        src={vibePhoto}
+                        src={vibeImage}
                         objectFit={'cover'}
                         maxWidth={'100%'}
                         width={'auto'}

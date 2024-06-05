@@ -2,31 +2,20 @@ export interface UserType {
     id: number
     username: string
     name: string
-    profilePicture: string
-}
-
-export interface UserTypes {
-    id: number
-    username: string
-    name: string
     email: string
     avatar: string
     bio: string | null
 }
 
-export interface ContentType {
-    vibe: string
-    vibePhoto: string | null
-}
-
 export interface VibeType {
     id: number
+    content: string
+    image: string | null
     createdAt: string
-    likes: number
-    replies: number
+    authorId: number
+    totalReplies: number
+    totalLikes: number
     isLiked: boolean
-    content: ContentType
-    user: UserType
 }
 
 export interface RegisterDataType {

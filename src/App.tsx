@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/redux'
 import { setPreloaded } from '@/features/preloaded/preloadedSlice'
-import { UserTypes } from '@/types/types'
+import { UserType } from '@/types/types'
 import { setLoggedUser, unsetLoggedUser } from '@/features/auth/authSlice'
 
 import './assets/base.css'
@@ -38,7 +38,7 @@ function App() {
     useEffect(() => {
         async function isUserLogged() {
             try {
-                const loggedUser: UserTypes = await API.GET_LOGGED_USER()
+                const loggedUser: UserType = await API.GET_LOGGED_USER()
                 dispatch(setLoggedUser(loggedUser))
             } catch (error) {
                 dispatch(unsetLoggedUser())

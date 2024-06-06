@@ -1,11 +1,6 @@
+import { QueryClient, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Grid, GridItem } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
-import { UserType, VibeDataType, VibeType } from '@/types/types'
-import { useDispatch, useSelector } from 'react-redux'
-import { setVibes } from '@/features/vibes/vibesSlice'
-import { RootState } from '@/redux'
-import { setAllUsers } from '@/features/users/usersSlice'
-import { useVibeModal } from '@/layouts/CircleLayout'
+import { VibeDataType, VibeType } from '@/types/types'
 
 import API from '@/networks/api'
 import MainBar from '@/components/bars/MainBar'
@@ -19,76 +14,64 @@ import NavigationHeading from '@/components/navigations/NavigationHeading'
 import useCircleToast from '@/hooks/useCircleToast'
 
 function HomePage() {
-    const dispatch = useDispatch()
     const createToast = useCircleToast()
+    const queryClient: QueryClient = useQueryClient()
 
-    const vibes = useSelector((states: RootState) => states.vibes.vibes)
-    const { isPostedFromModal } = useVibeModal()
-    const [isSafeToReset, setSafeToReset] = useState<boolean>(true)
-    const [reload, setReload] = useState<boolean>(true)
+    const { data: vibes } = useQuery<VibeType[]>({
+        queryKey: ['vibes'],
+        queryFn: API.GET_ALL_VIBES,
+    })
 
-    useEffect(() => {
-        async function getList() {
-            const rawVibes: VibeType[] = await API.GET_ALL_VIBES()
-            const users: UserType[] = await API.GET_ALL_USERS()
+    async function onPost(data: VibeDataType): Promise<void> {
+        const formData: FormData = new FormData()
 
-            const vibes: VibeType[] = rawVibes.map((vibe) => {
-                return {
-                    ...vibe,
-                    author: users.find((user) => user.id === vibe.authorId),
-                }
-            })
-
-            dispatch(setVibes(vibes.reverse()))
-            dispatch(setAllUsers(users))
-        }
-
-        getList()
-    }, [dispatch, reload, isPostedFromModal])
-
-    async function onPost(data: VibeDataType) {
-        const watchedPromise = postHandler(data)
-        setSafeToReset((oldState) => !oldState)
-        createToast(watchedPromise, {
-            title: 'Post vibe',
-            message: 'Vibe successfully posted!',
-        })
-    }
-
-    async function postHandler(data: VibeDataType) {
-        const formData = new FormData()
         formData.append('content', data.content)
         formData.append('image', data.image[0])
 
-        await API.POST_VIBE(formData)
-
-        setSafeToReset((oldState) => !oldState)
-        return setReload((oldState) => !oldState)
+        mutation.mutate(formData)
     }
 
-    return (
-        <Grid templateColumns={'repeat(19, 1fr)'}>
-            <GridItem colSpan={12}>
-                <MainBar>
-                    <NavigationHeading text={'Home'} disabled />
-                    <NewVibe
-                        placeholder={"What's on your mind?"}
-                        imagePreviewId={'atHome'}
-                        isSafeToReset={isSafeToReset}
-                        onPost={onPost}
-                    />
-                    <VibeList vibes={vibes} />
-                </MainBar>
-            </GridItem>
-            <GridItem colSpan={7}>
-                <SideBar>
-                    <ProfileCard top />
-                    <SuggestionCard />
-                    <DeveloperCard />
-                </SideBar>
-            </GridItem>
-        </Grid>
-    )
+    const mutation = useMutation({
+        mutationFn: POST_VIBE,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['vibes'] })
+        },
+    })
+
+    async function POST_VIBE(data: FormData): Promise<string> {
+        const postVIbe: Promise<string> = API.POST_VIBE(data)
+        createToast(postVIbe, {
+            title: 'Post Vibe',
+            message: 'Vibe successfully posted!',
+        })
+
+        return postVIbe
+    }
+
+    if (vibes) {
+        return (
+            <Grid templateColumns={'repeat(19, 1fr)'}>
+                <GridItem colSpan={12}>
+                    <MainBar>
+                        <NavigationHeading text={'Home'} disabled />
+                        <NewVibe
+                            placeholder={"What's on your mind?"}
+                            imagePreviewId={'atHome'}
+                            onPost={onPost}
+                        />
+                        <VibeList vibes={vibes} />
+                    </MainBar>
+                </GridItem>
+                <GridItem colSpan={7}>
+                    <SideBar>
+                        <ProfileCard top />
+                        <SuggestionCard />
+                        <DeveloperCard />
+                    </SideBar>
+                </GridItem>
+            </Grid>
+        )
+    }
 }
 
 export default HomePage

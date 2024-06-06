@@ -104,7 +104,7 @@ class API {
         }
     }
 
-    async GET_ALL_VIBES(): Promise<VibeType[]> {
+    GET_ALL_VIBES = async (): Promise<VibeType[]> => {
         try {
             const response = await axios.get(`${CONFIGS.BASE_URL}/vibes`, {
                 headers: {
@@ -140,7 +140,7 @@ class API {
         }
     }
 
-    async POST_VIBE(data: FormData): Promise<string> {
+    POST_VIBE = async (data: FormData): Promise<string> => {
         try {
             const response: AxiosResponse = await axios.post(`${CONFIGS.BASE_URL}/vibes`, data, {
                 headers: {
@@ -158,7 +158,7 @@ class API {
         }
     }
 
-    async GET_ALL_USERS(): Promise<UserType[]> {
+    GET_ALL_USERS = async (): Promise<UserType[]> => {
         try {
             const response = await axios.get(`${CONFIGS.BASE_URL}/users`, {
                 headers: {

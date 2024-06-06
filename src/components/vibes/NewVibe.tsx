@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { VibeDataType } from '@/types/types'
 import { VibeSchema } from '@/validators/validator'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import SolidButton from '@/components/buttons/SolidButton'
 import VibeInput from '@/components/inputs/VibeInput'
@@ -15,11 +15,10 @@ interface NewVibeProps {
     placeholder: string
     buttonText?: string
     imagePreviewId: string
-    isSafeToReset: boolean
 }
 
 function NewVibe(props: NewVibeProps) {
-    const { placeholder, buttonText, imagePreviewId, isSafeToReset } = props
+    const { placeholder, buttonText, imagePreviewId } = props
     const [imagePreview, setImagePreview] = useState<string>('')
 
     const {
@@ -38,13 +37,6 @@ function NewVibe(props: NewVibeProps) {
             setImagePreview(URL.createObjectURL(files[0]))
         }
     }
-
-    useEffect(() => {
-        if (!isSafeToReset) return
-
-        resetField('content')
-        setImagePreview('')
-    }, [isSafeToReset, resetField])
 
     return (
         <Box>
@@ -87,7 +79,12 @@ function NewVibe(props: NewVibeProps) {
                     <Box width={'15%'}>
                         <SolidButton
                             text={buttonText ? buttonText : 'Post'}
-                            onClick={handleSubmit((data) => props.onPost(data))}
+                            onClick={handleSubmit((data) => {
+                                props.onPost(data)
+
+                                resetField('content')
+                                setImagePreview('')
+                            })}
                         />
                     </Box>
                 </Flex>

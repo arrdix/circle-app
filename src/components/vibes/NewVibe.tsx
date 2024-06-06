@@ -33,7 +33,7 @@ function NewVibe(props: NewVibeProps) {
     function onImageChange(e: React.ChangeEvent<HTMLInputElement>) {
         const files = e.target.files
 
-        if (files) {
+        if (files?.length) {
             setImagePreview(URL.createObjectURL(files[0]))
         }
     }
@@ -83,6 +83,7 @@ function NewVibe(props: NewVibeProps) {
                                 props.onPost(data)
 
                                 resetField('content')
+                                resetField('image')
                                 setImagePreview('')
                             })}
                         />

@@ -33,7 +33,7 @@ function HomePage() {
         const formData: FormData = new FormData()
 
         formData.append('content', data.content)
-        formData.append('image', data.image[0])
+        formData.append('image', data.image ? data.image[0] : null)
 
         mutation.mutate(formData)
     }

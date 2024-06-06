@@ -38,7 +38,7 @@ function VibeDetailPage() {
 
         formData.append('targetId', targetId.toString())
         formData.append('content', data.content)
-        formData.append('image', data.image[0])
+        formData.append('image', data.image ? data.image[0] : null)
 
         mutation.mutate(formData)
     }

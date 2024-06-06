@@ -22,7 +22,14 @@ function HomePage() {
         queryFn: API.GET_ALL_VIBES,
     })
 
-    async function onPost(data: VibeDataType): Promise<void> {
+    const mutation = useMutation({
+        mutationFn: POST_VIBE,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['vibes'] })
+        },
+    })
+
+    function onPost(data: VibeDataType): void {
         const formData: FormData = new FormData()
 
         formData.append('content', data.content)
@@ -30,13 +37,6 @@ function HomePage() {
 
         mutation.mutate(formData)
     }
-
-    const mutation = useMutation({
-        mutationFn: POST_VIBE,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['vibes'] })
-        },
-    })
 
     async function POST_VIBE(data: FormData): Promise<string> {
         const postVIbe: Promise<string> = API.POST_VIBE(data)

@@ -49,6 +49,14 @@ export interface LikeType {
     targetId: number
 }
 
+export interface ReplyType {
+    id: number
+    image: string | null
+    content: string
+    authorId: number
+    targetId: number
+}
+
 export interface RegisterDataType {
     username: string
     name: string

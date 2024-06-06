@@ -13,7 +13,6 @@ interface VibeItemProps {
 
 function VibeItem({ vibe }: VibeItemProps) {
     const { id, content, image, createdAt, totalLikes, totalReplies, isLiked, author } = vibe
-
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     if (author) {

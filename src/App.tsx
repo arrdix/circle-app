@@ -19,6 +19,7 @@ import ForgotPasswordPage from '@/pages/ForgotPasswordPage'
 import ResetPasswordPage from '@/pages/ResetPasswordPage'
 import FollowsPage from '@/pages/FollowsPage'
 import SplashScreen from '@/components/utilities/SplashScreen'
+import { setAllUsers } from '@/features/users/usersSlice'
 
 function App() {
     const isPreloaded = useSelector((states: RootState) => states.isPreloaded.value)
@@ -39,7 +40,10 @@ function App() {
         async function isUserLogged() {
             try {
                 const loggedUser: UserType = await API.GET_LOGGED_USER()
+                const users: UserType[] = await API.GET_ALL_USERS()
+
                 dispatch(setLoggedUser(loggedUser))
+                dispatch(setAllUsers(users))
             } catch (error) {
                 dispatch(unsetLoggedUser())
             } finally {

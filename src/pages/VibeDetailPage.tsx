@@ -1,12 +1,11 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import { Link, Params, useParams } from 'react-router-dom'
 import { BiLeftArrowAlt } from 'react-icons/bi'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setDetailedVibe } from '@/features/vibes/vibesSlice'
-import { RootState } from '@/redux'
-import { DetailedVibeType, UserType } from '@/types/types'
+import { DetailedVibeType, ReplyType, VibeDataType } from '@/types/types'
+import { useQuery, useQueryClient, useMutation, QueryClient } from '@tanstack/react-query'
 
+import API from '@/networks/api'
+import useCircleToast from '@/hooks/useCircleToast'
 import MainBar from '@/components/bars/MainBar'
 import SideBar from '@/components/bars/SideBar'
 import ProfileCard from '@/components/cards/ProfileCard'
@@ -14,38 +13,45 @@ import SuggestionCard from '@/components/cards/SuggestionCard'
 import DeveloperCard from '@/components/cards/DeveloperCard'
 import NavigationHeading from '@/components/navigations/NavigationHeading'
 import VibeDetail from '@/components/vibes/VibeDetail'
-import API from '@/networks/api'
 
 function VibeDetailPage() {
     const { id }: Readonly<Params<string>> = useParams()
-    const vibe = useSelector((states: RootState) => states.vibes.detailedVibe)
+    const targetId = id ? +id : 1
 
-    const dispatch = useDispatch()
+    const createToast = useCircleToast()
+    const queryClient: QueryClient = useQueryClient()
 
-    useEffect(() => {
-        async function getDetailedVibe() {
-            if (id) {
-                const vibe: DetailedVibeType = await API.GET_DETAILED_VIBE(+id)
-                const user: UserType = await API.GET_USER(vibe.authorId)
-                const users: UserType[] = await API.GET_ALL_USERS()
+    const { data: vibe } = useQuery<DetailedVibeType>({
+        queryKey: ['vibe', targetId],
+        queryFn: () => API.GET_SINGLE_VIBE(targetId),
+    })
 
-                const detailedVibe: DetailedVibeType = {
-                    ...vibe,
-                    author: user,
-                    replies: vibe.replies.map((reply) => {
-                        return {
-                            ...reply,
-                            author: users.find((user) => user.id === reply.authorId),
-                        }
-                    }),
-                }
+    const mutation = useMutation({
+        mutationFn: POST_REPLY,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['vibe'] })
+        },
+    })
 
-                dispatch(setDetailedVibe(detailedVibe))
-            }
-        }
+    function onReply(data: VibeDataType): void {
+        const formData: FormData = new FormData()
 
-        getDetailedVibe()
-    }, [id, dispatch])
+        formData.append('targetId', targetId.toString())
+        formData.append('content', data.content)
+        formData.append('image', data.image[0])
+
+        mutation.mutate(formData)
+    }
+
+    async function POST_REPLY(data: FormData): Promise<ReplyType> {
+        const postReply: Promise<ReplyType> = API.POST_REPLY(data)
+        createToast(postReply, {
+            title: 'Post Reply',
+            message: 'Reply successfully posted!',
+        })
+
+        return postReply
+    }
 
     if (vibe) {
         return (
@@ -55,7 +61,7 @@ function VibeDetailPage() {
                         <Link to={'/'}>
                             <NavigationHeading icon={<BiLeftArrowAlt />} text={'Vibe'} />
                         </Link>
-                        <VibeDetail vibe={vibe} />
+                        <VibeDetail vibe={vibe} onReply={onReply} />
                     </MainBar>
                 </GridItem>
                 <GridItem colSpan={7}>

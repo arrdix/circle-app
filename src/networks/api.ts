@@ -5,6 +5,7 @@ import {
     ForgotDataType,
     LoginDataType,
     RegisterDataType,
+    ReplyType,
     ResetDataType,
     UserType,
     VibeType,
@@ -122,7 +123,7 @@ class API {
         }
     }
 
-    async GET_DETAILED_VIBE(id: number): Promise<DetailedVibeType> {
+    GET_SINGLE_VIBE = async (id: number): Promise<DetailedVibeType> => {
         try {
             const response = await axios.get(`${CONFIGS.BASE_URL}/vibes/${id}`, {
                 headers: {
@@ -179,6 +180,24 @@ class API {
     async GET_USER(id: number): Promise<UserType> {
         try {
             const response = await axios.get(`${CONFIGS.BASE_URL}/users/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${this.GET_TOKEN()}`,
+                },
+            })
+
+            return response.data.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
+    POST_REPLY = async (data: FormData): Promise<ReplyType> => {
+        try {
+            const response: AxiosResponse = await axios.post(`${CONFIGS.BASE_URL}/replies`, data, {
                 headers: {
                     Authorization: `Bearer ${this.GET_TOKEN()}`,
                 },

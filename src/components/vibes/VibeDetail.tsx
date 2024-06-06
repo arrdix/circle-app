@@ -1,23 +1,39 @@
-import { DetailedVibeType } from '@/types/types'
+import { DetailedVibeType, VibeDataType } from '@/types/types'
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
 
 import VibeList from '@/components/vibes/VibeList'
 import VibeItem from '@/components/vibes/VibeItem'
 import NewVibe from '@/components/vibes/NewVibe'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/redux'
 
 interface VibeDetailProps {
+    onReply: (data: VibeDataType) => void
     vibe: DetailedVibeType
 }
 
-function VibeDetail({ vibe }: VibeDetailProps) {
+function VibeDetail({ vibe, onReply }: VibeDetailProps) {
     const { replies, ...rest } = vibe
+
+    const users = useSelector((states: RootState) => states.users.allUsers)
+    const repliesWithAuthor = replies.map((reply) => {
+        return {
+            ...reply,
+            author: users.find((user) => user.id === reply.authorId),
+        }
+    })
 
     if (!replies.length)
         return (
             <Box>
                 <VibeItem vibe={rest} />
-                <NewVibe placeholder={'Post your reply'} buttonText={'Reply'} />
+                <NewVibe
+                    placeholder={'Post your reply'}
+                    onPost={onReply}
+                    imagePreviewId={'atDetail'}
+                    buttonText={'Reply'}
+                />
                 <Flex direction={'column'} alignItems={'center'} mt={'3rem'} width={'100%'}>
                     <Text fontSize={fontSizing.big} fontWeight={'600'} color={'circle.dark'}>
                         No replies to this vibe so far.
@@ -32,8 +48,13 @@ function VibeDetail({ vibe }: VibeDetailProps) {
     return (
         <Box>
             <VibeItem vibe={rest} />
-            <NewVibe placeholder={'Post your reply'} buttonText={'Reply'} />
-            <VibeList vibes={replies} />
+            <NewVibe
+                placeholder={'Post your reply'}
+                onPost={onReply}
+                imagePreviewId={'atDetail'}
+                buttonText={'Reply'}
+            />
+            <VibeList vibes={repliesWithAuthor} />
         </Box>
     )
 }

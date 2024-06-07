@@ -1,11 +1,13 @@
+import { useSelector } from 'react-redux'
+import { RootState } from '@/redux'
+import { UserType } from '@/types/types'
+
 import BrandCard from './BrandCard'
 import ProfileCardHeader from './ProfileCardHeader'
 import ProfileCardBody from './ProfileCardBody'
 import ProfileCardFooter from './ProfileCardFooter'
 import BrandHeading from '@/components/utilities/BrandHeading'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/redux'
-import { UserType } from '@/types/types'
+import CircleSpinner from '@/components/utilities/CircleSpinner'
 
 interface ProfileCardProps {
     top?: boolean
@@ -28,6 +30,13 @@ function ProfileCard({ top }: ProfileCardProps) {
             </BrandCard>
         )
     }
+
+    return (
+        <BrandCard top={top && top}>
+            <BrandHeading text={'My Profile'} />
+            <CircleSpinner />
+        </BrandCard>
+    )
 }
 
 export default ProfileCard

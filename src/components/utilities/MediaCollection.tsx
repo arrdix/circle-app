@@ -1,18 +1,21 @@
-import { Grid, Image } from '@chakra-ui/react'
+import GhostButton from '@/components/buttons/GhostButton'
+import ImageModal from '@/components/modals/ImageModal'
+import { VibeType } from '@/types/types'
+import { Grid, Image, useDisclosure } from '@chakra-ui/react'
+import { useSearchParams } from 'react-router-dom'
 
-function MediaCollection() {
-    const dummies = []
-    const dummy = (
-        <Image
-            src={'https://picsum.photos/500/750?grayscale'}
-            height={'100%'}
-            width={'100%'}
-            objectFit={'cover'}
-        />
-    )
+interface MediaCollectionProps {
+    vibes: VibeType[]
+}
 
-    for (let i = 0; i < 14; i++) {
-        dummies.push(dummy)
+function MediaCollection({ vibes }: MediaCollectionProps) {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [, setSearchParams] = useSearchParams()
+
+    function onImageClick(id: number): void {
+        setSearchParams({ vibeId: String(id) })
+
+        onOpen()
     }
 
     return (
@@ -23,7 +26,21 @@ function MediaCollection() {
             gap={'.5rem'}
             padding={'1rem'}
         >
-            {dummies.map((dummy) => dummy)}
+            {vibes.map((vibe) => {
+                if (vibe.image) {
+                    return (
+                        <GhostButton onClick={() => onImageClick(vibe.id)}>
+                            <Image
+                                src={vibe.image}
+                                height={'100%'}
+                                width={'100%'}
+                                objectFit={'cover'}
+                            />
+                            <ImageModal isOpen={isOpen} onClose={onClose} vibePhoto={vibe.image} />
+                        </GhostButton>
+                    )
+                }
+            })}
         </Grid>
     )
 }

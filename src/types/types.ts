@@ -10,6 +10,7 @@ export interface UserType {
     totalFollower: number
     totalFollowing: number
     isFollowed?: boolean
+    vibes: VibeType[]
 }
 
 export interface VibeType {

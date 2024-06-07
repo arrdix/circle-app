@@ -9,9 +9,10 @@ import ImageModal from '@/components/modals/ImageModal'
 
 interface VibeItemProps {
     vibe: VibeType
+    noImage?: boolean
 }
 
-function VibeItem({ vibe }: VibeItemProps) {
+function VibeItem({ vibe, noImage }: VibeItemProps) {
     const { id, content, image, createdAt, totalLikes, totalReplies, isLiked, author } = vibe
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -31,6 +32,7 @@ function VibeItem({ vibe }: VibeItemProps) {
                                 vibeId={id}
                                 vibeContent={content}
                                 vibeImage={image}
+                                noImage={noImage && noImage}
                                 onOpen={onOpen}
                             />
                             <VibeItemFooter

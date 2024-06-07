@@ -11,7 +11,7 @@ import API from '@/networks/api'
 import CircleLayout from './layouts/CircleLayout'
 import HomePage from './pages/HomePage'
 import VibeDetailPage from './pages/VibeDetailPage'
-import ProfilePage from './pages/ProfilePage'
+import MePage from './pages/MePage'
 import SearchPage from '@/pages/SearchPage'
 import LoginPage from '@/pages/LoginPage'
 import RegisterPage from '@/pages/RegisterPage'
@@ -81,7 +81,7 @@ function App() {
                 <Route path="/" element={<CircleLayout />}>
                     <Route index element={<HomePage />} />
                     <Route path="/detail/:id" element={<VibeDetailPage />} />
-                    <Route path="/me" element={<ProfilePage />} />
+                    <Route path="/me" element={<MePage />} />
                     <Route path="/follows" element={<FollowsPage />} />
                     <Route path="/search" element={<SearchPage />} />
                 </Route>

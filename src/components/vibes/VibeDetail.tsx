@@ -11,9 +11,10 @@ import NewVibe from '@/components/vibes/NewVibe'
 interface VibeDetailProps {
     onReply: (data: VibeDataType) => void
     vibe: DetailedVibeType
+    noImage?: boolean
 }
 
-function VibeDetail({ vibe, onReply }: VibeDetailProps) {
+function VibeDetail({ vibe, onReply, noImage }: VibeDetailProps) {
     const { replies, ...rest } = vibe
 
     const [users, setUsers] = useState<UserType[]>([])
@@ -57,7 +58,7 @@ function VibeDetail({ vibe, onReply }: VibeDetailProps) {
 
     return (
         <Box>
-            <VibeItem vibe={rest} />
+            <VibeItem vibe={rest} noImage={noImage && noImage} />
             <NewVibe
                 placeholder={'Post your reply'}
                 onPost={onReply}

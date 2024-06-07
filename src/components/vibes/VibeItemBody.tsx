@@ -9,12 +9,13 @@ interface VibeItemBodyProps {
     vibeContent: string
     vibeImage: string | null
     onOpen: () => void
+    noImage?: boolean
 }
 
-function VibeItemBody({ vibeContent, vibeId, vibeImage, onOpen }: VibeItemBodyProps) {
+function VibeItemBody({ vibeContent, vibeId, vibeImage, noImage, onOpen }: VibeItemBodyProps) {
     const [, setSearchParams] = useSearchParams()
 
-    function onPhotoClick(): void {
+    function onImageClick(): void {
         setSearchParams({ vibeId: String(vibeId) })
 
         onOpen()
@@ -23,8 +24,8 @@ function VibeItemBody({ vibeContent, vibeId, vibeImage, onOpen }: VibeItemBodyPr
     return (
         <CardBody padding={0}>
             <Text fontSize={fontSizing.small}>{vibeContent}</Text>
-            {vibeImage && (
-                <GhostButton onClick={onPhotoClick}>
+            {!noImage && vibeImage && (
+                <GhostButton onClick={onImageClick}>
                     <Image
                         src={vibeImage}
                         objectFit={'cover'}

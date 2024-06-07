@@ -13,6 +13,7 @@ import SuggestionCard from '@/components/cards/SuggestionCard'
 import DeveloperCard from '@/components/cards/DeveloperCard'
 import NavigationHeading from '@/components/navigations/NavigationHeading'
 import VibeDetail from '@/components/vibes/VibeDetail'
+import CircleSpinner from '@/components/utilities/CircleSpinner'
 
 function VibeDetailPage() {
     const { id }: Readonly<Params<string>> = useParams()
@@ -74,6 +75,14 @@ function VibeDetailPage() {
             </Grid>
         )
     }
+
+    return (
+        <Grid templateColumns={'repeat(19, 1fr)'} height={'100vh'}>
+            <GridItem colSpan={19}>
+                <CircleSpinner />
+            </GridItem>
+        </Grid>
+    )
 }
 
 export default VibeDetailPage

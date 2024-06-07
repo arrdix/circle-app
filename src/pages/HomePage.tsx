@@ -12,6 +12,7 @@ import VibeList from '@/components/vibes/VibeList'
 import NewVibe from '@/components/vibes/NewVibe'
 import NavigationHeading from '@/components/navigations/NavigationHeading'
 import useCircleToast from '@/hooks/useCircleToast'
+import CircleSpinner from '@/components/utilities/CircleSpinner'
 
 function HomePage() {
     const createToast = useCircleToast()
@@ -72,6 +73,14 @@ function HomePage() {
             </Grid>
         )
     }
+
+    return (
+        <Grid templateColumns={'repeat(19, 1fr)'} height={'100vh'}>
+            <GridItem colSpan={19}>
+                <CircleSpinner />
+            </GridItem>
+        </Grid>
+    )
 }
 
 export default HomePage

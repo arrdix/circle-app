@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { Flex, Spacer, Image } from '@chakra-ui/react'
+import { Flex, Spacer, Image, Box, useDisclosure } from '@chakra-ui/react'
 import { BiSolidHome, BiSearchAlt, BiHeart, BiUser, BiLogOut } from 'react-icons/bi'
 import { useDispatch } from 'react-redux'
 import { unsetLoggedUser } from '@/features/auth/authSlice'
@@ -7,12 +7,14 @@ import API from '@/networks/api'
 
 import NavigationItem from './NavigationItem'
 import SolidButton from '@/components/buttons/SolidButton'
+import BrandModal from '@/components/modals/BrandModal'
+import NewVibe from '@/components/vibes/NewVibe'
+import { usePost } from '@/hooks/usePost'
 
-interface NavigationProps {
-    onOpen: () => void
-}
+function Navigation() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [, onPost] = usePost({ onClose })
 
-function Navigation({ onOpen }: NavigationProps) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -51,6 +53,15 @@ function Navigation({ onOpen }: NavigationProps) {
             <Spacer />
 
             <NavigationItem icon={<BiLogOut />} text={'Logout'} onLogout={onLogout} />
+            <BrandModal isOpen={isOpen} onClose={onClose} size={'xl'}>
+                <Box pt={'.5rem'}>
+                    <NewVibe
+                        placeholder={"What's on your mind?"}
+                        imagePreviewId={'atModal'}
+                        onPost={onPost}
+                    />
+                </Box>
+            </BrandModal>
         </Flex>
     )
 }

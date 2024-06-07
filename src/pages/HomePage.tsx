@@ -1,8 +1,6 @@
-import { QueryClient, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Grid, GridItem } from '@chakra-ui/react'
-import { VibeDataType, VibeType } from '@/types/types'
+import { usePost } from '@/hooks/usePost'
 
-import API from '@/networks/api'
 import MainBar from '@/components/bars/MainBar'
 import SideBar from '@/components/bars/SideBar'
 import ProfileCard from '@/components/cards/ProfileCard'
@@ -11,43 +9,10 @@ import DeveloperCard from '@/components/cards/DeveloperCard'
 import VibeList from '@/components/vibes/VibeList'
 import NewVibe from '@/components/vibes/NewVibe'
 import NavigationHeading from '@/components/navigations/NavigationHeading'
-import useCircleToast from '@/hooks/useCircleToast'
 import CircleSpinner from '@/components/utilities/CircleSpinner'
 
 function HomePage() {
-    const createToast = useCircleToast()
-    const queryClient: QueryClient = useQueryClient()
-
-    const { data: vibes } = useQuery<VibeType[]>({
-        queryKey: ['vibes'],
-        queryFn: API.GET_ALL_VIBES,
-    })
-
-    const mutation = useMutation({
-        mutationFn: POST_VIBE,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['vibes'] })
-        },
-    })
-
-    function onPost(data: VibeDataType): void {
-        const formData: FormData = new FormData()
-
-        formData.append('content', data.content)
-        formData.append('image', data.image ? data.image[0] : null)
-
-        mutation.mutate(formData)
-    }
-
-    async function POST_VIBE(data: FormData): Promise<string> {
-        const postVIbe: Promise<string> = API.POST_VIBE(data)
-        createToast(postVIbe, {
-            title: 'Post Vibe',
-            message: 'Vibe successfully posted!',
-        })
-
-        return postVIbe
-    }
+    const [vibes, onPost] = usePost()
 
     if (vibes) {
         return (

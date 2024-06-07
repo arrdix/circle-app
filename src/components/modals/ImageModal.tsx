@@ -3,14 +3,11 @@ import { BiExitFullscreen, BiSolidArrowFromLeft, BiSolidArrowFromRight } from 'r
 import { fontSizing } from '@/styles/style'
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { DetailedVibeType, ReplyType, VibeDataType } from '@/types/types'
-import { useQuery, useQueryClient, useMutation, QueryClient } from '@tanstack/react-query'
 
-import API from '@/networks/api'
 import BrandModal from '@/components/modals/BrandModal'
 import GhostButton from '@/components/buttons/GhostButton'
 import VibeDetail from '@/components/vibes/VibeDetail'
-import useCircleToast from '@/hooks/useCircleToast'
+import useReply from '@/hooks/useReply'
 
 interface ImageModalProps {
     onClose: () => void
@@ -19,11 +16,13 @@ interface ImageModalProps {
 }
 
 function ImageModal({ isOpen, onClose, vibePhoto }: ImageModalProps) {
-    const [hideVibe, setHideVide] = useState<boolean>(true)
     const [searchParams, setSearchParams] = useSearchParams()
 
     const id = searchParams.get('vibeId')
     const targetId = id ? +id : 1
+
+    const [vibe, onReply] = useReply(targetId)
+    const [hideVibe, setHideVide] = useState<boolean>(true)
 
     function onCloseModal(): void {
         setSearchParams({})
@@ -33,41 +32,6 @@ function ImageModal({ isOpen, onClose, vibePhoto }: ImageModalProps) {
 
     function onHideVibe(): void {
         setHideVide((oldState) => !oldState)
-    }
-
-    const createToast = useCircleToast()
-    const queryClient: QueryClient = useQueryClient()
-
-    const { data: vibe } = useQuery<DetailedVibeType>({
-        queryKey: ['vibe', targetId],
-        queryFn: () => API.GET_SINGLE_VIBE(targetId),
-    })
-
-    const mutation = useMutation({
-        mutationFn: POST_REPLY,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['vibe'] })
-        },
-    })
-
-    function onReply(data: VibeDataType): void {
-        const formData: FormData = new FormData()
-
-        formData.append('targetId', targetId.toString())
-        formData.append('content', data.content)
-        formData.append('image', data.image ? data.image[0] : null)
-
-        mutation.mutate(formData)
-    }
-
-    async function POST_REPLY(data: FormData): Promise<ReplyType> {
-        const postReply: Promise<ReplyType> = API.POST_REPLY(data)
-        createToast(postReply, {
-            title: 'Post Reply',
-            message: 'Reply successfully posted!',
-        })
-
-        return postReply
     }
 
     if (vibe) {

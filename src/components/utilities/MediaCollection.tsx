@@ -32,18 +32,20 @@ function MediaCollection({ vibes }: MediaCollectionProps) {
                 {vibes.map((vibe) => {
                     if (vibe.image) {
                         return (
-                            <GhostButton onClick={() => onImageClick(vibe.id)}>
+                            <GhostButton onClick={() => onImageClick(vibe.id)} key={vibe.id}>
                                 <Image
                                     src={vibe.image}
                                     height={'100%'}
                                     width={'100%'}
                                     objectFit={'cover'}
                                 />
-                                <ImageModal
-                                    isOpen={isOpen}
-                                    onClose={onClose}
-                                    vibePhoto={vibe.image}
-                                />
+                                {isOpen && (
+                                    <ImageModal
+                                        isOpen={isOpen}
+                                        onClose={onClose}
+                                        vibeImage={vibe.image}
+                                    />
+                                )}
                             </GhostButton>
                         )
                     }

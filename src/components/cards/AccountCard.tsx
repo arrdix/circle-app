@@ -18,7 +18,7 @@ function AccountCard({ username, name, bio }: AccountCardProps) {
                     {name}
                 </Text>
                 <Text fontSize={fontSizing.smaller} color={'circle.dark'}>
-                    {username}
+                    @{username}
                 </Text>
                 {bio && <Text fontSize={fontSizing.smaller}>{bio}</Text>}
             </Flex>

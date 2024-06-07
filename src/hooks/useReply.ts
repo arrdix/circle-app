@@ -43,4 +43,4 @@ function useReply(targetId: number): [DetailedVibeType | undefined, (data: VibeD
     return [vibe, onReply]
 }
 
-export default useReply
+export { useReply }

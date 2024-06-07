@@ -2,27 +2,27 @@ import { Flex, Box, Image } from '@chakra-ui/react'
 import { BiExitFullscreen, BiSolidArrowFromLeft, BiSolidArrowFromRight } from 'react-icons/bi'
 import { fontSizing } from '@/styles/style'
 import { useState } from 'react'
+import { useReply } from '@/hooks/useReply'
 import { useSearchParams } from 'react-router-dom'
 
 import BrandModal from '@/components/modals/BrandModal'
 import GhostButton from '@/components/buttons/GhostButton'
 import VibeDetail from '@/components/vibes/VibeDetail'
-import useReply from '@/hooks/useReply'
 
 interface ImageModalProps {
     onClose: () => void
     isOpen: boolean
-    vibePhoto: string | null
+    vibeImage: string | null
 }
 
-function ImageModal({ isOpen, onClose, vibePhoto }: ImageModalProps) {
+function ImageModal({ isOpen, onClose, vibeImage }: ImageModalProps) {
     const [searchParams, setSearchParams] = useSearchParams()
 
-    const id = searchParams.get('vibeId')
-    const targetId = id ? +id : NaN
+    const id: string | null = searchParams.get('vibeId')
+    const targetId: number = id ? +id : NaN
 
     const [vibe, onReply] = useReply(targetId)
-    const [hideVibe, setHideVide] = useState<boolean>(true)
+    const [hideList, setHideList] = useState<boolean>(true)
 
     function onCloseModal(): void {
         setSearchParams({})
@@ -31,7 +31,7 @@ function ImageModal({ isOpen, onClose, vibePhoto }: ImageModalProps) {
     }
 
     function onHideVibe(): void {
-        setHideVide((oldState) => !oldState)
+        setHideList((oldState) => !oldState)
     }
 
     if (vibe) {
@@ -46,7 +46,7 @@ function ImageModal({ isOpen, onClose, vibePhoto }: ImageModalProps) {
                         flex={2}
                     >
                         <Image
-                            src={vibePhoto ? vibePhoto : undefined}
+                            src={vibeImage ? vibeImage : undefined}
                             width={'auto'}
                             height={'auto'}
                             maxWidth={'100%'}
@@ -68,7 +68,7 @@ function ImageModal({ isOpen, onClose, vibePhoto }: ImageModalProps) {
                             </GhostButton>
                             <GhostButton onClick={onHideVibe}>
                                 <Box color={'circle.font'} fontSize={fontSizing.bigger}>
-                                    {hideVibe ? (
+                                    {hideList ? (
                                         <BiSolidArrowFromLeft />
                                     ) : (
                                         <BiSolidArrowFromRight />
@@ -77,7 +77,7 @@ function ImageModal({ isOpen, onClose, vibePhoto }: ImageModalProps) {
                             </GhostButton>
                         </Flex>
                     </Flex>
-                    {hideVibe && (
+                    {hideList && (
                         <Box
                             py={'1rem'}
                             border={'1px'}

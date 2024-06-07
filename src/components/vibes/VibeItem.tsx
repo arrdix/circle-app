@@ -45,7 +45,7 @@ function VibeItem({ vibe, noImage }: VibeItemProps) {
                     </Flex>
                 </Card>
                 <Divider border={'1px'} borderColor={'circle.darker'} />
-                {isOpen && <ImageModal isOpen={isOpen} onClose={onClose} vibePhoto={image} />}
+                {isOpen && <ImageModal isOpen={isOpen} onClose={onClose} vibeImage={image} />}
             </Box>
         )
     }

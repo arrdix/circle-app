@@ -14,7 +14,7 @@ import useReply from '@/hooks/useReply'
 
 function VibeDetailPage() {
     const { id }: Readonly<Params<string>> = useParams()
-    const targetId = id ? +id : 1
+    const targetId = id ? +id : NaN
 
     const [vibe, onReply] = useReply(targetId)
 

@@ -19,7 +19,7 @@ function ImageModal({ isOpen, onClose, vibePhoto }: ImageModalProps) {
     const [searchParams, setSearchParams] = useSearchParams()
 
     const id = searchParams.get('vibeId')
-    const targetId = id ? +id : 1
+    const targetId = id ? +id : NaN
 
     const [vibe, onReply] = useReply(targetId)
     const [hideVibe, setHideVide] = useState<boolean>(true)

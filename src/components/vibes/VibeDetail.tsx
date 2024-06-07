@@ -1,12 +1,12 @@
-import { DetailedVibeType, VibeDataType } from '@/types/types'
+import { DetailedVibeType, UserType, VibeDataType } from '@/types/types'
 import { Box, Flex, Text } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { fontSizing } from '@/styles/style'
 
+import API from '@/networks/api'
 import VibeList from '@/components/vibes/VibeList'
 import VibeItem from '@/components/vibes/VibeItem'
 import NewVibe from '@/components/vibes/NewVibe'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/redux'
 
 interface VibeDetailProps {
     onReply: (data: VibeDataType) => void
@@ -16,7 +16,17 @@ interface VibeDetailProps {
 function VibeDetail({ vibe, onReply }: VibeDetailProps) {
     const { replies, ...rest } = vibe
 
-    const users = useSelector((states: RootState) => states.users.allUsers)
+    const [users, setUsers] = useState<UserType[]>([])
+
+    useEffect(() => {
+        async function getUsers() {
+            const users: UserType[] = await API.GET_ALL_USERS()
+            setUsers(users)
+        }
+
+        getUsers()
+    }, [])
+
     const repliesWithAuthor = replies.map((reply) => {
         return {
             ...reply,

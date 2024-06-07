@@ -10,11 +10,11 @@ import EditProfile from '@/components/modals/EditProfile'
 interface ProfileCardHeaderProps {
     buttonText?: string
     editable?: boolean
+    avatar: string
 }
 
-function ProfileCardHeader({ buttonText, editable }: ProfileCardHeaderProps) {
+function ProfileCardHeader({ buttonText, editable, avatar }: ProfileCardHeaderProps) {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const imagePlaceholder = 'https://api.dicebear.com/8.x/thumbs/svg?seed=Sheba'
 
     return (
         <CardHeader
@@ -25,7 +25,7 @@ function ProfileCardHeader({ buttonText, editable }: ProfileCardHeaderProps) {
             pos={'relative'}
         >
             <Image
-                src={imagePlaceholder}
+                src={avatar}
                 objectFit={'cover'}
                 height={editable ? '200px' : '150px'}
                 width={'100%'}
@@ -39,7 +39,7 @@ function ProfileCardHeader({ buttonText, editable }: ProfileCardHeaderProps) {
             )}
             <Flex pos={'absolute'} left={'5%'} bottom={'0'}>
                 <Image
-                    src={imagePlaceholder}
+                    src={avatar}
                     boxSize={editable ? '150px' : '45%'}
                     borderRadius={'full'}
                     border={'4px'}

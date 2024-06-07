@@ -2,21 +2,22 @@ import { Text, CardBody } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
 
 interface ProfileCardBodyProps {
+    username: string
+    name: string
+    bio: string | null
     py?: string
 }
 
-function ProfileCardBody({ py = '.5rem' }: ProfileCardBodyProps) {
+function ProfileCardBody({ username, name, bio, py = '.5rem' }: ProfileCardBodyProps) {
     return (
         <CardBody padding={0} py={py}>
             <Text fontSize={fontSizing.big} fontWeight={'700'}>
-                Jesse Pinkman 💀
+                {name}
             </Text>
             <Text color={'circle.dark'} fontSize={fontSizing.small} mb={'.75rem'}>
-                @jessepinkman
+                @{username}
             </Text>
-            <Text fontSize={fontSizing.small}>
-                New Zealand, that's where they made Lord of the Rings. I say we move there yo!
-            </Text>
+            {bio && <Text fontSize={fontSizing.small}>{bio}</Text>}
         </CardBody>
     )
 }

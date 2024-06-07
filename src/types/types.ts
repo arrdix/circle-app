@@ -5,6 +5,11 @@ export interface UserType {
     email: string
     avatar: string
     bio: string | null
+    followers: FollowType[]
+    followings: FollowType[]
+    totalFollower: number
+    totalFollowing: number
+    isFollowed?: boolean
 }
 
 export interface VibeType {
@@ -41,6 +46,12 @@ export interface DetailedVibeType {
     totalLikes: number
     isLiked: boolean
     author: UserType
+}
+
+export interface FollowType {
+    id: number
+    targetId: number
+    ownerId: number
 }
 
 export interface LikeType {

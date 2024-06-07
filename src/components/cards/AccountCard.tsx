@@ -4,26 +4,25 @@ import { fontSizing } from '@/styles/style'
 import HollowButton from '@/components/buttons/HollowButton'
 
 interface AccountCardProps {
-    includeBio?: boolean
-    followed?: boolean
+    username: string
+    name: string
+    bio: string | null
 }
 
-function AccountCard({ includeBio, followed }: AccountCardProps) {
+function AccountCard({ username, name, bio }: AccountCardProps) {
     return (
         <Flex gap={'1rem'} alignItems={'center'}>
             <Avatar src={'https://api.dicebear.com/8.x/thumbs/svg?seed=Maggie'} />
             <Flex direction={'column'} justifyContent={'center'} gap={0} mr={'auto'}>
                 <Text fontSize={fontSizing.small} fontWeight={'700'}>
-                    Arya Stark
+                    {name}
                 </Text>
                 <Text fontSize={fontSizing.smaller} color={'circle.dark'}>
-                    @aryawinterfell
+                    {username}
                 </Text>
-                {includeBio && (
-                    <Text fontSize={fontSizing.smaller}>Valar Morghulis - Valar Dohaeris</Text>
-                )}
+                {bio && <Text fontSize={fontSizing.smaller}>{bio}</Text>}
             </Flex>
-            {followed ? <HollowButton text={'Following'} dark /> : <HollowButton text={'Follow'} />}
+            <HollowButton text={'Follow'} />
         </Flex>
     )
 }

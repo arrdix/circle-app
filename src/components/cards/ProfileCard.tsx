@@ -5,13 +5,16 @@ import ProfileCardFooter from './ProfileCardFooter'
 import BrandHeading from '@/components/utilities/BrandHeading'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/redux'
+import { UserType } from '@/types/types'
 
 interface ProfileCardProps {
     top?: boolean
 }
 
 function ProfileCard({ top }: ProfileCardProps) {
-    const loggedUser = useSelector((states: RootState) => states.loggedUser.value)
+    const loggedUser: UserType | undefined = useSelector(
+        (states: RootState) => states.loggedUser.value
+    )
 
     if (loggedUser) {
         const { avatar, bio, username, name, totalFollower, totalFollowing } = loggedUser

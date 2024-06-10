@@ -33,9 +33,7 @@ function useEditUser(params: useEditUserParams = {}): [(data: EditUserDataType) 
 
         mutation.mutate(formData)
 
-        if (params.onClose) {
-            params.onClose()
-        }
+        if (params.onClose) params.onClose()
     }
 
     async function EDIT_USER(data: FormData): Promise<EditedUserType> {

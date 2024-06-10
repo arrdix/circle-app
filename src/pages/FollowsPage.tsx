@@ -51,7 +51,7 @@ function FollowsPage() {
             <GridItem colSpan={12}>
                 <MainBar>
                     <Link to={'/'}>
-                        <NavigationHeading icon={<BiLeftArrowAlt />} text={'Follows'} />
+                        <NavigationHeading icon={<BiLeftArrowAlt />} text={'Follows'} sticky />
                     </Link>
                     <BrandTabs
                         leftTitle={'Followers'}
@@ -63,7 +63,7 @@ function FollowsPage() {
             </GridItem>
             <GridItem colSpan={7}>
                 <SideBar>
-                    <ProfileCard top />
+                    <ProfileCard />
                     <SuggestionCard />
                     <DeveloperCard />
                 </SideBar>

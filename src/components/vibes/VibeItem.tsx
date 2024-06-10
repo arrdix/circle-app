@@ -10,16 +10,22 @@ import ImageModal from '@/components/modals/ImageModal'
 interface VibeItemProps {
     vibe: VibeType
     noImage?: boolean
+    noHover?: boolean
 }
 
-function VibeItem({ vibe, noImage }: VibeItemProps) {
+function VibeItem({ vibe, noImage, noHover }: VibeItemProps) {
     const { id, content, image, createdAt, totalLikes, totalReplies, isLiked, author } = vibe
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     if (author) {
         return (
             <Box>
-                <Card bg={'circle.backdrop'} color={'circle.font'} p={'1rem'} _hover={vibeHover}>
+                <Card
+                    bg={'circle.backdrop'}
+                    color={'circle.font'}
+                    p={'1rem'}
+                    _hover={!noHover ? vibeHover : {}}
+                >
                     <Flex gap={'1rem'}>
                         <Avatar src={author.avatar} />
                         <Flex direction={'column'} gap={'.25rem'} width={'100%'}>

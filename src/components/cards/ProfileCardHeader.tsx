@@ -35,6 +35,7 @@ function ProfileCardHeader<T extends FieldValues>(props: ProfileCardHeaderProps<
             display={'flex'}
             flexDirection={'column'}
             padding={0}
+            mt={'1rem'}
             gap={'.5rem'}
             pos={'relative'}
         >

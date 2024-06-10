@@ -10,11 +10,7 @@ import BrandCard from './BrandCard'
 import BrandHeading from '@/components/utilities/BrandHeading'
 import CircleSpinner from '@/components/utilities/CircleSpinner'
 
-interface SuggestionCardProps {
-    top?: boolean
-}
-
-function SuggestionCard({ top }: SuggestionCardProps) {
+function SuggestionCard() {
     const [users, setUsers] = useState<UserType[]>([])
     const loggedUser: UserType | undefined = useSelector(
         (states: RootState) => states.loggedUser.value
@@ -39,7 +35,7 @@ function SuggestionCard({ top }: SuggestionCardProps) {
 
     if (users.length) {
         return (
-            <BrandCard top={top && top}>
+            <BrandCard>
                 <BrandHeading text={'Suggested accounts'} />
                 <Flex direction={'column'} gap={'1rem'}>
                     {users.map((user) => (
@@ -58,7 +54,7 @@ function SuggestionCard({ top }: SuggestionCardProps) {
     }
 
     return (
-        <BrandCard top={top && top}>
+        <BrandCard>
             <BrandHeading text={'Suggested accounts'} />
             <CircleSpinner />
         </BrandCard>

@@ -29,10 +29,9 @@ function Navigation() {
         <Flex
             as={'nav'}
             direction={'column'}
-            py={'2rem'}
             pr={'2rem'}
             gap={'2rem'}
-            height={'100vh'}
+            height={'90vh'}
             pos={'fixed'}
             w={'266px'}
         >

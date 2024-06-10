@@ -14,7 +14,7 @@ function ProfileCardBody({ username, name, bio, py = '.5rem' }: ProfileCardBodyP
             <Text fontSize={fontSizing.big} fontWeight={'700'}>
                 {name}
             </Text>
-            <Text color={'circle.dark'} fontSize={fontSizing.small} mb={'.75rem'}>
+            <Text color={'circle.dark'} fontSize={fontSizing.small} mb={'.5rem'}>
                 @{username}
             </Text>
             {bio && <Text fontSize={fontSizing.small}>{bio}</Text>}

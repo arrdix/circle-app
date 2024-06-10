@@ -28,7 +28,7 @@ function MePage() {
                 <GridItem colSpan={12}>
                     <MainBar>
                         <Link to={'/'}>
-                            <NavigationHeading icon={<BiLeftArrowAlt />} text={name} />
+                            <NavigationHeading icon={<BiLeftArrowAlt />} text={name} sticky />
                         </Link>
                         <Card
                             bg={'circle.backdrop'}
@@ -58,7 +58,7 @@ function MePage() {
                 </GridItem>
                 <GridItem colSpan={7}>
                     <SideBar>
-                        <SuggestionCard top />
+                        <SuggestionCard />
                         <DeveloperCard />
                     </SideBar>
                 </GridItem>

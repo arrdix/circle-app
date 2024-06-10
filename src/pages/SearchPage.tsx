@@ -17,7 +17,7 @@ function SearchPage() {
             <GridItem colSpan={12}>
                 <MainBar>
                     <Link to={'/'}>
-                        <NavigationHeading icon={<BiLeftArrowAlt />} text={'Search'} />
+                        <NavigationHeading icon={<BiLeftArrowAlt />} text={'Search'} sticky />
                     </Link>
                     <IconInput />
                     <Flex direction={'column'} gap={'1rem'} px={'1rem'} mt={'1rem'}>
@@ -34,7 +34,7 @@ function SearchPage() {
             </GridItem>
             <GridItem colSpan={7}>
                 <SideBar>
-                    <ProfileCard top />
+                    <ProfileCard />
                     <SuggestionCard />
                     <DeveloperCard />
                 </SideBar>

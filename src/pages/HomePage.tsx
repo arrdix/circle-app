@@ -30,7 +30,7 @@ function HomePage() {
                 </GridItem>
                 <GridItem colSpan={7}>
                     <SideBar>
-                        <ProfileCard top />
+                        <ProfileCard />
                         <SuggestionCard />
                         <DeveloperCard />
                     </SideBar>

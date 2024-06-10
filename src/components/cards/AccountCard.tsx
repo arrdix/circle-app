@@ -7,12 +7,14 @@ interface AccountCardProps {
     username: string
     name: string
     bio: string | null
+    avatar: string
+    noBio?: boolean
 }
 
-function AccountCard({ username, name, bio }: AccountCardProps) {
+function AccountCard({ username, name, bio, avatar, noBio }: AccountCardProps) {
     return (
         <Flex gap={'1rem'} alignItems={'center'}>
-            <Avatar src={'https://api.dicebear.com/8.x/thumbs/svg?seed=Maggie'} />
+            <Avatar src={avatar} />
             <Flex direction={'column'} justifyContent={'center'} gap={0} mr={'auto'}>
                 <Text fontSize={fontSizing.small} fontWeight={'700'}>
                     {name}
@@ -20,7 +22,7 @@ function AccountCard({ username, name, bio }: AccountCardProps) {
                 <Text fontSize={fontSizing.smaller} color={'circle.dark'}>
                     @{username}
                 </Text>
-                {bio && <Text fontSize={fontSizing.smaller}>{bio}</Text>}
+                {bio && !noBio && <Text fontSize={fontSizing.smaller}>{bio}</Text>}
             </Flex>
             <HollowButton text={'Follow'} />
         </Flex>

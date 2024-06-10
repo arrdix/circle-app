@@ -48,6 +48,8 @@ function SuggestionCard({ top }: SuggestionCardProps) {
                             username={user.username}
                             name={user.name}
                             bio={user.bio}
+                            avatar={user.avatar}
+                            noBio
                         />
                     ))}
                 </Flex>

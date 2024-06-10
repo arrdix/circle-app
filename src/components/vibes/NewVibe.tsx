@@ -9,6 +9,8 @@ import { useState } from 'react'
 import SolidButton from '@/components/buttons/SolidButton'
 import VibeInput from '@/components/inputs/VibeInput'
 import ImagePreview from '@/components/utilities/ImagePreview'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/redux'
 
 interface NewVibeProps {
     onPost: (data: VibeDataType) => void
@@ -20,6 +22,7 @@ interface NewVibeProps {
 function NewVibe(props: NewVibeProps) {
     const { placeholder, buttonText, imagePreviewId } = props
     const [imagePreview, setImagePreview] = useState<string>('')
+    const loggedUser = useSelector((states: RootState) => states.loggedUser.value)
 
     const {
         register,
@@ -42,7 +45,7 @@ function NewVibe(props: NewVibeProps) {
         <Box>
             <Flex direction={'column'} justifyContent={'center'} gap={'1rem'}>
                 <Flex alignItems={'start'} gap={'1rem'} mx={'1rem'} mt={'1rem'}>
-                    <Avatar src={'https://api.dicebear.com/8.x/thumbs/svg?seed=Sheba'} />
+                    <Avatar src={loggedUser?.avatar} />
                     <VibeInput
                         placeholder={placeholder}
                         name={'content'}

@@ -18,6 +18,7 @@ function AccountListCard({ accounts }: AccountListCardProps) {
                         username={account.username}
                         name={account.name}
                         bio={account.bio}
+                        avatar={account.avatar}
                     />
                 ))}
             </Flex>

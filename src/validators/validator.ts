@@ -62,3 +62,19 @@ export const VibeSchema: ZodType = z.object({
         }),
     image: z.any(),
 })
+
+export const EditUserSchema: ZodType = z.object({
+    username: z
+        .string()
+        .min(4, {
+            message: 'Username must be at least 4 chars long.',
+        })
+        .max(255),
+    name: z.string().min(4, {
+        message: 'Name must be at least 4 chars long.',
+    }),
+    bio: z.string().min(1, {
+        message: 'Bio must not be empty.',
+    }),
+    avatar: z.any(),
+})

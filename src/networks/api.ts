@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios'
 import CONFIGS from '@/configs/configs'
 import {
     DetailedVibeType,
+    EditedUserType,
     ForgotDataType,
     LoginDataType,
     RegisterDataType,
@@ -184,6 +185,28 @@ class API {
                     Authorization: `Bearer ${this.GET_TOKEN()}`,
                 },
             })
+
+            return response.data.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
+    EDIT_USER = async (data: FormData): Promise<EditedUserType> => {
+        try {
+            const response: AxiosResponse = await axios.patch(
+                `${CONFIGS.BASE_URL}/users/me`,
+                data,
+                {
+                    headers: {
+                        Authorization: `Bearer ${this.GET_TOKEN()}`,
+                    },
+                }
+            )
 
             return response.data.data
         } catch (error) {

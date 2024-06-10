@@ -90,6 +90,22 @@ export interface ResetDataType {
     confirmedPassword: string
     general?: string
 }
+export interface EditUserDataType {
+    name: string
+    username: string
+    bio: string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    avatar: any
+}
+
+export interface EditedUserType {
+    id: number
+    username: string
+    name: string
+    email: string
+    avatar: string
+    bio: string | null
+}
 
 export interface VibeDataType {
     content: string

@@ -236,6 +236,24 @@ class API {
         }
     }
 
+    FIND_USERS = async (keyword: string): Promise<UserType[]> => {
+        try {
+            const response = await axios.get(`${CONFIGS.BASE_URL}/find?keyword=${keyword}`, {
+                headers: {
+                    Authorization: `Bearer ${this.GET_TOKEN()}`,
+                },
+            })
+
+            return response.data.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
     SET_TOKEN(payload: string): void {
         localStorage.setItem('token', payload)
     }

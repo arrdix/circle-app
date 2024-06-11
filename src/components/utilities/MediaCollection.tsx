@@ -1,10 +1,10 @@
-import { fontSizing } from '@/styles/style'
 import { VibeType } from '@/types/types'
-import { Flex, Grid, Image, Text, useDisclosure } from '@chakra-ui/react'
+import { Grid, Image, useDisclosure } from '@chakra-ui/react'
 import { useSearchParams } from 'react-router-dom'
 
 import GhostButton from '@/components/buttons/GhostButton'
 import ImageModal from '@/components/modals/ImageModal'
+import EmptyMessage from '@/components/utilities/EmptyMessage'
 
 interface MediaCollectionProps {
     vibes: VibeType[]
@@ -54,13 +54,7 @@ function MediaCollection({ vibes }: MediaCollectionProps) {
         )
     }
 
-    return (
-        <Flex direction={'column'} alignItems={'center'} mt={'3rem'} width={'100%'}>
-            <Text fontSize={fontSizing.big} fontWeight={'600'} color={'circle.dark'}>
-                No media has been posted at this moment.
-            </Text>
-        </Flex>
-    )
+    return <EmptyMessage header={'No media has been posted at this moment.'} />
 }
 
 export default MediaCollection

@@ -1,8 +1,8 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { UserType } from '@/types/types'
-import { fontSizing } from '@/styles/style'
 
 import AccountCard from '@/components/cards/AccountCard'
+import EmptyMessage from '@/components/utilities/EmptyMessage'
 
 interface AccountListCardProps {
     accounts: UserType[]
@@ -25,13 +25,7 @@ function AccountListCard({ accounts }: AccountListCardProps) {
         )
     }
 
-    return (
-        <Flex direction={'column'} alignItems={'center'} mt={'3rem'} width={'100%'}>
-            <Text fontSize={fontSizing.big} fontWeight={'600'} color={'circle.dark'}>
-                Nothing to see here.
-            </Text>
-        </Flex>
-    )
+    return <EmptyMessage header={'Nothing to see here yet.'} />
 }
 
 export default AccountListCard

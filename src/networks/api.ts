@@ -4,6 +4,7 @@ import {
     DetailedVibeType,
     EditedUserType,
     ForgotDataType,
+    LikeType,
     LoginDataType,
     RegisterDataType,
     ReplyType,
@@ -243,6 +244,30 @@ class API {
                     Authorization: `Bearer ${this.GET_TOKEN()}`,
                 },
             })
+
+            return response.data.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
+    TOGGLE_LIKE = async (targetId: number): Promise<LikeType> => {
+        try {
+            const response: AxiosResponse = await axios.post(
+                `${CONFIGS.BASE_URL}/likes`,
+                {
+                    targetId: targetId,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${this.GET_TOKEN()}`,
+                    },
+                }
+            )
 
             return response.data.data
         } catch (error) {

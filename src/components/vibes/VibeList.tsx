@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { VibeType } from '@/types/types'
-import { fontSizing } from '@/styles/style'
 
 import VibeItem from './VibeItem'
+import EmptyMessage from '@/components/utilities/EmptyMessage'
 
 interface VibeListProps {
     vibes: VibeType[]
@@ -24,13 +24,7 @@ function VibeList({ vibes }: VibeListProps) {
         )
     }
 
-    return (
-        <Flex direction={'column'} alignItems={'center'} mt={'3rem'} width={'100%'}>
-            <Text fontSize={fontSizing.big} fontWeight={'600'} color={'circle.dark'}>
-                No vibes has been posted at this moment.
-            </Text>
-        </Flex>
-    )
+    return <EmptyMessage header={'No vibe has been posted at this moment.'} />
 }
 
 export default VibeList

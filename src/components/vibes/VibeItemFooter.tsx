@@ -1,34 +1,60 @@
 import { CardFooter, Flex, Spacer } from '@chakra-ui/react'
 import { BiSolidHeart, BiCommentDetail, BiDotsVerticalRounded } from 'react-icons/bi'
-
-import VibeItemButton from './VibeItemButton'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/redux'
 import { UserType } from '@/types/types'
+import { useState } from 'react'
+
+import API from '@/networks/api'
+import VibeItemButton from './VibeItemButton'
 
 interface VibeItemFooterProps {
-    likes: number
-    replies: number
+    vibeId: number
+    totalLike: number
+    totalReply: number
     isLiked: boolean
     author: UserType
 }
 
-function VibeItemFooter({ likes, replies, isLiked, author }: VibeItemFooterProps) {
+function VibeItemFooter({ vibeId, totalLike, totalReply, isLiked, author }: VibeItemFooterProps) {
     const loggedUser = useSelector((states: RootState) => states.loggedUser.value)
+
+    const [isVibeLiked, setVibeLiked] = useState<boolean>(isLiked)
+    const [totalVibeLike, setTotalVibeLike] = useState<number>(totalLike)
+
+    // optimistic updates
+    async function onToggleLike() {
+        try {
+            await API.TOGGLE_LIKE(vibeId)
+
+            setVibeLiked((oldState) => !oldState)
+            setTotalVibeLike((oldState) => {
+                if (!isVibeLiked) {
+                    return oldState + 1
+                }
+
+                return oldState - 1
+            })
+        } catch (error) {
+            setVibeLiked(isLiked)
+            setTotalVibeLike(totalLike)
+        }
+    }
 
     return (
         <CardFooter padding={0}>
-            {replies !== undefined && likes !== undefined && (
+            {totalReply !== undefined && totalLike !== undefined && (
                 <Flex gap={'1rem'}>
                     <VibeItemButton
+                        onClick={onToggleLike}
                         icon={<BiSolidHeart />}
-                        value={likes}
-                        color={isLiked ? 'circle.red' : 'circle.dark'}
-                        hoverColor={isLiked ? 'circle.dark' : 'circle.red'}
+                        value={totalVibeLike}
+                        color={isVibeLiked ? 'circle.red' : 'circle.dark'}
+                        hoverColor={isVibeLiked ? 'circle.dark' : 'circle.red'}
                     />
                     <VibeItemButton
                         icon={<BiCommentDetail />}
-                        value={replies}
+                        value={totalReply}
                         color={'circle.dark'}
                         hoverColor={'circle.accent'}
                     />

@@ -20,18 +20,18 @@ function SuggestionCard() {
         async function getUsers() {
             const rawUsers: UserType[] = await API.GET_ALL_USERS()
 
-            if (users.length > 3) return
-
             if (loggedUser) {
                 const users = rawUsers.filter((user) => {
                     return !user.isFollowed && user.id !== loggedUser.id
                 })
-                setUsers(users)
+
+                const randomUsers = users.sort(() => Math.random() - 0.5).splice(0, 5)
+                setUsers(randomUsers)
             }
         }
 
         getUsers()
-    }, [loggedUser, users])
+    }, [loggedUser])
 
     if (users.length) {
         return (

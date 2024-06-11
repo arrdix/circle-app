@@ -42,8 +42,9 @@ function VibeItem({ vibe, noImage, noHover }: VibeItemProps) {
                                 onOpen={onOpen}
                             />
                             <VibeItemFooter
-                                likes={totalLikes}
-                                replies={totalReplies}
+                                vibeId={id}
+                                totalLike={totalLikes}
+                                totalReply={totalReplies}
                                 isLiked={isLiked}
                                 author={author}
                             />

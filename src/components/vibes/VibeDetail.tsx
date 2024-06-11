@@ -1,12 +1,12 @@
 import { DetailedVibeType, UserType, VibeDataType } from '@/types/types'
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { fontSizing } from '@/styles/style'
 
 import API from '@/networks/api'
 import VibeList from '@/components/vibes/VibeList'
 import VibeItem from '@/components/vibes/VibeItem'
 import NewVibe from '@/components/vibes/NewVibe'
+import EmptyMessage from '@/components/utilities/EmptyMessage'
 
 interface VibeDetailProps {
     onReply: (data: VibeDataType) => void
@@ -45,14 +45,10 @@ function VibeDetail({ vibe, onReply, noImage }: VibeDetailProps) {
                     imagePreviewId={'atDetail'}
                     buttonText={'Reply'}
                 />
-                <Flex direction={'column'} alignItems={'center'} mt={'3rem'} width={'100%'}>
-                    <Text fontSize={fontSizing.big} fontWeight={'600'} color={'circle.dark'}>
-                        No replies to this vibe so far.
-                    </Text>
-                    <Text fontSize={fontSizing.normal} color={'circle.dark'}>
-                        Share your thoughts first!
-                    </Text>
-                </Flex>
+                <EmptyMessage
+                    header={'No replies to this vibe so far.'}
+                    body={'Share your thoughts first!'}
+                />
             </Box>
         )
 

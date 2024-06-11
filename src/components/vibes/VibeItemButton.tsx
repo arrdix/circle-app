@@ -3,18 +3,19 @@ import { ReactNode } from 'react'
 import { fontSizing } from '@/styles/style'
 
 interface VibeItemButtonProps {
+    onClick?: () => void
     icon: ReactNode
     value?: number
     color: string
     hoverColor: string
 }
 
-function VibeItemButton({ icon, value, color, hoverColor }: VibeItemButtonProps) {
+function VibeItemButton({ icon, value, color, hoverColor, onClick }: VibeItemButtonProps) {
     function onClickHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
         e.stopPropagation()
         e.preventDefault()
 
-        console.log('Ok!')
+        if (onClick) onClick()
     }
 
     return (

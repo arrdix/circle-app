@@ -23,7 +23,8 @@ function ForgotInput(props: ForgotInputProps) {
     return (
         <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
             <ValidatedInput<ForgotDataType>
-                type={'text'}
+                autoFocus
+                type={'email'}
                 placeholder={'Email'}
                 name={'email'}
                 register={register}

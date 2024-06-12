@@ -34,11 +34,10 @@ function VibeDetail({ vibe, onReply, noImage }: VibeDetailProps) {
             author: users.find((user) => user.id === reply.authorId),
         }
     })
-
     if (!replies.length)
         return (
             <Box>
-                <VibeItem vibe={rest} noHover />
+                <VibeItem vibe={rest} noImage={noImage && noImage} noHover />
                 <NewVibe
                     placeholder={'Post your reply'}
                     onPost={onReply}

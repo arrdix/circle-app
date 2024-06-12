@@ -19,6 +19,7 @@ import ForgotPasswordPage from '@/pages/ForgotPasswordPage'
 import ResetPasswordPage from '@/pages/ResetPasswordPage'
 import FollowsPage from '@/pages/FollowsPage'
 import SplashScreen from '@/components/utilities/SplashScreen'
+import CircleAlert from '@/components/utilities/CircleAlert'
 
 function App() {
     const isPreloaded = useSelector((states: RootState) => states.isPreloaded.value)
@@ -54,6 +55,14 @@ function App() {
         isUserLogged()
     }, [dispatch])
 
+    if (window.innerWidth < 1280) {
+        return (
+            <div className="app">
+                <CircleAlert />
+            </div>
+        )
+    }
+
     if (isPreloaded) {
         return (
             <div className="app">
@@ -85,6 +94,7 @@ function App() {
                     <Route path="/follows" element={<FollowsPage />} />
                     <Route path="/search" element={<SearchPage />} />
                 </Route>
+                <Route path="*" element={<CircleAlert code={404} />} />
             </Routes>
         </div>
     )

@@ -24,6 +24,7 @@ function LoginInput(props: LoginInputProps) {
     return (
         <FormControl display={'flex'} flexDirection={'column'} gap={'.5rem'}>
             <ValidatedInput<LoginDataType>
+                autoFocus
                 type={'text'}
                 placeholder={'Username'}
                 name={'username'}

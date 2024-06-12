@@ -20,6 +20,7 @@ import EmptyMessage from '@/components/utilities/EmptyMessage'
 
 function SearchPage() {
     const { register, watch } = useForm()
+
     const [searchResult, setSearchResult] = useState<UserType[]>([])
     const [searchKeyword, setSearchKeyword] = useState<string>('')
     const [isLoading, setLoading] = useState<boolean>(false)
@@ -39,6 +40,7 @@ function SearchPage() {
         setLoading(true)
         setSearchResult([])
         setSearchKeyword(data.search)
+
         debounced(data.search)
     })
 

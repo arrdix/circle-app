@@ -15,8 +15,8 @@ import DeveloperCard from '@/components/cards/DeveloperCard'
 import AccountCard from '@/components/cards/AccountCard'
 import IconInput from '@/components/inputs/IconInput'
 import NavigationHeading from '@/components/navigations/NavigationHeading'
-import CircleSpinner from '@/components/utilities/CircleSpinner'
-import EmptyMessage from '@/components/utilities/EmptyMessage'
+import CircleSpinner from '@/components/utils/CircleSpinner'
+import EmptyMessage from '@/components/utils/EmptyMessage'
 
 function SearchPage() {
     const { register, watch } = useForm()

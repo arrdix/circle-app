@@ -5,12 +5,12 @@ import { VibeDataType } from '@/types/types'
 import { VibeSchema } from '@/validators/validator'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
+import ImagePreview from '@/components/utils/ImagePreview'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/redux'
 
 import SolidButton from '@/components/buttons/SolidButton'
 import VibeInput from '@/components/inputs/VibeInput'
-import ImagePreview from '@/components/utilities/ImagePreview'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/redux'
 
 interface NewVibeProps {
     onPost: (data: VibeDataType) => void

@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 
 import GhostButton from '@/components/buttons/GhostButton'
 import ImageModal from '@/components/modals/ImageModal'
-import EmptyMessage from '@/components/utilities/EmptyMessage'
+import EmptyMessage from '@/components/utils/EmptyMessage'
 
 interface MediaCollectionProps {
     vibes: VibeType[]

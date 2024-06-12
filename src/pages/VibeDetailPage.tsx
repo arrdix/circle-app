@@ -10,7 +10,7 @@ import SuggestionCard from '@/components/cards/SuggestionCard'
 import DeveloperCard from '@/components/cards/DeveloperCard'
 import NavigationHeading from '@/components/navigations/NavigationHeading'
 import VibeDetail from '@/components/vibes/VibeDetail'
-import CircleSpinner from '@/components/utilities/CircleSpinner'
+import CircleSpinner from '@/components/utils/CircleSpinner'
 
 function VibeDetailPage() {
     const { id }: Readonly<Params<string>> = useParams()

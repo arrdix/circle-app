@@ -14,9 +14,7 @@ function CircleAlert({ code }: CircleAlertProps) {
                     <Text>404: Sorry, but there's nothing here.</Text>
                     <Box ml={'auto'} mt={'1rem'}>
                         <Link to={'/'}>
-                            <Text as={'u'} color={'circle.dark'}>
-                                Go Back
-                            </Text>
+                            <Text color={'circle.accent'}>Go Back</Text>
                         </Link>
                     </Box>
                 </Flex>

@@ -9,8 +9,8 @@ import BrandCard from './BrandCard'
 import ProfileCardHeader from './ProfileCardHeader'
 import ProfileCardBody from './ProfileCardBody'
 import ProfileCardFooter from './ProfileCardFooter'
-import BrandHeading from '@/components/utilities/BrandHeading'
-import CircleSpinner from '@/components/utilities/CircleSpinner'
+import BrandHeading from '@/components/utils/BrandHeading'
+import CircleSpinner from '@/components/utils/CircleSpinner'
 import GhostButton from '@/components/buttons/GhostButton'
 
 function ProfileCard() {

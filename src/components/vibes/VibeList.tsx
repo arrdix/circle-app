@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react'
 import { VibeType } from '@/types/types'
 
 import VibeItem from './VibeItem'
-import EmptyMessage from '@/components/utilities/EmptyMessage'
+import EmptyMessage from '@/components/utils/EmptyMessage'
 
 interface VibeListProps {
     vibes: VibeType[]

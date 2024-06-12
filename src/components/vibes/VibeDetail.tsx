@@ -6,7 +6,7 @@ import API from '@/networks/api'
 import VibeList from '@/components/vibes/VibeList'
 import VibeItem from '@/components/vibes/VibeItem'
 import NewVibe from '@/components/vibes/NewVibe'
-import EmptyMessage from '@/components/utilities/EmptyMessage'
+import EmptyMessage from '@/components/utils/EmptyMessage'
 
 interface VibeDetailProps {
     onReply: (data: VibeDataType) => void

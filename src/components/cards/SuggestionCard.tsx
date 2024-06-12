@@ -41,10 +41,12 @@ function SuggestionCard() {
                     {users.map((user) => (
                         <AccountCard
                             key={user.id}
+                            id={user.id}
                             username={user.username}
                             name={user.name}
                             bio={user.bio}
                             avatar={user.avatar}
+                            isFollowed={user.isFollowed}
                             noBio
                         />
                     ))}

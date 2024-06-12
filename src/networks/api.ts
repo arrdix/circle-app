@@ -3,6 +3,7 @@ import CONFIGS from '@/configs/configs'
 import {
     DetailedVibeType,
     EditedUserType,
+    FollowType,
     ForgotDataType,
     LikeType,
     LoginDataType,
@@ -268,6 +269,42 @@ class API {
                     },
                 }
             )
+
+            return response.data.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
+    FOLLOW_USER = async (targetId: number): Promise<FollowType> => {
+        try {
+            const response = await axios.get(`${CONFIGS.BASE_URL}/follow/${targetId}`, {
+                headers: {
+                    Authorization: `Bearer ${this.GET_TOKEN()}`,
+                },
+            })
+
+            return response.data.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
+    UNFOLLOW_USER = async (targetId: number): Promise<FollowType> => {
+        try {
+            const response = await axios.get(`${CONFIGS.BASE_URL}/unfollow/${targetId}`, {
+                headers: {
+                    Authorization: `Bearer ${this.GET_TOKEN()}`,
+                },
+            })
 
             return response.data.data
         } catch (error) {

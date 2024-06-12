@@ -1,17 +1,54 @@
 import { Flex, Text, Avatar } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
+import { useState } from 'react'
+import { UserType } from '@/types/types'
+import { useDispatch } from 'react-redux'
+import { setLoggedUser } from '@/features/auth/authSlice'
 
+import API from '@/networks/api'
 import HollowButton from '@/components/buttons/HollowButton'
+import CircleSpinner from '@/components/utilities/CircleSpinner'
 
 interface AccountCardProps {
+    id: number
     username: string
     name: string
     bio: string | null
     avatar: string
+    isFollowed: boolean
     noBio?: boolean
 }
 
-function AccountCard({ username, name, bio, avatar, noBio }: AccountCardProps) {
+function AccountCard({ id, username, name, bio, avatar, isFollowed, noBio }: AccountCardProps) {
+    const [isLoading, setLoading] = useState<boolean>(false)
+    const [isUserFollowed, setUserFollowed] = useState<boolean>(isFollowed)
+
+    const dispatch = useDispatch()
+
+    async function onFollow() {
+        try {
+            setLoading(true)
+
+            if (!isFollowed) {
+                await API.FOLLOW_USER(id)
+                return setUserFollowed(true)
+            }
+
+            await API.UNFOLLOW_USER(id)
+            return setUserFollowed(false)
+        } catch (error) {
+            setUserFollowed(isFollowed)
+        } finally {
+            dispatchLatestUserData()
+            setLoading(false)
+        }
+    }
+
+    async function dispatchLatestUserData() {
+        const loggedUser: UserType = await API.GET_LOGGED_USER()
+        dispatch(setLoggedUser(loggedUser))
+    }
+
     return (
         <Flex gap={'1rem'} alignItems={'center'}>
             <Avatar src={avatar} />
@@ -24,7 +61,13 @@ function AccountCard({ username, name, bio, avatar, noBio }: AccountCardProps) {
                 </Text>
                 {bio && !noBio && <Text fontSize={fontSizing.smaller}>{bio}</Text>}
             </Flex>
-            <HollowButton text={'Follow'} />
+            {isLoading ? (
+                <HollowButton children={<CircleSpinner />} />
+            ) : isUserFollowed ? (
+                <HollowButton text={'Unfollow'} onClick={onFollow} dark />
+            ) : (
+                <HollowButton text={'Follow'} onClick={onFollow} />
+            )}
         </Flex>
     )
 }

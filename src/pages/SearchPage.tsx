@@ -95,10 +95,12 @@ function SearchPage() {
                             searchResult.map((result) => (
                                 <AccountCard
                                     key={result.id}
+                                    id={result.id}
                                     name={result.name}
                                     username={result.username}
                                     avatar={result.avatar}
                                     bio={result.bio}
+                                    isFollowed={result.isFollowed}
                                 />
                             ))
                         ) : isLoading ? (

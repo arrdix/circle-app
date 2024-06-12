@@ -9,7 +9,7 @@ export interface UserType {
     followings: FollowType[]
     totalFollower: number
     totalFollowing: number
-    isFollowed?: boolean
+    isFollowed: boolean
     vibes: VibeType[]
 }
 

@@ -15,10 +15,12 @@ function AccountListCard({ accounts }: AccountListCardProps) {
                 {accounts.map((account) => (
                     <AccountCard
                         key={account.id}
+                        id={account.id}
                         username={account.username}
                         name={account.name}
                         bio={account.bio}
                         avatar={account.avatar}
+                        isFollowed={account.isFollowed}
                     />
                 ))}
             </Flex>

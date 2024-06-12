@@ -1,8 +1,4 @@
 import { Card, Box, Flex, Divider } from '@chakra-ui/react'
-import ProfileCardHeader from '@/components/cards/ProfileCardHeader'
-import BrandHeading from '@/components/utilities/BrandHeading'
-import SolidButton from '@/components/buttons/SolidButton'
-import SolidInput from '@/components/inputs/SolidInput'
 import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/redux'
@@ -10,6 +6,11 @@ import { useEditUser } from '@/hooks/useEditUser'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { EditUserSchema } from '@/validators/validator'
 import { EditUserDataType } from '@/types/types'
+
+import ProfileCardHeader from '@/components/cards/ProfileCardHeader'
+import BrandHeading from '@/components/utils/BrandHeading'
+import SolidButton from '@/components/buttons/SolidButton'
+import SolidInput from '@/components/inputs/SolidInput'
 
 interface EditProfileModalProps {
     onClose: () => void

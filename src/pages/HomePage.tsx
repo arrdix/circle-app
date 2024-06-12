@@ -9,7 +9,7 @@ import DeveloperCard from '@/components/cards/DeveloperCard'
 import VibeList from '@/components/vibes/VibeList'
 import NewVibe from '@/components/vibes/NewVibe'
 import NavigationHeading from '@/components/navigations/NavigationHeading'
-import CircleSpinner from '@/components/utilities/CircleSpinner'
+import CircleSpinner from '@/components/utils/CircleSpinner'
 
 function HomePage() {
     const [vibes, onPost] = usePost()

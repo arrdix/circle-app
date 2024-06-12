@@ -7,7 +7,7 @@ import { setLoggedUser } from '@/features/auth/authSlice'
 
 import API from '@/networks/api'
 import HollowButton from '@/components/buttons/HollowButton'
-import CircleSpinner from '@/components/utilities/CircleSpinner'
+import CircleSpinner from '@/components/utils/CircleSpinner'
 
 interface AccountCardProps {
     id: number

@@ -49,7 +49,7 @@ function LoginPage() {
                         color={'circle.accent'}
                         ml={'.25rem'}
                     >
-                        Create Account.
+                        Create one.
                     </CircleLink>
                 </Text>
             </Flex>

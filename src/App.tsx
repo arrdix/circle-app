@@ -18,8 +18,8 @@ import RegisterPage from '@/pages/RegisterPage'
 import ForgotPasswordPage from '@/pages/ForgotPasswordPage'
 import ResetPasswordPage from '@/pages/ResetPasswordPage'
 import FollowsPage from '@/pages/FollowsPage'
-import SplashScreen from '@/components/utilities/SplashScreen'
-import CircleAlert from '@/components/utilities/CircleAlert'
+import SplashScreen from '@/components/utils/SplashScreen'
+import CircleAlert from '@/components/utils/CircleAlert'
 
 function App() {
     const isPreloaded = useSelector((states: RootState) => states.isPreloaded.value)

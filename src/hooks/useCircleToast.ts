@@ -22,7 +22,14 @@ function useCircleToast() {
             success: { title: title, description: message },
             error: (error: Error) => {
                 if (axios.isAxiosError(error)) {
-                    const response: ErrorResponse = error.response?.data
+                    if (!error.response) {
+                        return {
+                            title: title,
+                            description: error.message,
+                        }
+                    }
+
+                    const response: ErrorResponse = error.response.data
                     return {
                         title: title,
                         description: response.message.error,

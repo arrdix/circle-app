@@ -1,8 +1,5 @@
-import dotenv from 'dotenv'
-dotenv.config()
-
 const CONFIGS = {
-    BASE_URL: process.env.BASE_URL,
+    BASE_URL: import.meta.env.BASE_URL,
 }
 
 export default CONFIGS

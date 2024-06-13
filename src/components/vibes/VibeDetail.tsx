@@ -7,6 +7,7 @@ import VibeList from '@/components/vibes/VibeList'
 import VibeItem from '@/components/vibes/VibeItem'
 import NewVibe from '@/components/vibes/NewVibe'
 import EmptyMessage from '@/components/utils/EmptyMessage'
+import CircleSpinner from '@/components/utils/CircleSpinner'
 
 interface VibeDetailProps {
     onReply: (data: VibeDataType) => void
@@ -60,7 +61,13 @@ function VibeDetail({ vibe, onReply, noImage }: VibeDetailProps) {
                 imagePreviewId={'atDetail'}
                 buttonText={'Reply'}
             />
-            <VibeList vibes={repliesWithAuthor} />
+            {users.length ? (
+                <VibeList vibes={repliesWithAuthor} />
+            ) : (
+                <Box pt={'3rem'}>
+                    <CircleSpinner />
+                </Box>
+            )}
         </Box>
     )
 }

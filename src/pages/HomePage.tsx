@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Box, Grid, GridItem } from '@chakra-ui/react'
 import { usePost } from '@/hooks/usePost'
 
 import MainBar from '@/components/bars/MainBar'
@@ -14,35 +14,31 @@ import CircleSpinner from '@/components/utils/CircleSpinner'
 function HomePage() {
     const [vibes, onPost] = usePost()
 
-    if (vibes) {
-        return (
-            <Grid templateColumns={'repeat(19, 1fr)'}>
-                <GridItem colSpan={12}>
-                    <MainBar>
-                        <NavigationHeading text={'Home'} disabled />
-                        <NewVibe
-                            placeholder={"What's on your mind?"}
-                            imagePreviewId={'atHome'}
-                            onPost={onPost}
-                        />
-                        <VibeList vibes={vibes} />
-                    </MainBar>
-                </GridItem>
-                <GridItem colSpan={7}>
-                    <SideBar>
-                        <ProfileCard />
-                        <SuggestionCard />
-                        <DeveloperCard />
-                    </SideBar>
-                </GridItem>
-            </Grid>
-        )
-    }
-
     return (
-        <Grid templateColumns={'repeat(19, 1fr)'} height={'100vh'}>
-            <GridItem colSpan={19}>
-                <CircleSpinner />
+        <Grid templateColumns={'repeat(19, 1fr)'}>
+            <GridItem colSpan={12}>
+                <MainBar>
+                    <NavigationHeading text={'Home'} disabled />
+                    <NewVibe
+                        placeholder={"What's on your mind?"}
+                        imagePreviewId={'atHome'}
+                        onPost={onPost}
+                    />
+                    {vibes ? (
+                        <VibeList vibes={vibes} />
+                    ) : (
+                        <Box mt={'3rem'}>
+                            <CircleSpinner />
+                        </Box>
+                    )}
+                </MainBar>
+            </GridItem>
+            <GridItem colSpan={7}>
+                <SideBar>
+                    <ProfileCard />
+                    <SuggestionCard />
+                    <DeveloperCard />
+                </SideBar>
             </GridItem>
         </Grid>
     )

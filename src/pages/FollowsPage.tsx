@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Box, Grid, GridItem } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import { useEffect, useState } from 'react'
@@ -15,15 +15,18 @@ import BrandTabs from '@/components/utils/BrandTabs'
 import AccountListCard from '@/components/cards/AccountListCard'
 import NavigationHeading from '@/components/navigations/NavigationHeading'
 import ProfileCard from '@/components/cards/ProfileCard'
+import CircleSpinner from '@/components/utils/CircleSpinner'
 
 function FollowsPage() {
     const [followers, setFollowers] = useState<UserType[]>([])
     const [followings, setFollowings] = useState<UserType[]>([])
+    const [isLoading, setLoading] = useState<boolean>(false)
 
     const loggedUser = useSelector((states: RootState) => states.loggedUser.value)
 
     useEffect(() => {
         async function getUsers() {
+            setLoading(true)
             const users: UserType[] = await API.GET_ALL_USERS()
 
             if (loggedUser) {
@@ -40,6 +43,8 @@ function FollowsPage() {
                         )
                     })
                 })
+
+                setLoading(false)
             }
         }
 
@@ -53,12 +58,29 @@ function FollowsPage() {
                     <Link to={'/'}>
                         <NavigationHeading icon={<BiLeftArrowAlt />} text={'Follows'} sticky />
                     </Link>
-                    <BrandTabs
-                        leftTitle={'Followers'}
-                        leftContent={<AccountListCard accounts={followers} />}
-                        rightTitle={'Following'}
-                        rightContent={<AccountListCard accounts={followings} />}
-                    />
+                    {isLoading ? (
+                        <BrandTabs
+                            leftTitle={'Followers'}
+                            leftContent={
+                                <Box mt={'3rem'}>
+                                    <CircleSpinner />
+                                </Box>
+                            }
+                            rightTitle={'Following'}
+                            rightContent={
+                                <Box mt={'3rem'}>
+                                    <CircleSpinner />
+                                </Box>
+                            }
+                        />
+                    ) : (
+                        <BrandTabs
+                            leftTitle={'Followers'}
+                            leftContent={<AccountListCard accounts={followers} />}
+                            rightTitle={'Following'}
+                            rightContent={<AccountListCard accounts={followings} />}
+                        />
+                    )}
                 </MainBar>
             </GridItem>
             <GridItem colSpan={7}>

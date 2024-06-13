@@ -1,5 +1,8 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 const CONFIGS = {
-    BASE_URL: 'http://localhost:8787/v1',
+    BASE_URL: process.env.BASE_URL,
 }
 
 export default CONFIGS

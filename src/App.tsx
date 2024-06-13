@@ -95,6 +95,7 @@ function App() {
                     <Route path="/search" element={<SearchPage />} />
                 </Route>
                 <Route path="*" element={<CircleAlert code={404} />} />
+                <Route element={<CircleAlert code={404} />} />
             </Routes>
         </div>
     )

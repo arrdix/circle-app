@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Box, Grid, GridItem } from '@chakra-ui/react'
 import { Link, Params, useParams } from 'react-router-dom'
 import { BiLeftArrowAlt } from 'react-icons/bi'
 import { useReply } from '@/hooks/useReply'
@@ -18,32 +18,28 @@ function VibeDetailPage() {
 
     const [vibe, onReply] = useReply(targetId)
 
-    if (vibe) {
-        return (
-            <Grid templateColumns={'repeat(19, 1fr)'}>
-                <GridItem colSpan={12}>
-                    <MainBar>
-                        <Link to={'/'}>
-                            <NavigationHeading icon={<BiLeftArrowAlt />} text={'Vibe'} sticky />
-                        </Link>
-                        <VibeDetail vibe={vibe} onReply={onReply} />
-                    </MainBar>
-                </GridItem>
-                <GridItem colSpan={7}>
-                    <SideBar>
-                        <ProfileCard />
-                        <SuggestionCard />
-                        <DeveloperCard />
-                    </SideBar>
-                </GridItem>
-            </Grid>
-        )
-    }
-
     return (
-        <Grid templateColumns={'repeat(19, 1fr)'} height={'100vh'}>
-            <GridItem colSpan={19}>
-                <CircleSpinner />
+        <Grid templateColumns={'repeat(19, 1fr)'}>
+            <GridItem colSpan={12}>
+                <MainBar>
+                    <Link to={'/'}>
+                        <NavigationHeading icon={<BiLeftArrowAlt />} text={'Vibe'} sticky />
+                    </Link>
+                    {vibe ? (
+                        <VibeDetail vibe={vibe} onReply={onReply} />
+                    ) : (
+                        <Box pt={'3rem'} borderTop={'1px'} borderColor={'circle.darker'}>
+                            <CircleSpinner />
+                        </Box>
+                    )}
+                </MainBar>
+            </GridItem>
+            <GridItem colSpan={7}>
+                <SideBar>
+                    <ProfileCard />
+                    <SuggestionCard />
+                    <DeveloperCard />
+                </SideBar>
             </GridItem>
         </Grid>
     )

@@ -9,11 +9,11 @@ import NavigationItem from './NavigationItem'
 import SolidButton from '@/components/buttons/SolidButton'
 import BrandModal from '@/components/modals/BrandModal'
 import NewVibe from '@/components/vibes/NewVibe'
-import { usePost } from '@/hooks/usePost'
+import { useVibes } from '@/hooks/useVibes'
 
 function Navigation() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [, onPost] = usePost({ onClose })
+    const [, onPost] = useVibes({ onClose })
 
     const dispatch = useDispatch()
     const navigate = useNavigate()

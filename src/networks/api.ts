@@ -162,9 +162,9 @@ class API {
         }
     }
 
-    DELETE_VIBE = async (id: number): Promise<VibeType> => {
+    DELETE_VIBE = async (targetUd: number): Promise<VibeType> => {
         try {
-            const response = await axios.delete(`${CONFIGS.BASE_URL}/vibes/${id}`, {
+            const response = await axios.delete(`${CONFIGS.BASE_URL}/vibes/${targetUd}`, {
                 headers: {
                     Authorization: `Bearer ${this.GET_TOKEN()}`,
                 },
@@ -241,6 +241,24 @@ class API {
     POST_REPLY = async (data: FormData): Promise<ReplyType> => {
         try {
             const response: AxiosResponse = await axios.post(`${CONFIGS.BASE_URL}/replies`, data, {
+                headers: {
+                    Authorization: `Bearer ${this.GET_TOKEN()}`,
+                },
+            })
+
+            return response.data.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
+    DELETE_REPLY = async (targetUd: number): Promise<ReplyType> => {
+        try {
+            const response = await axios.delete(`${CONFIGS.BASE_URL}/replies/${targetUd}`, {
                 headers: {
                     Authorization: `Bearer ${this.GET_TOKEN()}`,
                 },

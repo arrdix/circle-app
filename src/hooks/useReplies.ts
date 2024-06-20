@@ -4,7 +4,9 @@ import { useQuery, useQueryClient, useMutation, QueryClient } from '@tanstack/re
 import API from '@/networks/api'
 import useCircleToast from '@/hooks/useCircleToast'
 
-function useReply(targetId: number): [DetailedVibeType | undefined, (data: VibeDataType) => void] {
+function useReplies(
+    targetId: number
+): [DetailedVibeType | undefined, (data: VibeDataType) => void, (targetId: number) => void] {
     const createToast = useCircleToast()
     const queryClient: QueryClient = useQueryClient()
 
@@ -13,8 +15,15 @@ function useReply(targetId: number): [DetailedVibeType | undefined, (data: VibeD
         queryFn: () => API.GET_SINGLE_VIBE(targetId),
     })
 
-    const mutation = useMutation({
+    const postReply = useMutation({
         mutationFn: POST_REPLY,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['vibe'] })
+        },
+    })
+
+    const deleteReply = useMutation({
+        mutationFn: DELETE_REPLY,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['vibe'] })
         },
@@ -27,7 +36,11 @@ function useReply(targetId: number): [DetailedVibeType | undefined, (data: VibeD
         formData.append('content', data.content)
         formData.append('image', data.image ? data.image[0] : null)
 
-        mutation.mutate(formData)
+        postReply.mutate(formData)
+    }
+
+    function onDelete(targetId: number): void {
+        deleteReply.mutate(targetId)
     }
 
     async function POST_REPLY(data: FormData): Promise<ReplyType> {
@@ -40,7 +53,17 @@ function useReply(targetId: number): [DetailedVibeType | undefined, (data: VibeD
         return postReply
     }
 
-    return [vibe, onReply]
+    async function DELETE_REPLY(targetId: number): Promise<ReplyType> {
+        const deleteReply: Promise<ReplyType> = API.DELETE_REPLY(targetId)
+        createToast(deleteReply, {
+            title: 'Delete Reply',
+            message: 'Reply successfully deleted!',
+        })
+
+        return deleteReply
+    }
+
+    return [vibe, onReply, onDelete]
 }
 
-export { useReply }
+export { useReplies }

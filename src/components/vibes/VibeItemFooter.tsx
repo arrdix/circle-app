@@ -4,10 +4,12 @@ import { useSelector } from 'react-redux'
 import { RootState } from '@/redux'
 import { UserType } from '@/types/types'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useVibes } from '@/hooks/useVibes'
 
 import API from '@/networks/api'
 import VibeItemButton from './VibeItemButton'
-import { useNavigate } from 'react-router-dom'
+import { useReplies } from '@/hooks/useReplies'
 
 interface VibeItemFooterProps {
     vibeId: number
@@ -15,15 +17,25 @@ interface VibeItemFooterProps {
     totalReply: number
     isLiked: boolean
     author: UserType
+    isReply?: boolean
 }
 
-function VibeItemFooter({ vibeId, totalLike, totalReply, isLiked, author }: VibeItemFooterProps) {
+function VibeItemFooter({
+    vibeId,
+    totalLike,
+    totalReply,
+    isLiked,
+    author,
+    isReply,
+}: VibeItemFooterProps) {
     const loggedUser = useSelector((states: RootState) => states.loggedUser.value)
 
     const [isVibeLiked, setVibeLiked] = useState<boolean>(isLiked)
     const [totalVibeLike, setTotalVibeLike] = useState<number>(totalLike)
 
     const navigate = useNavigate()
+    const [, , onDelete] = useVibes()
+    const [, , onDeleteReply] = useReplies(vibeId)
 
     // optimistic updates
     async function onToggleLike() {
@@ -42,10 +54,6 @@ function VibeItemFooter({ vibeId, totalLike, totalReply, isLiked, author }: Vibe
             setVibeLiked(isLiked)
             setTotalVibeLike(totalLike)
         }
-    }
-
-    async function onDelete() {
-        await API.DELETE_VIBE(vibeId)
     }
 
     return (
@@ -78,7 +86,19 @@ function VibeItemFooter({ vibeId, totalLike, totalReply, isLiked, author }: Vibe
                         hoverColor={'circle.accent'}
                     ></MenuButton>
                     <MenuList bg={'circle.darker'} border={0}>
-                        <MenuItem bg={'circle.darker'} onClick={onDelete}>
+                        <MenuItem
+                            bg={'circle.darker'}
+                            onClick={(e) => {
+                                e.preventDefault()
+                                e.stopPropagation()
+
+                                if (isReply) {
+                                    return onDeleteReply(vibeId)
+                                }
+
+                                return onDelete(vibeId)
+                            }}
+                        >
                             Delete
                         </MenuItem>
                     </MenuList>

@@ -38,7 +38,7 @@ function VibeDetail({ vibe, onReply, noImage }: VibeDetailProps) {
     if (!replies.length)
         return (
             <Box>
-                <VibeItem vibe={rest} noImage={noImage && noImage} noHover />
+                <VibeItem vibe={rest} noImage={noImage && noImage} isReply />
                 <NewVibe
                     placeholder={'Post your reply'}
                     onPost={onReply}
@@ -54,7 +54,7 @@ function VibeDetail({ vibe, onReply, noImage }: VibeDetailProps) {
 
     return (
         <Box>
-            <VibeItem vibe={rest} noImage={noImage && noImage} noHover />
+            <VibeItem vibe={rest} noImage={noImage && noImage} isReply />
             <NewVibe
                 placeholder={'Post your reply'}
                 onPost={onReply}

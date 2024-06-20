@@ -1,30 +1,25 @@
-import { Link as ReactLink, useNavigate } from 'react-router-dom'
+import { Link as ReactLink } from 'react-router-dom'
 import { Container, Flex, Text, Image, Link as CircleLink } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
-
-import ForgotInput from '@/components/inputs/ForgotInput'
 import { ForgotDataType } from '@/types/types'
+
 import API from '@/networks/api'
+import ForgotInput from '@/components/inputs/ForgotInput'
 import useCircleToast from '@/hooks/useCircleToast'
 
 function ForgotPasswordPage() {
-    const navigate = useNavigate()
     const createToast = useCircleToast()
 
     async function onForgot(data: ForgotDataType) {
         const watchedPromise = forgotHandler(data)
         createToast(watchedPromise, {
             title: 'Forgot Password',
-            message: 'We got you! Please change your password.',
+            message: 'A verification email has sent to your email.',
         })
     }
 
     async function forgotHandler(data: ForgotDataType) {
-        const token = await API.FORGOT_PASSWORD(data)
-
-        navigate('/help/reset', {
-            state: token,
-        })
+        await API.FORGOT_PASSWORD(data)
     }
 
     return (

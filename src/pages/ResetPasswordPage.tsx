@@ -1,6 +1,6 @@
 import { Container, Flex, Text, Image } from '@chakra-ui/react'
 import { fontSizing } from '@/styles/style'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Params, useNavigate, useParams } from 'react-router-dom'
 
 import ResetInput from '@/components/inputs/ResetInput'
 import { ResetDataType } from '@/types/types'
@@ -9,9 +9,10 @@ import { useEffect } from 'react'
 import useCircleToast from '@/hooks/useCircleToast'
 
 function ResetPassword() {
+    const { token }: Readonly<Params<string>> = useParams()
+
     const navigate = useNavigate()
     const createToast = useCircleToast()
-    const { state: token } = useLocation()
 
     useEffect(() => {
         if (!token) {
@@ -30,7 +31,9 @@ function ResetPassword() {
     }
 
     async function resetHandler(data: ResetDataType) {
-        await api.RESET_PASSWORD(data, token)
+        if (token) {
+            await api.RESET_PASSWORD(data, token)
+        }
     }
 
     return (

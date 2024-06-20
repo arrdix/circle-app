@@ -18,6 +18,7 @@ interface VibeItemFooterProps {
     isLiked: boolean
     author: UserType
     isReply?: boolean
+    repliesTarget?: boolean
 }
 
 function VibeItemFooter({
@@ -27,6 +28,7 @@ function VibeItemFooter({
     isLiked,
     author,
     isReply,
+    repliesTarget,
 }: VibeItemFooterProps) {
     const loggedUser = useSelector((states: RootState) => states.loggedUser.value)
 
@@ -34,6 +36,7 @@ function VibeItemFooter({
     const [totalVibeLike, setTotalVibeLike] = useState<number>(totalLike)
 
     const navigate = useNavigate()
+
     const [, , onDelete] = useVibes()
     const [, , onDeleteReply] = useReplies(vibeId)
 
@@ -91,6 +94,11 @@ function VibeItemFooter({
                             onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
+
+                                if (repliesTarget) {
+                                    navigate('/')
+                                    return onDelete(vibeId)
+                                }
 
                                 if (isReply) {
                                     return onDeleteReply(vibeId)

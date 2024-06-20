@@ -10,10 +10,11 @@ import ImageModal from '@/components/modals/ImageModal'
 interface VibeItemProps {
     vibe: VibeType
     noImage?: boolean
+    repliesTarget?: boolean
     isReply?: boolean
 }
 
-function VibeItem({ vibe, noImage, isReply }: VibeItemProps) {
+function VibeItem({ vibe, noImage, repliesTarget, isReply }: VibeItemProps) {
     const { id, content, image, createdAt, totalLikes, totalReplies, isLiked, author } = vibe
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -48,6 +49,7 @@ function VibeItem({ vibe, noImage, isReply }: VibeItemProps) {
                                 isLiked={isLiked}
                                 author={author}
                                 isReply={isReply && isReply}
+                                repliesTarget={repliesTarget && repliesTarget}
                             />
                         </Flex>
                     </Flex>

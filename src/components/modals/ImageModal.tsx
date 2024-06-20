@@ -2,7 +2,7 @@ import { Flex, Box, Image } from '@chakra-ui/react'
 import { BiExitFullscreen, BiSolidArrowFromLeft, BiSolidArrowFromRight } from 'react-icons/bi'
 import { fontSizing } from '@/styles/style'
 import { useState } from 'react'
-import { useReply } from '@/hooks/useReply'
+import { useReplies } from '@/hooks/useReplies'
 import { useSearchParams } from 'react-router-dom'
 
 import BrandModal from '@/components/modals/BrandModal'
@@ -21,7 +21,7 @@ function ImageModal({ isOpen, onClose, vibeImage }: ImageModalProps) {
     const id: string | null = searchParams.get('vibeId')
     const targetId: number = id ? +id : NaN
 
-    const [vibe, onReply] = useReply(targetId)
+    const [vibe, onReply] = useReplies(targetId)
     const [hideList, setHideList] = useState<boolean>(true)
 
     function onCloseModal(): void {

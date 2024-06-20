@@ -1,7 +1,7 @@
 import { Box, Grid, GridItem } from '@chakra-ui/react'
 import { Link, Params, useParams } from 'react-router-dom'
 import { BiLeftArrowAlt } from 'react-icons/bi'
-import { useReply } from '@/hooks/useReply'
+import { useReplies } from '@/hooks/useReplies'
 
 import MainBar from '@/components/bars/MainBar'
 import SideBar from '@/components/bars/SideBar'
@@ -16,7 +16,7 @@ function VibeDetailPage() {
     const { id }: Readonly<Params<string>> = useParams()
     const targetId = id ? +id : NaN
 
-    const [vibe, onReply] = useReply(targetId)
+    const [vibe, onReply] = useReplies(targetId)
 
     return (
         <Grid templateColumns={'repeat(19, 1fr)'}>

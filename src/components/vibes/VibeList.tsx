@@ -16,7 +16,7 @@ function VibeList({ vibes, noLink }: VibeListProps) {
             <Box>
                 {vibes.map((vibe) => {
                     if (noLink) {
-                        return <VibeItem vibe={vibe} noHover />
+                        return <VibeItem vibe={vibe} key={vibe.id} isReply />
                     }
 
                     return (

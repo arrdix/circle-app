@@ -4,13 +4,13 @@ import { VibeDataType, VibeType } from '@/types/types'
 import API from '@/networks/api'
 import useCircleToast from '@/hooks/useCircleToast'
 
-interface usePostParams {
+interface useVibesParams {
     onClose?: () => void
 }
 
-function usePost(
-    params: usePostParams = {}
-): [VibeType[] | undefined, (data: VibeDataType) => void] {
+function useVibes(
+    params: useVibesParams = {}
+): [VibeType[] | undefined, (data: VibeDataType) => void, (targetId: number) => void] {
     const createToast = useCircleToast()
     const queryClient: QueryClient = useQueryClient()
 
@@ -19,8 +19,15 @@ function usePost(
         queryFn: API.GET_ALL_VIBES,
     })
 
-    const mutation = useMutation({
+    const postVibe = useMutation({
         mutationFn: POST_VIBE,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['vibes'] })
+        },
+    })
+
+    const deleteVibe = useMutation({
+        mutationFn: DELETE_VIBE,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['vibes'] })
         },
@@ -32,11 +39,15 @@ function usePost(
         formData.append('content', data.content)
         formData.append('image', data.image ? data.image[0] : null)
 
-        mutation.mutate(formData)
+        postVibe.mutate(formData)
 
         if (params.onClose) {
             params.onClose()
         }
+    }
+
+    function onDelete(targetId: number): void {
+        deleteVibe.mutate(targetId)
     }
 
     async function POST_VIBE(data: FormData): Promise<string> {
@@ -49,7 +60,17 @@ function usePost(
         return postVIbe
     }
 
-    return [vibes, onPost]
+    async function DELETE_VIBE(targetId: number): Promise<VibeType> {
+        const deleteVibe: Promise<VibeType> = API.DELETE_VIBE(targetId)
+        createToast(deleteVibe, {
+            title: 'Delete Vibe',
+            message: 'Vibe successfully deleted!',
+        })
+
+        return deleteVibe
+    }
+
+    return [vibes, onPost, onDelete]
 }
 
-export { usePost }
+export { useVibes }

@@ -10,10 +10,10 @@ import ImageModal from '@/components/modals/ImageModal'
 interface VibeItemProps {
     vibe: VibeType
     noImage?: boolean
-    noHover?: boolean
+    isReply?: boolean
 }
 
-function VibeItem({ vibe, noImage, noHover }: VibeItemProps) {
+function VibeItem({ vibe, noImage, isReply }: VibeItemProps) {
     const { id, content, image, createdAt, totalLikes, totalReplies, isLiked, author } = vibe
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -24,7 +24,7 @@ function VibeItem({ vibe, noImage, noHover }: VibeItemProps) {
                     bg={'circle.backdrop'}
                     color={'circle.font'}
                     p={'1rem'}
-                    _hover={!noHover ? vibeHover : {}}
+                    _hover={!isReply ? vibeHover : {}}
                 >
                     <Flex gap={'1rem'}>
                         <Avatar src={author.avatar} />
@@ -47,6 +47,7 @@ function VibeItem({ vibe, noImage, noHover }: VibeItemProps) {
                                 totalReply={totalReplies}
                                 isLiked={isLiked}
                                 author={author}
+                                isReply={isReply && isReply}
                             />
                         </Flex>
                     </Flex>

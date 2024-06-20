@@ -1,5 +1,5 @@
 import { Box, Grid, GridItem } from '@chakra-ui/react'
-import { usePost } from '@/hooks/usePost'
+import { useVibes } from '@/hooks/useVibes'
 
 import MainBar from '@/components/bars/MainBar'
 import SideBar from '@/components/bars/SideBar'
@@ -12,7 +12,7 @@ import NavigationHeading from '@/components/navigations/NavigationHeading'
 import CircleSpinner from '@/components/utils/CircleSpinner'
 
 function HomePage() {
-    const [vibes, onPost] = usePost()
+    const [vibes, onPost] = useVibes()
 
     return (
         <Grid templateColumns={'repeat(19, 1fr)'}>

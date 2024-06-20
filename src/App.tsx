@@ -89,7 +89,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<CircleLayout />}>
                     <Route index element={<HomePage />} />
-                    <Route path="/detail/:id" element={<VibeDetailPage />} />
+                    <Route path="/vibe/:id" element={<VibeDetailPage />} />
                     <Route path="/me" element={<MePage />} />
                     <Route path="/follows" element={<FollowsPage />} />
                     <Route path="/search" element={<SearchPage />} />

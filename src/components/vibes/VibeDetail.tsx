@@ -62,7 +62,7 @@ function VibeDetail({ vibe, onReply, noImage }: VibeDetailProps) {
                 buttonText={'Reply'}
             />
             {users.length ? (
-                <VibeList vibes={repliesWithAuthor} />
+                <VibeList vibes={repliesWithAuthor} noLink />
             ) : (
                 <Box pt={'3rem'}>
                     <CircleSpinner />

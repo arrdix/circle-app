@@ -21,6 +21,7 @@ function GhostButton({ children, color, fontSize, onClick }: GhostButtonProps) {
 
     return (
         <Button
+            pos={'relative'}
             onClick={(e) => onClickHandler(e)}
             padding={0}
             height={'auto'}

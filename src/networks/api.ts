@@ -162,6 +162,24 @@ class API {
         }
     }
 
+    DELETE_VIBE = async (id: number): Promise<VibeType> => {
+        try {
+            const response = await axios.delete(`${CONFIGS.BASE_URL}/vibes/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${this.GET_TOKEN()}`,
+                },
+            })
+
+            return response.data.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw error
+            }
+
+            throw error
+        }
+    }
+
     GET_ALL_USERS = async (): Promise<UserType[]> => {
         try {
             const response = await axios.get(`${CONFIGS.BASE_URL}/users`, {

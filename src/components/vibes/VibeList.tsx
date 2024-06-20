@@ -15,7 +15,7 @@ function VibeList({ vibes }: VibeListProps) {
             <Box>
                 {vibes.map((vibe) => {
                     return (
-                        <Link to={`/detail/${vibe.id}`} key={vibe.id}>
+                        <Link to={`/vibe/${vibe.id}`} key={vibe.id}>
                             <VibeItem vibe={vibe} />
                         </Link>
                     )

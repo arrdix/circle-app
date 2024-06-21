@@ -13,7 +13,7 @@ import SolidButton from '@/components/buttons/SolidButton'
 import VibeInput from '@/components/inputs/VibeInput'
 
 interface NewVibeProps {
-    onPost: (data: VibeDataType) => Promise<void>
+    onPost: (data: VibeDataType) => Promise<void> | void
     placeholder: string
     buttonText?: string
     imagePreviewId: string

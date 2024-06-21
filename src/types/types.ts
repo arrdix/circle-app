@@ -27,18 +27,9 @@ export interface VibeType {
     author: UserType | undefined
 }
 
-export interface DetailedVibeType {
-    id: number
-    content: string
-    image: string | null
-    createdAt: string
-    authorId: number
+export interface DetailedVibeType extends VibeType {
     replies: VibeType[]
     likes: LikeType[]
-    totalReplies: number
-    totalLikes: number
-    isLiked: boolean
-    author: UserType
 }
 
 export interface FollowType {

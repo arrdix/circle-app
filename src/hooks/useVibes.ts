@@ -10,7 +10,7 @@ interface useVibesParams {
 
 function useVibes(
     params: useVibesParams = {}
-): [VibeType[] | undefined, (data: VibeDataType) => void, (targetId: number) => void] {
+): [VibeType[] | undefined, (data: VibeDataType) => Promise<void>, (targetId: number) => void] {
     const createToast = useCircleToast()
     const queryClient: QueryClient = useQueryClient()
 
@@ -33,11 +33,14 @@ function useVibes(
         },
     })
 
-    function onPost(data: VibeDataType): void {
+    async function onPost(data: VibeDataType): Promise<void> {
+        const badLabels = await API.DETECT_SENTIMENT(data.content)
+
         const formData: FormData = new FormData()
 
         formData.append('content', data.content)
         formData.append('image', data.image ? data.image[0] : null)
+        formData.append('badLabels', JSON.stringify(badLabels))
 
         postVibe.mutate(formData)
 

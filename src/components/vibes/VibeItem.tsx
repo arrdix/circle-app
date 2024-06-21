@@ -15,7 +15,9 @@ interface VibeItemProps {
 }
 
 function VibeItem({ vibe, noImage, repliesTarget, isReply }: VibeItemProps) {
-    const { id, content, image, createdAt, totalLikes, totalReplies, isLiked, author } = vibe
+    const { id, content, image, createdAt, totalLikes, totalReplies, isLiked, badLabels, author } =
+        vibe
+
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     if (author) {
@@ -49,6 +51,7 @@ function VibeItem({ vibe, noImage, repliesTarget, isReply }: VibeItemProps) {
                                 isLiked={isLiked}
                                 author={author}
                                 isReply={isReply && isReply}
+                                badLabels={badLabels}
                                 repliesTarget={repliesTarget && repliesTarget}
                             />
                         </Flex>

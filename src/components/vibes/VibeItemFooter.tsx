@@ -93,7 +93,8 @@ function VibeItemFooter({
             )}
             <Spacer />
             <Flex alignItems={'center'}>
-                {badLabels.length > 0 &&
+                {badLabels &&
+                    badLabels.length > 0 &&
                     badLabels.map((label) => {
                         return (
                             <Tag

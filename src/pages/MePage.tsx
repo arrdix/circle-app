@@ -21,7 +21,8 @@ function MePage() {
     const loggedUser = useSelector((states: RootState) => states.loggedUser.value)
 
     if (loggedUser) {
-        const { username, name, bio, avatar, totalFollower, totalFollowing, vibes } = loggedUser
+        const { username, name, bio, avatar, banner, totalFollower, totalFollowing, vibes } =
+            loggedUser
 
         return (
             <Grid templateColumns={'repeat(19, 1fr)'}>
@@ -36,7 +37,11 @@ function MePage() {
                             color={'circle.font'}
                             mb={'1.5rem'}
                         >
-                            <ProfileCardHeader buttonText={'Edit Profile'} avatar={avatar} />
+                            <ProfileCardHeader
+                                buttonText={'Edit Profile'}
+                                avatar={avatar}
+                                banner={banner}
+                            />
                             <ProfileCardBody
                                 py={'1rem'}
                                 username={username}

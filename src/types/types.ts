@@ -4,6 +4,7 @@ export interface UserType {
     name: string
     email: string
     avatar: string
+    banner: string
     bio: string | null
     followers: FollowType[]
     followings: FollowType[]
@@ -23,16 +24,6 @@ export interface VibeType {
     totalLikes: number
     isLiked: boolean
     author: UserType | undefined
-}
-
-export interface DetailedUserType {
-    id: number
-    username: string
-    name: string
-    email: string
-    avatar: string
-    bio: string | null
-    isFollowed: boolean
 }
 
 export interface DetailedVibeType {
@@ -96,6 +87,8 @@ export interface EditUserDataType {
     bio: string
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     avatar: any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    banner: any
 }
 
 export interface EditedUserType {
@@ -104,6 +97,7 @@ export interface EditedUserType {
     name: string
     email: string
     avatar: string
+    banner: string
     bio: string | null
 }
 

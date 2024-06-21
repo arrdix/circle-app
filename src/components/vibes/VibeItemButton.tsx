@@ -8,10 +8,12 @@ interface VibeItemButtonProps {
     value?: number
     color: string
     hoverColor: string
+    atLeft?: boolean
+    ml?: string
 }
 
 const VibeItemButton = forwardRef<HTMLButtonElement, VibeItemButtonProps>(
-    ({ icon, value, color, hoverColor, onClick }, ref) => {
+    ({ icon, value, color, hoverColor, atLeft, ml, onClick }, ref) => {
         function onClickHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
             e.stopPropagation()
             e.preventDefault()
@@ -24,11 +26,14 @@ const VibeItemButton = forwardRef<HTMLButtonElement, VibeItemButtonProps>(
                 ref={ref}
                 variant={'ghost'}
                 display={'flex'}
+                justifyContent={atLeft ? 'flex-end' : 'center'}
                 alignItems={'center'}
-                gap={'.5rem'}
+                gap={atLeft ? 0 : '.5rem'}
+                minWidth={0}
                 color={color}
                 padding={0}
                 zIndex={1}
+                ml={ml && ml}
                 _hover={{ color: hoverColor, background: 'transparent' }}
                 onClick={(e) => onClickHandler(e)}
             >

@@ -29,12 +29,15 @@ function useReplies(
         },
     })
 
-    function onReply(data: VibeDataType): void {
+    async function onReply(data: VibeDataType): Promise<void> {
+        const badLabels = await API.DETECT_SENTIMENT(data.content)
         const formData: FormData = new FormData()
 
         formData.append('targetId', targetId.toString())
         formData.append('content', data.content)
         formData.append('image', data.image ? data.image[0] : null)
+
+        formData.append('badLabels', JSON.stringify(badLabels))
 
         postReply.mutate(formData)
     }

@@ -1,4 +1,14 @@
-import { CardFooter, Flex, Menu, MenuButton, MenuItem, MenuList, Spacer } from '@chakra-ui/react'
+import {
+    CardFooter,
+    Flex,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    Spacer,
+    Tag,
+    TagLabel,
+} from '@chakra-ui/react'
 import { BiSolidHeart, BiCommentDetail, BiDotsVerticalRounded } from 'react-icons/bi'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/redux'
@@ -19,6 +29,7 @@ interface VibeItemFooterProps {
     author: UserType
     isReply?: boolean
     repliesTarget?: boolean
+    badLabels: string[]
 }
 
 function VibeItemFooter({
@@ -29,6 +40,7 @@ function VibeItemFooter({
     author,
     isReply,
     repliesTarget,
+    badLabels,
 }: VibeItemFooterProps) {
     const loggedUser = useSelector((states: RootState) => states.loggedUser.value)
 
@@ -80,6 +92,22 @@ function VibeItemFooter({
                 </Flex>
             )}
             <Spacer />
+            <Flex alignItems={'center'}>
+                {badLabels.map((label) => {
+                    return (
+                        <Tag
+                            key={label}
+                            size={'sm'}
+                            variant="outline"
+                            colorScheme="red"
+                            ml={'.5rem'}
+                            height={0}
+                        >
+                            <TagLabel>{label}</TagLabel>
+                        </Tag>
+                    )
+                })}
+            </Flex>
             {loggedUser && loggedUser.id === author.id && (
                 <Menu>
                     <MenuButton
@@ -87,6 +115,8 @@ function VibeItemFooter({
                         color={'circle.dark'}
                         icon={<BiDotsVerticalRounded fontSize={'1.5rem'} />}
                         hoverColor={'circle.accent'}
+                        ml={'.5rem'}
+                        atLeft
                     ></MenuButton>
                     <MenuList bg={'circle.darker'} border={0}>
                         <MenuItem

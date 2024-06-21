@@ -13,7 +13,7 @@ import SolidButton from '@/components/buttons/SolidButton'
 import VibeInput from '@/components/inputs/VibeInput'
 
 interface NewVibeProps {
-    onPost: (data: VibeDataType) => void
+    onPost: (data: VibeDataType) => Promise<void>
     placeholder: string
     buttonText?: string
     imagePreviewId: string
@@ -82,8 +82,8 @@ function NewVibe(props: NewVibeProps) {
                     <Box width={'15%'}>
                         <SolidButton
                             text={buttonText ? buttonText : 'Post'}
-                            onClick={handleSubmit((data) => {
-                                props.onPost(data)
+                            onClick={handleSubmit(async (data) => {
+                                await props.onPost(data)
 
                                 resetField('content')
                                 resetField('image')

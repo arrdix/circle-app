@@ -23,6 +23,7 @@ export interface VibeType {
     totalReplies: number
     totalLikes: number
     isLiked: boolean
+    badLabels: string[]
     author: UserType | undefined
 }
 
@@ -103,6 +104,7 @@ export interface EditedUserType {
 
 export interface VibeDataType {
     content: string
+    badLabels: string[]
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     image: any
 }

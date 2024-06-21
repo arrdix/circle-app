@@ -93,20 +93,21 @@ function VibeItemFooter({
             )}
             <Spacer />
             <Flex alignItems={'center'}>
-                {badLabels.map((label) => {
-                    return (
-                        <Tag
-                            key={label}
-                            size={'sm'}
-                            variant="outline"
-                            colorScheme="red"
-                            ml={'.5rem'}
-                            height={0}
-                        >
-                            <TagLabel>{label}</TagLabel>
-                        </Tag>
-                    )
-                })}
+                {badLabels.length > 0 &&
+                    badLabels.map((label) => {
+                        return (
+                            <Tag
+                                key={label}
+                                size={'sm'}
+                                variant="outline"
+                                colorScheme="red"
+                                ml={'.5rem'}
+                                height={0}
+                            >
+                                <TagLabel>{label}</TagLabel>
+                            </Tag>
+                        )
+                    })}
             </Flex>
             {loggedUser && loggedUser.id === author.id && (
                 <Menu>

@@ -24,7 +24,7 @@ function ProfileCard() {
     }
 
     if (loggedUser) {
-        const { avatar, bio, username, name, totalFollower, totalFollowing } = loggedUser
+        const { avatar, banner, bio, username, name, totalFollower, totalFollowing } = loggedUser
 
         return (
             <BrandCard>
@@ -44,7 +44,11 @@ function ProfileCard() {
                     </Flex>
                 </GhostButton>
                 <Collapse in={hideProfile} transition={{ enter: { duration: 0.5 } }}>
-                    <ProfileCardHeader buttonText={'Edit Profile'} avatar={avatar} />
+                    <ProfileCardHeader
+                        buttonText={'Edit Profile'}
+                        avatar={avatar}
+                        banner={banner}
+                    />
                     <ProfileCardBody username={username} name={name} bio={bio} />
                     <ProfileCardFooter
                         totalFollower={totalFollower}

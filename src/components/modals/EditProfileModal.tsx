@@ -15,9 +15,10 @@ import SolidInput from '@/components/inputs/SolidInput'
 interface EditProfileModalProps {
     onClose: () => void
     avatar: string
+    banner: string
 }
 
-function EditProfileModal({ avatar, onClose }: EditProfileModalProps) {
+function EditProfileModal({ avatar, banner, onClose }: EditProfileModalProps) {
     const loggedUser = useSelector((states: RootState) => states.loggedUser.value)
 
     const [onEdit] = useEditUser({ onClose })
@@ -33,6 +34,7 @@ function EditProfileModal({ avatar, onClose }: EditProfileModalProps) {
             username: loggedUser?.username,
             bio: loggedUser?.bio || '',
             avatar: null,
+            banner: null,
         },
     })
 
@@ -40,7 +42,14 @@ function EditProfileModal({ avatar, onClose }: EditProfileModalProps) {
         <Box py={'2rem'}>
             <Card bg={'circle.backdrop'} px={'1rem'} color={'circle.font'} mb={'1.5rem'}>
                 <BrandHeading text={'Edit Profile'} />
-                <ProfileCardHeader avatar={avatar} name={'avatar'} register={register} editable />
+                <ProfileCardHeader
+                    avatar={avatar}
+                    avatarName={'avatar'}
+                    banner={banner}
+                    bannerName={'banner'}
+                    register={register}
+                    editable
+                />
             </Card>
             <Flex direction={'column'} gap={'.5rem'} px={'1rem'} mb="1rem">
                 <SolidInput<EditUserDataType>

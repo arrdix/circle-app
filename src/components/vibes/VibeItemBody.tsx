@@ -33,7 +33,7 @@ function VibeItemBody({ vibeContent, vibeId, vibeImage, noImage, onOpen }: VibeI
                         width={'auto'}
                         height={'auto'}
                         borderRadius={'lg'}
-                        mt={'1rem'}
+                        mt={'.25rem'}
                     />
                 </GhostButton>
             )}

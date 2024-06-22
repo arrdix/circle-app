@@ -31,11 +31,15 @@ function VibeItem({ vibe, noImage, repliesTarget, isReply }: VibeItemProps) {
                 >
                     <Flex gap={'1rem'}>
                         <Avatar src={author.avatar} />
-                        <Flex direction={'column'} gap={'.25rem'} width={'100%'}>
+                        <Flex direction={'column'} width={'100%'}>
                             <VibeItemHeader
+                                vibeId={id}
                                 name={author.name}
                                 username={`@${author.username}`}
                                 date={createdAt}
+                                author={author}
+                                isReply={isReply && isReply}
+                                repliesTarget={repliesTarget && repliesTarget}
                             />
                             <VibeItemBody
                                 vibeId={id}

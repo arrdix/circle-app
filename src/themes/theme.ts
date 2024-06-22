@@ -51,6 +51,7 @@ const circleTheme = extendTheme({
             accent: '#8e3e63',
             darkAccent: '#703450',
             error: '#cc0000',
+            green: '#006e45',
         },
     },
     styles: {

@@ -34,7 +34,7 @@ function VibeItemHeader({
 
     const navigate = useNavigate()
     const [, , onDelete] = useVibes()
-    const [, , onDeleteReply] = useReplies(vibeId)
+    const [, , onDeleteReply] = useReplies()
 
     return (
         <CardHeader display={'flex'} gap={'.5rem'} alignItems={'center'} padding={0}>

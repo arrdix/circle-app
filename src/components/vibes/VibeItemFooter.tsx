@@ -33,8 +33,6 @@ function VibeItemFooter({
     // optimistic updates
     async function onToggleLike() {
         try {
-            await API.TOGGLE_LIKE(vibeId)
-
             setVibeLiked((oldState) => !oldState)
             setTotalVibeLike((oldState) => {
                 if (!isVibeLiked) {
@@ -43,6 +41,8 @@ function VibeItemFooter({
 
                 return oldState - 1
             })
+
+            await API.TOGGLE_LIKE(vibeId)
         } catch (error) {
             setVibeLiked(isLiked)
             setTotalVibeLike(totalLike)

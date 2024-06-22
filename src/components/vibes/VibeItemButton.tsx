@@ -34,6 +34,7 @@ const VibeItemButton = forwardRef<HTMLButtonElement, VibeItemButtonProps>(
                 padding={0}
                 zIndex={1}
                 ml={ml && ml}
+                height={atLeft ? 0 : 'auto'}
                 _hover={{ color: hoverColor, background: 'transparent' }}
                 onClick={(e) => onClickHandler(e)}
             >

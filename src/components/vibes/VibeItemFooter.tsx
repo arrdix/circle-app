@@ -1,25 +1,11 @@
-import {
-    CardFooter,
-    Flex,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuList,
-    Spacer,
-    Tag,
-    TagLabel,
-} from '@chakra-ui/react'
-import { BiSolidHeart, BiCommentDetail, BiDotsVerticalRounded } from 'react-icons/bi'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/redux'
+import { CardFooter, Center, Flex, Spacer, Tooltip } from '@chakra-ui/react'
+import { BiSolidHeart, BiCommentDetail, BiSolidCircle } from 'react-icons/bi'
 import { UserType } from '@/types/types'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useVibes } from '@/hooks/useVibes'
 
 import API from '@/networks/api'
 import VibeItemButton from './VibeItemButton'
-import { useReplies } from '@/hooks/useReplies'
 
 interface VibeItemFooterProps {
     vibeId: number
@@ -37,26 +23,16 @@ function VibeItemFooter({
     totalLike,
     totalReply,
     isLiked,
-    author,
-    isReply,
-    repliesTarget,
     badLabels,
 }: VibeItemFooterProps) {
-    const loggedUser = useSelector((states: RootState) => states.loggedUser.value)
-
     const [isVibeLiked, setVibeLiked] = useState<boolean>(isLiked)
     const [totalVibeLike, setTotalVibeLike] = useState<number>(totalLike)
 
     const navigate = useNavigate()
 
-    const [, , onDelete] = useVibes()
-    const [, , onDeleteReply] = useReplies(vibeId)
-
     // optimistic updates
     async function onToggleLike() {
         try {
-            await API.TOGGLE_LIKE(vibeId)
-
             setVibeLiked((oldState) => !oldState)
             setTotalVibeLike((oldState) => {
                 if (!isVibeLiked) {
@@ -65,6 +41,8 @@ function VibeItemFooter({
 
                 return oldState - 1
             })
+
+            await API.TOGGLE_LIKE(vibeId)
         } catch (error) {
             setVibeLiked(isLiked)
             setTotalVibeLike(totalLike)
@@ -72,7 +50,7 @@ function VibeItemFooter({
     }
 
     return (
-        <CardFooter padding={0}>
+        <CardFooter padding={0} mt={'.5rem'}>
             {totalReply !== undefined && totalLike !== undefined && (
                 <Flex gap={'1rem'}>
                     <VibeItemButton
@@ -93,57 +71,30 @@ function VibeItemFooter({
             )}
             <Spacer />
             <Flex alignItems={'center'}>
-                {badLabels &&
-                    badLabels.length > 0 &&
-                    badLabels.map((label) => {
-                        return (
-                            <Tag
-                                key={label}
-                                size={'sm'}
-                                variant="outline"
-                                colorScheme="red"
-                                ml={'.5rem'}
-                                height={0}
-                            >
-                                <TagLabel>{label}</TagLabel>
-                            </Tag>
-                        )
-                    })}
+                {badLabels.length > 0 ? (
+                    <Tooltip
+                        label={badLabels.join(', ')}
+                        fontSize={'sm'}
+                        bg={'circle.error'}
+                        placement={'top-end'}
+                    >
+                        <Center color={'circle.error'} boxSize={'24px'}>
+                            <BiSolidCircle size={'.5rem'} />
+                        </Center>
+                    </Tooltip>
+                ) : (
+                    <Tooltip
+                        label={'positive vibe'}
+                        fontSize={'sm'}
+                        bg={'circle.green'}
+                        placement={'top-end'}
+                    >
+                        <Center color={'circle.green'} boxSize={'24px'}>
+                            <BiSolidCircle size={'.5rem'} />
+                        </Center>
+                    </Tooltip>
+                )}
             </Flex>
-            {loggedUser && loggedUser.id === author.id && (
-                <Menu>
-                    <MenuButton
-                        as={VibeItemButton}
-                        color={'circle.dark'}
-                        icon={<BiDotsVerticalRounded fontSize={'1.5rem'} />}
-                        hoverColor={'circle.accent'}
-                        ml={'.5rem'}
-                        atLeft
-                    ></MenuButton>
-                    <MenuList bg={'circle.darker'} border={0}>
-                        <MenuItem
-                            bg={'circle.darker'}
-                            onClick={(e) => {
-                                e.preventDefault()
-                                e.stopPropagation()
-
-                                if (repliesTarget) {
-                                    navigate('/')
-                                    return onDelete(vibeId)
-                                }
-
-                                if (isReply) {
-                                    return onDeleteReply(vibeId)
-                                }
-
-                                return onDelete(vibeId)
-                            }}
-                        >
-                            Delete
-                        </MenuItem>
-                    </MenuList>
-                </Menu>
-            )}
         </CardFooter>
     )
 }

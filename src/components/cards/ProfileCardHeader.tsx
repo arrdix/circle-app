@@ -13,13 +13,23 @@ interface ProfileCardHeaderProps<T extends FieldValues> {
     editable?: boolean
     avatar: string
     banner: string
+    isUserProfile?: boolean
     avatarName?: Path<T>
     bannerName?: Path<T>
     register?: UseFormRegister<T>
 }
 
 function ProfileCardHeader<T extends FieldValues>(props: ProfileCardHeaderProps<T>) {
-    const { buttonText, editable, avatar, banner, avatarName, bannerName, register } = props
+    const {
+        buttonText,
+        editable,
+        avatar,
+        banner,
+        isUserProfile,
+        avatarName,
+        bannerName,
+        register,
+    } = props
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const [avatarPreview, setAvatarPreview] = useState<string>('')
@@ -94,13 +104,12 @@ function ProfileCardHeader<T extends FieldValues>(props: ProfileCardHeaderProps<
                     </Flex>
                 )}
             </Box>
-
-            {!editable && (
+            {isUserProfile && <Box boxSize={'40px'} />}
+            {!editable && !isUserProfile && (
                 <Box ml={'auto'} zIndex={1}>
                     <HollowButton onClick={onOpen} text={buttonText} />
                 </Box>
             )}
-
             <Flex pos={'absolute'} left={'5%'} bottom={'0'}>
                 <Image
                     src={avatarPreview ? avatarPreview : avatar}
@@ -144,7 +153,6 @@ function ProfileCardHeader<T extends FieldValues>(props: ProfileCardHeaderProps<
                     </label>
                 </Flex>
             )}
-
             <BrandModal isOpen={isOpen} onClose={onClose} size={'xl'}>
                 <EditProfileModal avatar={avatar} banner={banner} onClose={onClose} />
             </BrandModal>

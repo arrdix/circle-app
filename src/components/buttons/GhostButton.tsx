@@ -6,10 +6,11 @@ interface GhostButtonProps {
     children: ReactNode
     color?: string
     fontSize?: string
+    onTop?: boolean
     onClick?: () => void
 }
 
-function GhostButton({ children, color, fontSize, onClick }: GhostButtonProps) {
+function GhostButton({ children, color, fontSize, onTop, onClick }: GhostButtonProps) {
     function onClickHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
         if (onClick) {
             e.stopPropagation()
@@ -28,7 +29,7 @@ function GhostButton({ children, color, fontSize, onClick }: GhostButtonProps) {
             width={'auto'}
             variant={'ghost'}
             display={'flex'}
-            alignItems={'center'}
+            alignItems={onTop ? 'start' : 'center'}
             justifyContent={'start'}
             minWidth={'none'}
             minHeight={'none'}

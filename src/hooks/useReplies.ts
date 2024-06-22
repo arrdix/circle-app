@@ -5,14 +5,20 @@ import API from '@/networks/api'
 import useCircleToast from '@/hooks/useCircleToast'
 
 function useReplies(
-    targetId: number
-): [DetailedVibeType | undefined, (data: VibeDataType) => void, (targetId: number) => void] {
+    targetId: number | null = null
+): [DetailedVibeType | null | undefined, (data: VibeDataType) => void, (targetId: number) => void] {
     const createToast = useCircleToast()
     const queryClient: QueryClient = useQueryClient()
 
-    const { data: vibe } = useQuery<DetailedVibeType>({
+    const { data: vibe } = useQuery<DetailedVibeType | null>({
         queryKey: ['vibe', targetId],
-        queryFn: () => API.GET_SINGLE_VIBE(targetId),
+        queryFn: () => {
+            if (targetId) {
+                return API.GET_SINGLE_VIBE(targetId)
+            }
+
+            return null
+        },
     })
 
     const postReply = useMutation({
@@ -33,13 +39,15 @@ function useReplies(
         const badLabels = await API.DETECT_SENTIMENT(data.content)
         const formData: FormData = new FormData()
 
-        formData.append('targetId', targetId.toString())
-        formData.append('content', data.content)
-        formData.append('image', data.image ? data.image[0] : null)
+        if (targetId) {
+            formData.append('targetId', targetId.toString())
+            formData.append('content', data.content)
+            formData.append('image', data.image ? data.image[0] : null)
 
-        formData.append('badLabels', JSON.stringify(badLabels))
+            formData.append('badLabels', JSON.stringify(badLabels))
 
-        postReply.mutate(formData)
+            postReply.mutate(formData)
+        }
     }
 
     function onDelete(targetId: number): void {

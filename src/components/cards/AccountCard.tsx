@@ -8,6 +8,7 @@ import { setLoggedUser } from '@/features/auth/authSlice'
 import API from '@/networks/api'
 import HollowButton from '@/components/buttons/HollowButton'
 import CircleSpinner from '@/components/utils/CircleSpinner'
+import { Link } from 'react-router-dom'
 
 interface AccountCardProps {
     id: number
@@ -51,20 +52,32 @@ function AccountCard({ id, username, name, bio, avatar, isFollowed, noBio }: Acc
 
     return (
         <Flex gap={'1rem'} alignItems={'center'}>
-            <Avatar src={avatar} />
+            <Link to={`/user/${id}`}>
+                <Avatar src={avatar} _hover={{ opacity: '.8', transition: 'opacity .3s ease' }} />
+            </Link>
             <Flex direction={'column'} justifyContent={'center'} gap={0} mr={'auto'}>
-                <Text fontSize={fontSizing.small} fontWeight={'700'}>
-                    {name}
-                </Text>
-                <Text fontSize={fontSizing.smaller} color={'circle.dark'}>
-                    @{username}
-                </Text>
+                <Link to={`/user/${id}`}>
+                    <Text
+                        fontSize={fontSizing.small}
+                        fontWeight={'700'}
+                        _hover={{ opacity: '.8', transition: 'opacity .3s ease' }}
+                    >
+                        {name}
+                    </Text>
+                    <Text
+                        fontSize={fontSizing.smaller}
+                        color={'circle.dark'}
+                        _hover={{ opacity: '.8', transition: 'opacity .3s ease' }}
+                    >
+                        @{username}
+                    </Text>
+                </Link>
                 {bio && !noBio && <Text fontSize={fontSizing.smaller}>{bio}</Text>}
             </Flex>
             {isLoading ? (
                 <HollowButton children={<CircleSpinner />} />
             ) : isUserFollowed ? (
-                <HollowButton text={'Unfollow'} onClick={onFollow} dark />
+                <HollowButton text={'Following'} onClick={onFollow} dark />
             ) : (
                 <HollowButton text={'Follow'} onClick={onFollow} />
             )}

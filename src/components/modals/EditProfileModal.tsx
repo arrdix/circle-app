@@ -1,4 +1,4 @@
-import { Card, Box, Flex, Divider } from '@chakra-ui/react'
+import { Card, Box, Flex, Divider, FormControl, FormLabel, Switch } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/redux'
@@ -11,6 +11,7 @@ import ProfileCardHeader from '@/components/cards/ProfileCardHeader'
 import BrandHeading from '@/components/utils/BrandHeading'
 import SolidButton from '@/components/buttons/SolidButton'
 import SolidInput from '@/components/inputs/SolidInput'
+import { fontSizing } from '@/styles/style'
 
 interface EditProfileModalProps {
     onClose: () => void
@@ -33,6 +34,7 @@ function EditProfileModal({ avatar, banner, onClose }: EditProfileModalProps) {
             name: loggedUser?.name,
             username: loggedUser?.username,
             bio: loggedUser?.bio || '',
+            filterContent: loggedUser?.filterContent,
             avatar: null,
             banner: null,
         },
@@ -73,6 +75,12 @@ function EditProfileModal({ avatar, banner, onClose }: EditProfileModalProps) {
                     register={register}
                     error={errors.bio}
                 />
+                <FormControl display="flex" alignItems="center" justifyContent={'flex-end'}>
+                    <FormLabel htmlFor="email-alerts" mb="0" fontSize={fontSizing.small}>
+                        Show sensitive content
+                    </FormLabel>
+                    <Switch id="email-alerts" {...register('filterContent')} />
+                </FormControl>
             </Flex>
             <Divider borderColor={'circle.darker'} />
             <Box width={'25%'} px={'1rem'} pt={'1rem'} ml={'auto'}>

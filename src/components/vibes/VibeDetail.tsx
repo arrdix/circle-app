@@ -35,6 +35,7 @@ function VibeDetail({ vibe, onReply, noImage }: VibeDetailProps) {
             author: users.find((user) => user.id === reply.authorId),
         }
     })
+
     if (!replies.length)
         return (
             <Box>

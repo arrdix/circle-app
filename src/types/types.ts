@@ -12,6 +12,7 @@ export interface UserType {
     totalFollowing: number
     isFollowed: boolean
     vibes: VibeType[]
+    filterContent: boolean
 }
 
 export interface VibeType {
@@ -76,6 +77,7 @@ export interface ResetDataType {
 export interface EditUserDataType {
     name: string
     username: string
+    filterContent: boolean
     bio: string
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     avatar: any
@@ -88,6 +90,7 @@ export interface EditedUserType {
     username: string
     name: string
     email: string
+    filterContent: boolean
     avatar: string
     banner: string
     bio: string | null

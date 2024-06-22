@@ -104,14 +104,12 @@ function ProfileCardHeader<T extends FieldValues>(props: ProfileCardHeaderProps<
                     </Flex>
                 )}
             </Box>
-            <Box boxSize={'40px'} />
-
+            {isUserProfile && <Box boxSize={'40px'} />}
             {!editable && !isUserProfile && (
                 <Box ml={'auto'} zIndex={1}>
                     <HollowButton onClick={onOpen} text={buttonText} />
                 </Box>
             )}
-
             <Flex pos={'absolute'} left={'5%'} bottom={'0'}>
                 <Image
                     src={avatarPreview ? avatarPreview : avatar}
@@ -155,7 +153,6 @@ function ProfileCardHeader<T extends FieldValues>(props: ProfileCardHeaderProps<
                     </label>
                 </Flex>
             )}
-
             <BrandModal isOpen={isOpen} onClose={onClose} size={'xl'}>
                 <EditProfileModal avatar={avatar} banner={banner} onClose={onClose} />
             </BrandModal>

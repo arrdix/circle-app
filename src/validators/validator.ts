@@ -76,6 +76,7 @@ export const EditUserSchema: ZodType = z.object({
     bio: z.string().min(1, {
         message: 'Bio must not be empty.',
     }),
+    filterContent: z.boolean(),
     avatar: z.any(),
     banner: z.any(),
 })

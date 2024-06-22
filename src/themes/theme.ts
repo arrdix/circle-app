@@ -1,11 +1,25 @@
 import { extendTheme } from '@chakra-ui/react'
-import { inputAnatomy } from '@chakra-ui/anatomy'
+import { inputAnatomy, switchAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
-const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(
-    inputAnatomy.keys
-)
+const { definePartsStyle: inputStyle, defineMultiStyleConfig: inputConfig } =
+    createMultiStyleConfigHelpers(inputAnatomy.keys)
+const { definePartsStyle: switchStyle, defineMultiStyleConfig: switchConfig } =
+    createMultiStyleConfigHelpers(switchAnatomy.keys)
 
-const hollow = definePartsStyle({
+const baseStyle = switchStyle({
+    container: {},
+    thumb: {
+        bg: 'circle.font',
+    },
+    track: {
+        bg: 'circle.dark',
+        _checked: {
+            bg: 'circle.accent',
+        },
+    },
+})
+
+const hollow = inputStyle({
     field: {
         border: '1px solid',
         borderColor: 'circle.dark',
@@ -35,7 +49,8 @@ const hollow = definePartsStyle({
     },
 })
 
-const inputTheme = defineMultiStyleConfig({
+const switchTheme = switchConfig({ baseStyle })
+const inputTheme = inputConfig({
     variants: { hollow },
 })
 
@@ -64,7 +79,7 @@ const circleTheme = extendTheme({
             },
         },
     },
-    components: { Input: inputTheme },
+    components: { Input: inputTheme, Switch: switchTheme },
 })
 
 export default circleTheme

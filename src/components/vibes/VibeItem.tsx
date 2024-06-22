@@ -6,6 +6,8 @@ import VibeItemHeader from '@/components/vibes/VibeItemHeader'
 import VibeItemBody from '@/components/vibes/VibeItemBody'
 import VibeItemFooter from '@/components/vibes/VibeItemFooter'
 import ImageModal from '@/components/modals/ImageModal'
+import { useNavigate } from 'react-router-dom'
+import GhostButton from '@/components/buttons/GhostButton'
 
 interface VibeItemProps {
     vibe: VibeType
@@ -18,7 +20,14 @@ function VibeItem({ vibe, noImage, repliesTarget, isReply }: VibeItemProps) {
     const { id, content, image, createdAt, totalLikes, totalReplies, isLiked, badLabels, author } =
         vibe
 
+    const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    function onAvatarClick() {
+        if (author) {
+            navigate(`/user/${author.id}`)
+        }
+    }
 
     if (author) {
         return (
@@ -30,10 +39,13 @@ function VibeItem({ vibe, noImage, repliesTarget, isReply }: VibeItemProps) {
                     _hover={!isReply ? vibeHover : {}}
                 >
                     <Flex gap={'1rem'}>
-                        <Avatar src={author.avatar} />
+                        <GhostButton onClick={onAvatarClick} onTop>
+                            <Avatar src={author.avatar} />
+                        </GhostButton>
                         <Flex direction={'column'} width={'100%'}>
                             <VibeItemHeader
                                 vibeId={id}
+                                authorId={author.id}
                                 name={author.name}
                                 username={`@${author.username}`}
                                 date={createdAt}

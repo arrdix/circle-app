@@ -20,6 +20,7 @@ import ResetPasswordPage from '@/pages/ResetPasswordPage'
 import FollowsPage from '@/pages/FollowsPage'
 import SplashScreen from '@/components/utils/SplashScreen'
 import CircleAlert from '@/components/utils/CircleAlert'
+import ProfilePage from '@/pages/ProfilePage'
 
 function App() {
     const isPreloaded = useSelector((states: RootState) => states.isPreloaded.value)
@@ -90,6 +91,7 @@ function App() {
                 <Route path="/" element={<CircleLayout />}>
                     <Route index element={<HomePage />} />
                     <Route path="/vibe/:id" element={<VibeDetailPage />} />
+                    <Route path="/user/:id" element={<ProfilePage />} />
                     <Route path="/me" element={<MePage />} />
                     <Route path="/follows" element={<FollowsPage />} />
                     <Route path="/search" element={<SearchPage />} />

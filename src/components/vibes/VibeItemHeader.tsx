@@ -10,6 +10,7 @@ import { useReplies } from '@/hooks/useReplies'
 import { useNavigate } from 'react-router-dom'
 
 import VibeItemButton from '@/components/vibes/VibeItemButton'
+import GhostButton from '@/components/buttons/GhostButton'
 
 interface VibeItemHeaderProps {
     name: string
@@ -19,6 +20,7 @@ interface VibeItemHeaderProps {
     vibeId: number
     isReply?: boolean
     repliesTarget?: boolean
+    authorId: number
 }
 
 function VibeItemHeader({
@@ -29,6 +31,7 @@ function VibeItemHeader({
     vibeId,
     isReply,
     repliesTarget,
+    authorId,
 }: VibeItemHeaderProps) {
     const loggedUser = useSelector((states: RootState) => states.loggedUser.value)
 
@@ -36,14 +39,25 @@ function VibeItemHeader({
     const [, , onDelete] = useVibes()
     const [, , onDeleteReply] = useReplies()
 
+    function onProfileClick() {
+        navigate(`/user/${authorId}`)
+    }
+
     return (
         <CardHeader display={'flex'} gap={'.5rem'} alignItems={'center'} padding={0}>
-            <Text fontSize={fontSizing.small} fontWeight={'700'}>
-                {name}
-            </Text>
-            <Text fontSize={fontSizing.small} color={'circle.dark'}>
-                {username}
-            </Text>
+            <GhostButton onClick={onProfileClick}>
+                <Text
+                    fontSize={fontSizing.small}
+                    color={'circle.font'}
+                    mr={'.5rem'}
+                    fontWeight={'700'}
+                >
+                    {name}
+                </Text>
+                <Text fontSize={fontSizing.small} color={'circle.dark'}>
+                    {username}
+                </Text>
+            </GhostButton>
             <Text fontSize={fontSizing.small} color={'circle.dark'}>
                 &#8226; {dateFormatter(date)}
             </Text>

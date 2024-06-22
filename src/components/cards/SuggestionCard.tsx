@@ -25,7 +25,7 @@ function SuggestionCard() {
                     return !user.isFollowed && user.id !== loggedUser.id
                 })
 
-                const randomUsers = users.sort(() => Math.random() - 0.5).splice(0, 5)
+                const randomUsers = users.sort(() => Math.random() - 0.5).splice(0, 3)
                 setUsers(randomUsers)
             }
         }
